@@ -5,6 +5,11 @@
     <button v-on:click="createPoll">
       Create poll
     </button>
+    <br>
+    <button v-on:click="addWord">
+      Add word
+    </button>
+
     <div>
       {{uiLabels.question}}:
       <input type="text" v-model="question">
@@ -13,14 +18,17 @@
         <input v-for="(_, i) in answers" 
                v-model="answers[i]" 
                v-bind:key="'answer'+i">
-        <button v-on:click="addAnswer">
+<!--        <button v-on:click="addAnswer">
           Add answer alternative
-        </button>
+        </button>-->
       </div>
     </div>
     <button v-on:click="addQuestion">
       Add question
     </button>
+    <br>
+    {{question}}
+
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
       Run question
@@ -40,11 +48,12 @@ export default {
     return {
       lang: "",
       pollId: "",
-      question: "",
-      answers: ["", ""],
+      question: [""],
+      answers: [""],
       questionNumber: 0,
       data: {},
       uiLabels: {}
+
     }
   },
   created: function () {
@@ -71,6 +80,9 @@ export default {
     },
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+    },
+    addWord: function () {
+
     }
   }
 }
