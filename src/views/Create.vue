@@ -1,28 +1,30 @@
 <template>
+
   <header>
     <h1>Glossary creator</h1>
   </header>
+  <body>
   <div>
     Glossary ID:
     <input type="text" v-model="pollId">
     <br>
 
     <div class="classInput">
-      <div id="inputQuestion" >
-      {{uiLabels.question}}:
+      <div id="inputQuestion">
+        {{ uiLabels.question }}:
 
-      <input v-for="(_, i) in question"
-             v-model="question[i]"
-             v-bind:key="'question'+i">
+        <input v-for="(_, i) in question"
+               v-model="question[i]"
+               v-bind:key="'question'+i">
       </div>
       <div id="inputAnswer">
-        {{question[0]}}
+        {{ question[0] }}
 
         Answers:
-    <input  v-for="(_, i) in answers"
+        <input v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i">
-        {{answers[0]}}
+        {{ answers[0] }}
       </div>
     </div>
     <button v-on:click="addWord">
@@ -33,14 +35,21 @@
       Create poll
     </button>
     <br>
-    {{data}}
+    {{ data }}
     <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
+  </body>
+  <footer>
+    <p>
+      Copypaste
+    </p>
+  </footer>
 </template>
 
 <script>
 import io from 'socket.io-client';
+
 const socket = io();
 
 export default {
@@ -64,18 +73,18 @@ export default {
       this.uiLabels = labels
     })
     socket.on("dataUpdate", (data) =>
-      this.data = data
+        this.data = data
     )
     socket.on("pollCreated", (data) =>
-      this.data = data)
+        this.data = data)
   },
   methods: {
     createPoll: function () {
-      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
+      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers})
       console.log(this.q)
       console.log(this.answer)
-      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
 
     },
 //    addQuestion: function () {
@@ -100,18 +109,12 @@ export default {
 
 <style>
 .classInput {
-  display:grid;
+  display: grid;
   grid-template-columns: auto auto;
 }
-#inputQuestion{
-background: burlywood;
-}
-#inputAnswer{
-  background: blanchedalmond;
-}
 
-template{
-  background: linear-gradient(#e66465, #9198e5);
+body {
+  background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
 }
 
 </style>
