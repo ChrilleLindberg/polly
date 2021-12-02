@@ -4,6 +4,12 @@
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
+  {{question.a}}
+  {{myAnswers}}
+  <button v-on:click="FinishedQuiz">
+    Submit Quiz
+
+  </button>
 </template>
 
 <script>
@@ -22,8 +28,11 @@ export default {
       question: {
         q: "",
         a: []
+
       },
-      pollId: "inactive poll"
+      pollId: "inactive poll",
+      numbCorrectAnswers: 0,
+      myAnswers: ["hej","hej","hus"]
     }
   },
   created: function () {
@@ -36,7 +45,18 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+    },
+    FinishedQuiz: function(){
+      for (let i = 0; i <this.question.a.length; i++) {
+        console.log(this.question.a[i])
+        if(this.question.a[i] === this.myAnswers[i]) {
+          console.log(this.question.a[i])
+          this.numbCorrectAnswers += 1;
+        }
+
+      }
     }
+
   }
 }
 </script>
