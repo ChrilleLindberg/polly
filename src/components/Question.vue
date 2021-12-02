@@ -1,8 +1,18 @@
 <template>
-<p>{{question.q}}</p>
-<button v-for="a in question.a" v-on:click="answer(a)" v-bind:key="a">
+
+
+  <p v-for="(q, i) in question.q" :key="q">
+    {{ q }}
+    <input type="string" id="answers" v-model="myAnswers[i]">
+  </p>
+{{myAnswers}}
+
+
+
+
+<!--<button v-for="a in question.a" v-on:click="answer(a)" v-bind:key="a">
   {{ a }}
-</button>
+</button>-->
 </template>
 <script>
 export default {
@@ -10,10 +20,16 @@ export default {
   props: {
     question: Object
   },
+  data: function () {
+    return {
+      myAnswers: [],
+    }
+  },
   methods: {
-    answer: function (answer) {
-      this.$emit("answer", answer);
-    } 
+    answer: function () {
+      this.$emit("answer", {answer: this.myAnswers});
+
+    }
   }
 }
 </script>
