@@ -10,17 +10,28 @@
       Add word
     </button>
 
-    <div>
+    <div class="classInput">
+      <div id="inputQuestion" >
       {{uiLabels.question}}:
-      <input type="text" v-model="question">
-      <div>
+<!--      <input type="text" v-model="question">-->
+
+
+      <input  v-for="(_, i) in question"
+             v-model="question[i]"
+             v-bind:key="'question'+i">
+      </div>
+      <div id="inputAnswer">
+        {{question[1]}}
+
         Answers:
-        <input v-for="(_, i) in answers" 
-               v-model="answers[i]" 
+<!--        <input type="text" v-model="answers">-->
+    <input  v-for="(_, i) in answers"
+               v-model="answers[i]"
                v-bind:key="'answer'+i">
-<!--        <button v-on:click="addAnswer">
+        {{answers[1]}}
+<!--       <button v-on:click="addAnswer">
           Add answer alternative
-        </button>-->
+        </button>&ndash;&gt;-->
       </div>
     </div>
     <button v-on:click="addQuestion">
@@ -90,3 +101,19 @@ export default {
   }
 }
 </script>
+
+
+<style>
+.classInput {
+  display:grid;
+  grid-template-columns: auto auto;
+}
+#inputQuestion{
+background: aqua;
+}
+
+#inputAnswer{
+
+}
+
+</style>
