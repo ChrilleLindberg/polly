@@ -1,50 +1,40 @@
 <template>
+  <header>
+    <h1>Glossary creator</h1>
+  </header>
   <div>
-    Poll link: 
+    Glossary ID:
     <input type="text" v-model="pollId">
-    <button v-on:click="createPoll">
-      Create poll
-    </button>
     <br>
-    <button v-on:click="addWord">
-      Add word
-    </button>
 
     <div class="classInput">
       <div id="inputQuestion" >
       {{uiLabels.question}}:
-<!--      <input type="text" v-model="question">-->
 
-
-      <input  v-for="(_, i) in question"
+      <input v-for="(_, i) in question"
              v-model="question[i]"
              v-bind:key="'question'+i">
       </div>
       <div id="inputAnswer">
-        {{question[1]}}
+        {{question[0]}}
 
         Answers:
-<!--        <input type="text" v-model="answers">-->
     <input  v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i">
-        {{answers[1]}}
-<!--       <button v-on:click="addAnswer">
-          Add answer alternative
-        </button>&ndash;&gt;-->
+        {{answers[0]}}
       </div>
     </div>
-    <button v-on:click="addQuestion">
-      Add question
+    <button v-on:click="addWord">
+      +
     </button>
     <br>
-
-
-    <input type="number" v-model="questionNumber">
-    <button v-on:click="runQuestion">
-      Run question
+    <button v-on:click="createPoll">
+      Create poll
     </button>
+    <br>
     {{data}}
+    <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
 </template>
@@ -82,22 +72,27 @@ export default {
   methods: {
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-    },
-    addQuestion: function () {
       socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
       console.log(this.q)
       console.log(this.answer)
+      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
+
     },
-    addAnswer: function () {
-      this.answers.push("");
-    },
-    runQuestion: function () {
-      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-    },
+//    addQuestion: function () {
+//      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+//      console.log(this.q)
+//      console.log(this.answer)
+//    },
+//    addAnswer: function () {
+//      this.answers.push("");
+//    },
+//    runQuestion: function () {
+//      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+//    },
     addWord: function () {
       this.answers.push("");
       this.question.push("");
-    }
+    },
   }
 }
 </script>
@@ -109,11 +104,14 @@ export default {
   grid-template-columns: auto auto;
 }
 #inputQuestion{
-background: aqua;
+background: burlywood;
+}
+#inputAnswer{
+  background: blanchedalmond;
 }
 
-#inputAnswer{
-
+template{
+  background: linear-gradient(#e66465, #9198e5);
 }
 
 </style>
