@@ -27,7 +27,7 @@
       Add question
     </button>
     <br>
-    {{question}}
+
 
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
@@ -74,6 +74,8 @@ export default {
     },
     addQuestion: function () {
       socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+      console.log(this.q)
+      console.log(this.answer)
     },
     addAnswer: function () {
       this.answers.push("");
@@ -82,7 +84,8 @@ export default {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
     },
     addWord: function () {
-
+      this.answers.push("");
+      this.question.push("");
     }
   }
 }
