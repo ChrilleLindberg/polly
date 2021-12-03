@@ -5,7 +5,7 @@
     </h1>
   </header>
   <body>
-    <div id="nav" v-show="isVisible">
+    <div id="nav" v-show="isVisible==1">
       <p>{{uiLabels.infoText}}</p>
       <br>
       <label v-on:click="hej">
@@ -18,10 +18,10 @@
       </button>
       <br>
       <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-      <button id="switchVisible" v-on:click="switchVisible"> {{uiLabels.createPoll}}</button>
+      <button id="switchVisible" v-on:click="switchVisibleTwo"> {{uiLabels.createPoll}}</button>
     </div>
 
-    <div id="twoOptions" v-show="!isVisible">
+    <div id="twoOptions" v-show="isVisible==2">
       <h2>
         {{uiLabels.twoOptionsText }}
       </h2>
@@ -29,9 +29,15 @@
         {{uiLabels.createNew}}
       </button>
       <br>
-      <button id="edit"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
+      <button id="edit" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
         {{uiLabels.editExisting}}
       </button>
+    </div>
+    <div id="editExisting" v-show="isVisible==3">
+      <p>
+        {{uiLabels.editExisting}}
+      </p>
+      <input type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
     </div>
   </body>
 </template>
@@ -47,7 +53,7 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
-      isVisible: true
+      isVisible: 1
     }
   },
   created: function () {
@@ -63,8 +69,11 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
-    switchVisible: function (){
-      this.isVisible= false
+    switchVisibleTwo: function (){
+      this.isVisible = 2
+    },
+    switchVisibleThree: function (){
+      this.isVisible = 3
     }
   }
 }

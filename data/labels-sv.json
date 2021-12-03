@@ -10,5 +10,6 @@
 	"writeField": "Fyll i Glossary ID",
 	"createNew": "Skapa ny",
 	"editExisting": "Redigera existerande",
-	"twoOptionsText": "Vill du skapa en ny eller redigera en existerande glossary?"
+	"twoOptionsText": "Vill du skapa en ny eller redigera en existerande glossary?",
+	"editExistingText": "Fyll i glossary ID"
 }
