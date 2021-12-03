@@ -1,8 +1,11 @@
 {
 	"sales-pitch": "Svar. Helt. Enkelt.",
 	"invite": "Bjud in deltagare med den här länken:",
-	"createPoll": "Skapa röstning",
+	"createPoll": "Skapa eller redigera en glossary",
 	"participatePoll": "Delta i röstning",
 	"question": "Fråga",
-	"changeLanguage": "Change to English"
+	"changeLanguage": "Change to English",
+	"welcomeMessage": "Välkommen till Glossary",
+	"infoText": "Fyll i glossary ID eller skapa din egna glossary",
+	"writeField": "Fyll i Glossary ID"
 }

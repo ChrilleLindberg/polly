@@ -1,8 +1,11 @@
 {
 	"sales-pitch": "Simply. Great. Polling.",
 	"invite": "Invite participants with this link:",
-	"createPoll": "Create poll",
+	"createPoll": "Create or edit a glossary",
 	"participatePoll": "Participate in poll",
 	"question": "Question",
-	"changeLanguage": "Byt till svenska"
+	"changeLanguage": "Byt till svenska",
+	"welcomeMessage": "Welcome to Glossary",
+	"infoText": "Enter glossary ID or create your own glossary",
+	"writeField": "Enter Glossay ID"
 }
