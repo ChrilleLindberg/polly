@@ -9,5 +9,6 @@
 	"infoText": "Enter glossary ID or create your own glossary",
 	"writeField": "Enter Glossay ID",
 	"createNew": "Create new",
-	"editExisting": "Edit existing"
+	"editExisting": "Edit existing",
+	"twoOptionsText": "Do you want to create or edit a glossary?"
 }

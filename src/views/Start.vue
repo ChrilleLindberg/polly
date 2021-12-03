@@ -18,18 +18,18 @@
       </button>
       <br>
       <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-      <button id="switchVisible" v-on:click="switchVisible"> Klicka här för att visa knappar</button>
-
-
-      <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
+      <button id="switchVisible" v-on:click="switchVisible"> {{uiLabels.createPoll}}</button>
     </div>
+
     <div id="twoOptions" v-show="!isVisible">
+      <h2>
+        {{uiLabels.twoOptionsText }}
+      </h2>
       <button @click="$router.push('/create/'+lang)" id="create" >
         {{uiLabels.createNew}}
-        <!-- router-link v-bind:to="'/create/'+lang" >{{uiLabels.createNew}}</router-link> -->
       </button>
       <br>
-      <button id="edit">
+      <button id="edit"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
         {{uiLabels.editExisting}}
       </button>
     </div>
