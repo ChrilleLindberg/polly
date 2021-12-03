@@ -104,7 +104,8 @@ export default {
     },
 
     submitAnswer: function (answer) {
-      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+      this.myAnswers=answer
+      //socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     },
 
 

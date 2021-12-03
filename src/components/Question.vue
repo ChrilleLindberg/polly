@@ -5,7 +5,7 @@
     {{ q }}
     <input type="string" id="answers" v-model="myAnswers[i]">
   </p>
-{{myAnswers}}
+
 
 
 
@@ -25,11 +25,8 @@ export default {
       myAnswers: [],
     }
   },
-  methods: {
-    answer: function () {
+  created: function () {
       this.$emit("answer", {answer: this.myAnswers});
-
-    }
   }
 }
 </script>
