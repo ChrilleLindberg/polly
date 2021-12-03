@@ -11,5 +11,6 @@
 	"createNew": "Create new",
 	"editExisting": "Edit existing",
 	"twoOptionsText": "Do you want to create or edit a glossary?",
-	"editExistingText": "Edit existing glossary"
+	"editExistingText": "Edit existing glossary",
+	"congratulations": "Congratulations! You have creted a glossry with glossary ID: "
 }

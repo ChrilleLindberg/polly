@@ -8,9 +8,9 @@
     <div id="nav" v-show="isVisible==1">
       <p>{{uiLabels.infoText}}</p>
       <br>
-      <label v-on:click="hej">
+      <label>
         <!--{{uiLabels.writeField}}-->
-        <input type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
+        <input type="text" v-model="id" @focus="switchVisibleFour" v-bind:placeholder="uiLabels.writeField">
       </label>
       <button @click="$router.push('/poll/'+id)" id="participate" > <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
@@ -74,6 +74,9 @@ export default {
     },
     switchVisibleThree: function (){
       this.isVisible = 3
+    },
+    switchVisibleFour: function (){
+      this.isVisible = 4
     }
   }
 }

@@ -11,5 +11,6 @@
 	"createNew": "Skapa ny",
 	"editExisting": "Redigera existerande",
 	"twoOptionsText": "Vill du skapa en ny eller redigera en existerande glossary?",
-	"editExistingText": "Fyll i glossary ID"
+	"editExistingText": "Fyll i glossary ID",
+	"congratulations": "Grattis! Du har skapat en glossary med glossary ID: "
 }
