@@ -8,16 +8,21 @@
   {{question.a}}
   {{myAnswers}}
   {{correctOrNot}}
+  <button @click="doSomething">Do Confetti!</button>
+
+
   <button v-on:click="FinishedQuiz">
     Submit Quiz
-
+hej jag heter emil
   </button>
   </body>
 </template>
 
-<script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js">
 // @ is an alias to /src
 import Question from '@/components/Question.vue';
+
 import io from 'socket.io-client';
 const socket = io();
 
@@ -26,6 +31,9 @@ export default {
   components: {
     Question
   },
+
+
+
   data: function () {
     return {
       question: {
@@ -38,20 +46,26 @@ export default {
       myAnswers: ["hey","car","hus"],
       correctOrNot: []
     }
+
   },
+
   created: function () {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
       this.question = q
     )
+
+
   },
   methods: {
+
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     },
-    FinishedQuiz: function(){
 
+
+      FinishedQuiz: function(){
       for (let i = 0; i <this.question.a.length; i++) {
         console.log(this.question.a[i])
         if(this.question.a[i] === this.myAnswers[i]) {
@@ -68,10 +82,11 @@ export default {
     }
 
   }
+
 }
 </script>
+
+
 <style>
-body{
-  background: dimgray;
-}
+
 </style>
