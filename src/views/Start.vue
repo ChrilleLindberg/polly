@@ -5,7 +5,7 @@
     </h1>
   </header>
   <body>
-    <div id="nav">
+    <div id="nav" v-show="isVisible">
       <p>{{uiLabels.infoText}}</p>
       <br>
       <label v-on:click="hej">
@@ -13,10 +13,26 @@
         <input type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
 
       </label>
-      <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
+      <button @click="$router.push('/poll/'+id)" id="participate" > <!-- denna knapp ska bli grön
+        GO!
+      <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
+      </button>
       <br>
       <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+      <button id="switchVisible" v-on:click="switchVisible"> Klicka här för att visa knappar</button>
+
+
       <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
+    </div>
+    <div id="twoOptions" v-show="!isVisible">
+      <button @click="$router.push('/create/'+lang)" id="create" >
+        {{uiLabels.createNew}}
+        <!-- router-link v-bind:to="'/create/'+lang" >{{uiLabels.createNew}}</router-link> -->
+      </button>
+      <br>
+      <button id="edit">
+        {{uiLabels.editExisting}}
+      </button>
     </div>
   </body>
 </template>
@@ -31,7 +47,8 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      lang: "en"
+      lang: "en",
+      isVisible: true
     }
   },
   created: function () {
@@ -47,8 +64,8 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
-    hej: function (){
-      console.log("hej")
+    switchVisible: function (){
+      this.isVisible= false
     }
   }
 }

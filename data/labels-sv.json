@@ -7,5 +7,7 @@
 	"changeLanguage": "Change to English",
 	"welcomeMessage": "Välkommen till Glossary",
 	"infoText": "Fyll i glossary ID eller skapa din egna glossary",
-	"writeField": "Fyll i Glossary ID"
+	"writeField": "Fyll i Glossary ID",
+	"createNew": "Skapa ny",
+	"editExisting": "Redigera existerande"
 }
