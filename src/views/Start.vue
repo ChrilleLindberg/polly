@@ -11,9 +11,8 @@
       <label v-on:click="hej">
         <!--{{uiLabels.writeField}}-->
         <input type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
-
       </label>
-      <button @click="$router.push('/poll/'+id)" id="participate" > <!-- denna knapp ska bli grön
+      <button @click="$router.push('/poll/'+id)" id="participate" > <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
       <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
       </button>
