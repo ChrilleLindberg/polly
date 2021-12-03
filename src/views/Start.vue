@@ -1,6 +1,9 @@
 <template>
+  <h1>Welcome to <br> Glossary</h1>
+
+  <h4>Enter ID or create your own glossary</h4>
   <div id="nav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button><br>
     <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
     <label>
       Write poll id: 
