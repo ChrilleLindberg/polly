@@ -8,12 +8,10 @@
   {{question.a}}
   {{myAnswers}}
   {{correctOrNot}}
-  <button @click="doSomething">Do Confetti!</button>
-
 
   <button v-on:click="FinishedQuiz">
     Submit Quiz
-hej jag heter emil
+
   </button>
   </body>
 </template>
