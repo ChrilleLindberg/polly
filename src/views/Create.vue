@@ -47,6 +47,10 @@
     <p v-if="willShow">
       {{uiLabels.congratulations}} {{this.pollId}}
     </p>
+    <button @click="copyToClipboard"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
+      {{uiLabels.copy}}
+    </button>
+    <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
   </body>
@@ -114,6 +118,9 @@ export default {
       this.answers.push("");
       this.question.push("");
     },
+    copyToClipboard: function () {
+
+    }
   }
 }
 </script>
@@ -138,7 +145,6 @@ body {
 }
 
 #qInput {
-  border-radius: 1em;
   text-align: center;
 }
 
