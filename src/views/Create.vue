@@ -12,20 +12,22 @@
     <div class="classInput">
       <div id="inputQuestion">
         {{ uiLabels.question }}:
-
-        <input v-for="(_, i) in question"
-               v-model="question[i]"
-               v-bind:key="'question'+i">
       </div>
       <div id="inputAnswer">
         {{ question[0] }}
 
         Answers:
+
+        {{ answers[0] }}
+      </div>
+        <input v-for="(_, i) in question"
+               v-model="question[i]"
+               v-bind:key="'question'+i">
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i">
-        {{ answers[0] }}
-      </div>
+
+
     </div>
     <button v-on:click="addWord">
       +
@@ -37,12 +39,15 @@
     <br>
     {{ data }}
     <br>
+    <p v-if="willShow">
+      {{uiLabels.congratulations}} {{this.pollId}}
+    </p>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
   </body>
   <footer>
     <p>
-      Copypaste
+      Footer
     </p>
   </footer>
 </template>
@@ -62,7 +67,8 @@ export default {
       answers: [""],
       questionNumber: 0,
       data: {},
-      uiLabels: {}
+      uiLabels: {},
+      willShow: false
 
     }
   },
@@ -85,6 +91,7 @@ export default {
       console.log(this.q)
       console.log(this.answer)
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
+      this.willShow = true
 
     },
 //    addQuestion: function () {
@@ -110,7 +117,8 @@ export default {
 <style>
 .classInput {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fit,4em);
 }
 
 body {

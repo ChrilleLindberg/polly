@@ -1,16 +1,45 @@
 <template>
-  <h1>Welcome to <br> Glossary</h1>
+  <header>
+    <h1>
+      {{uiLabels.welcomeMessage}}
+    </h1>
+  </header>
+  <body>
+    <div id="nav" v-show="isVisible==1">
+      <p>{{uiLabels.infoText}}</p>
+      <br>
+      <label>
+        <!--{{uiLabels.writeField}}-->
+        <input type="text" v-model="id" @focus="switchVisibleFour" v-bind:placeholder="uiLabels.writeField">
+      </label>
+      <button @click="$router.push('/poll/'+id)" id="participate" > <!-- denna knapp ska bli grön när man har skrivit in i input -->
+        GO!
+      <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
+      </button>
+      <br>
+      <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+      <button id="switchVisible" v-on:click="switchVisibleTwo"> {{uiLabels.createPoll}}</button>
+    </div>
 
-  <h4>Enter ID or create your own glossary</h4>
-  <div id="nav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button><br>
-    <router-link v-bind:to="'/create/'+lang">{{uiLabels.createPoll}}</router-link>
-    <label>
-      Write poll id: 
-      <input type="text" v-model="id">
-    </label>
-    <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link>
-  </div>
+    <div id="twoOptions" v-show="isVisible==2">
+      <h2>
+        {{uiLabels.twoOptionsText }}
+      </h2>
+      <button @click="$router.push('/create/'+lang)" id="create" >
+        {{uiLabels.createNew}}
+      </button>
+      <br>
+      <button id="edit" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
+        {{uiLabels.editExisting}}
+      </button>
+    </div>
+    <div id="editExisting" v-show="isVisible==3">
+      <p>
+        {{uiLabels.editExisting}}
+      </p>
+      <input type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
+    </div>
+  </body>
 </template>
 
 <script>
@@ -23,7 +52,8 @@ export default {
     return {
       uiLabels: {},
       id: "",
-      lang: "en"
+      lang: "en",
+      isVisible: 1
     }
   },
   created: function () {
@@ -38,7 +68,24 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
+    },
+    switchVisibleTwo: function (){
+      this.isVisible = 2
+    },
+    switchVisibleThree: function (){
+      this.isVisible = 3
+    },
+    switchVisibleFour: function (){
+      this.isVisible = 4
     }
   }
 }
 </script>
+
+<style>
+#changeLanguage{
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+</style>
