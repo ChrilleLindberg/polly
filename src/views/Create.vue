@@ -20,13 +20,18 @@
 
         {{ answers[0] }}
       </div>
+      <div class="qInputClass">
         <input v-for="(_, i) in question"
                v-model="question[i]"
-               v-bind:key="'question'+i">
+               v-bind:key="'question'+i"
+               id="qInput">
+      </div>
+      <div class="aInputClass">
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
-               v-bind:key="'answer'+i">
-
+               v-bind:key="'answer'+i"
+               id="aInput">
+      </div>
 
     </div>
     <button v-on:click="addWord">
@@ -123,6 +128,28 @@ export default {
 
 body {
   background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
+}
+
+.qInputClass {
+  border-radius: 1em;
+  grid-column: 1;
+  text-align: center;
+  display: grid;
+}
+
+#qInput {
+  border-radius: 1em;
+  text-align: center;
+}
+
+.aInputClass {
+  grid-column: 2;
+  text-align: center;
+  display: grid;
+}
+
+#aInput {
+  text-align: center;
 }
 
 </style>
