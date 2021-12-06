@@ -4,21 +4,21 @@
       {{uiLabels.welcomeMessage}}
     </h1>
   </header>
-  <body>
+  <body id="bodyID" >
     <div id="nav" v-show="isVisible==1">
-      <p>{{uiLabels.infoText}}</p>
+      <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
-      <label>
+      <label v-show="isVisible==1">
         <!--{{uiLabels.writeField}}-->
-        <input type="text" v-model="id" @focus="switchVisibleFour" v-bind:placeholder="uiLabels.writeField">
+        <input type="text" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField">
       </label>
-      <button @click="$router.push('/poll/'+id)" id="participate" > <!-- denna knapp ska bli grön när man har skrivit in i input -->
+      <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
       <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
       </button>
       <br>
-      <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-      <button id="switchVisible" v-on:click="switchVisibleTwo"> {{uiLabels.createPoll}}</button>
+      <button id="changeLanguage" v-on:click="switchLanguage" v-show="isVisible==1">{{uiLabels.changeLanguage}}</button>
+      <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{uiLabels.createPoll}}</button>
     </div>
 
     <div id="twoOptions" v-show="isVisible==2">
@@ -37,7 +37,7 @@
       <p>
         {{uiLabels.editExisting}}
       </p>
-      <input type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
+      <input @focus="switchVisibleFocus" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
     </div>
   </body>
 </template>
@@ -69,14 +69,20 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
+    switchVisibleOne: function (){
+      this.isVisible = 1,
+      document.body.style.backgroundColor = "white";
+      document.body.style.background = "1";
+    },
     switchVisibleTwo: function (){
       this.isVisible = 2
     },
     switchVisibleThree: function (){
       this.isVisible = 3
+      document.body.style.backgroundColor = "white";
     },
-    switchVisibleFour: function (){
-      this.isVisible = 4
+    switchVisibleFocus: function (){
+      document.body.style.backgroundColor = "lightgrey";
     }
   }
 }
