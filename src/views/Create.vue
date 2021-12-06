@@ -5,8 +5,9 @@
   </header>
   <body>
   <div>
+    <div  v-show="showView==1">
     Glossary ID:
-    <input type="text" v-model="pollId">
+    <input type="text" v-model="pollId" id="pollID">
     <br>
 
     <div class="classInput">
@@ -14,11 +15,7 @@
         {{ uiLabels.question }}:
       </div>
       <div id="inputAnswer">
-        {{ question[0] }}
-
-        Answers:
-
-        {{ answers[0] }}
+          Answers:
       </div>
       <div class="qInputClass">
         <input v-for="(_, i) in question"
@@ -43,15 +40,18 @@
     </button>
     <br>
     {{ data }}
-    <br>
-    <p v-if="willShow">
-      {{uiLabels.congratulations}} {{this.pollId}}
+    </div>
+    <div v-show="showView==2">
+    <p>
+      {{uiLabels.congratulations}}
     </p>
+    <input type="text" id="prefilledInput" readonly="readonly">
     <button @click="copyToClipboard"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
       {{uiLabels.copy}}
     </button>
     <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+    </div>
   </div>
   </body>
   <footer>
@@ -77,8 +77,8 @@ export default {
       questionNumber: 0,
       data: {},
       uiLabels: {},
-      willShow: false
-
+      willShow: false,
+      showView: 1,
     }
   },
   created: function () {
@@ -100,7 +100,8 @@ export default {
       console.log(this.q)
       console.log(this.answer)
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
-      this.willShow = true
+      this.showView = 2
+      document.getElementById('prefilledInput').setAttribute('value',this.pollId)
 
     },
 //    addQuestion: function () {
@@ -119,7 +120,10 @@ export default {
       this.question.push("");
     },
     copyToClipboard: function () {
-
+      let copyID = document.querySelector("#prefilledInput")
+      copyID.setAttribute('type', 'text')
+      copyID.select()
+      document.execCommand('copy')
     }
   }
 }
@@ -155,6 +159,10 @@ body {
 }
 
 #aInput {
+  text-align: center;
+}
+
+#prefilledInput {
   text-align: center;
 }
 
