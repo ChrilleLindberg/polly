@@ -7,8 +7,8 @@
               v-on:answer="submitAnswer"/>
   </div>
   {{question.a}}
-  {{myAnswers}}
-  {{correctOrNot}}
+    {{myAnswers}}
+
 
     <div >
     <button class="button" v-on:click="FinishedQuiz">
@@ -33,14 +33,19 @@
   </div>
   <div id="yourResult" v-show="!isVisible">
     <h1>{{nameContendor}}</h1>
+
     Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt
     <div id="table">
-    <p v-for="(q) in question.q" :key="q">
+    <span v-for="(q) in question.q" :key="q" id="table1">
       {{ q }}
-    </p>
-    <p v-for="(a) in question.a" :key="a">
+    </span>
+    <span v-for="(a) in myAnswers.answer" :key="a" id="table2">
       {{ a }}
-    </p>
+    </span>
+      <span v-for="(t) in correctOrNot" :key="t" id="table3">
+        {{ t }}
+      </span>
+
     </div>
   </div>
 
@@ -78,7 +83,7 @@ export default {
 
       pollId: "inactive poll",
       numbCorrectAnswers: 0,
-      myAnswers: ["hey","car","3","4","5","6"],
+      myAnswers: [""],
       correctOrNot: [],
       showModal: false,
       nameContendor: "",
@@ -113,9 +118,8 @@ export default {
       FinishedQuiz: function(){
       this.showModal = true;
       for (let i = 0; i <this.question.a.length; i++) {
-        console.log(this.question.a[i])
-        if(this.question.a[i] === this.myAnswers[i]) {
-          console.log(this.question.a[i])
+
+        if(this.question.a[i] === this.myAnswers.answer[i]) {
           this.numbCorrectAnswers += 1;
           this.correctOrNot.push(true);
 
@@ -145,6 +149,7 @@ export default {
 
 body {
   font-family: 'montserrat', sans-serif;
+  background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
 }
 
 #app {
@@ -250,8 +255,21 @@ height: 3em;
 
   font-size:15px;
 }
-#table{
+#table {
   display: grid;
-  grid-template-columns: auto auto;
+
+
+}
+#table1{
+  grid-column:1;
+
+}
+#table2{
+  grid-column:2;
+
+}
+#table3{
+  grid-column:3;
+
 }
 </style>
