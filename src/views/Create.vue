@@ -157,12 +157,6 @@ body {
   top: 1em;
 }
 
-#goBack{
-  position: absolute;
-  left: 1em;
-  top: 1em;
-}
-
 .qInputClass {
   border-radius: 1em;
   grid-column: 1;

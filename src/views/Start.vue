@@ -6,6 +6,8 @@
   </header>
   <body id="bodyID" >
     <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <button id="goBack" v-show="isVisible==2" v-on:click="switchVisibleOne">{{uiLabels.goBack}}</button>
+    <button id="goBack" v-show="isVisible==3" v-on:click="switchVisibleTwo">{{uiLabels.goBack}}</button>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
@@ -101,6 +103,12 @@ export default {
 </script>
 
 <style>
+#goBack{
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
+
 #changeLanguage{
   position: absolute;
   right: 1em;
