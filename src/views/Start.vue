@@ -37,8 +37,8 @@
       <p>
         {{uiLabels.editExisting}}
       </p>
-      <input @focus="switchVisibleFocus" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
-      <button>
+      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
+      <button @click="$router.push('/create/'+lang)" disabled>
         GO!
       </button>
     </div>
@@ -94,7 +94,7 @@ export default {
       //    this.pollId = data.pollId);
       //if (document.getElementById("#participate") in socket.data.poll.pollId) {
       //  console.log("det funkar!")
-      }
+      },
 
     }
 }

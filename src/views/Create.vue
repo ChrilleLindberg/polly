@@ -5,6 +5,7 @@
   </header>
   <body>
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+  <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button>
   <div>
     <div  v-show="showView==1">
     Glossary ID:
@@ -133,7 +134,7 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
-    }
+    },
   }
 }
 </script>
@@ -153,6 +154,12 @@ body {
 #changeLanguage{
   position: absolute;
   right: 1em;
+  top: 1em;
+}
+
+#goBack{
+  position: absolute;
+  left: 1em;
   top: 1em;
 }
 
