@@ -10,6 +10,7 @@
     {{myAnswers}}
 
 
+
     <div >
     <button class="button" v-on:click="FinishedQuiz">
       Submit Quiz
@@ -32,23 +33,28 @@
   </div>
   </div>
   <div id="yourResult" v-show="!isVisible">
+   {{correctOrNot}}
     <h1>{{nameContendor}}</h1>
 
     Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt
-    <div id="table">
+    <div class="wrapper">
+    <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
-      {{ q }}
+      <span> {{ q }}</span>
     </span>
     <span v-for="(a) in myAnswers.answer" :key="a" id="table2">
-      {{ a }}
+
+      <span> {{ a }}</span>
     </span>
       <span v-for="(t) in correctOrNot" :key="t" id="table3">
-        {{ t }}
+
+        <span> <img v-bind:src="t" alt="true" style="height: 40px; width:50px"> </span>
       </span>
 
     </div>
+    </div>
+    <button class="button" v-on:click="$router.replace('/')">Go back to home page</button>
   </div>
-
   </body>
 </template>
 
@@ -121,12 +127,12 @@ export default {
 
         if(this.question.a[i] === this.myAnswers.answer[i]) {
           this.numbCorrectAnswers += 1;
-          this.correctOrNot.push(true);
+          this.correctOrNot.push("https://cdn.pixabay.com/photo/2013/07/13/10/48/check-157822_1280.png");
+
 
         }
       else {
-          this.correctOrNot.push(false);
-
+          this.correctOrNot.push("https://cdn.pixabay.com/photo/2014/03/24/13/45/incorrect-294245_960_720.png")
         }
       }
       console.log(this.numbCorrectAnswers)
@@ -255,21 +261,41 @@ height: 3em;
 
   font-size:15px;
 }
-#table {
+.wrapper{
+margin-left: 33%;
+  margin-right: 33%;
+  overflow: scroll;
+  height: 20em;
+  background: #CAD2F9;
+  border-style: dotted;
+
+}
+
+.table {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: column;
+  grid-gap: 1.5em;
 
-
+  /*width:auto;
+  height:10em ; */
 }
 #table1{
   grid-column:1;
+  border-top: 1px solid #dfdfdf;
+  padding-top:2em;
 
 }
-#table2{
-  grid-column:2;
-
+#table2 {
+  grid-column: 2;
+  border-top: 1px solid #dfdfdf;
+  padding-top:2em;
 }
 #table3{
   grid-column:3;
+  border-top: 1px solid #dfdfdf;
+  padding-top:2em;
+  color: red;
 
 }
 </style>
