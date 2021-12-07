@@ -6,6 +6,8 @@
   </header>
   <body id="bodyID" >
     <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <button id="goBack" v-show="isVisible==2" v-on:click="switchVisibleOne">{{uiLabels.goBack}}</button>
+    <button id="goBack" v-show="isVisible==3" v-on:click="switchVisibleTwo">{{uiLabels.goBack}}</button>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
@@ -37,8 +39,8 @@
       <p>
         {{uiLabels.editExisting}}
       </p>
-      <input @focus="switchVisibleFocus" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
-      <button>
+      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
+      <button @click="$router.push('/create/'+lang)" disabled>
         GO!
       </button>
     </div>
@@ -94,13 +96,19 @@ export default {
       //    this.pollId = data.pollId);
       //if (document.getElementById("#participate") in socket.data.poll.pollId) {
       //  console.log("det funkar!")
-      }
+      },
 
     }
 }
 </script>
 
 <style>
+#goBack{
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
+
 #changeLanguage{
   position: absolute;
   right: 1em;
