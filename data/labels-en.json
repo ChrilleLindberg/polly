@@ -13,5 +13,6 @@
 	"twoOptionsText": "Do you want to create or edit a glossary?",
 	"editExistingText": "Edit existing glossary",
 	"congratulations": "Congratulations! You have creted a glossary with glossary ID: ",
-	"copy": "Copy ID"
+	"copy": "Copy ID",
+	"glossaryCreator": "Glossary creator"
 }

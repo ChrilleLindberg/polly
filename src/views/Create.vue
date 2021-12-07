@@ -1,9 +1,10 @@
 <template>
 
   <header>
-    <h1>Glossary creator</h1>
+    <h1>{{uiLabels.glossaryCreator}}</h1>
   </header>
   <body>
+  <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
   <div>
     <div  v-show="showView==1">
     Glossary ID:
@@ -39,7 +40,6 @@
       Create poll
     </button>
     <br>
-    {{ data }}
     </div>
     <div v-show="showView==2">
     <p>
@@ -49,6 +49,8 @@
     <button @click="copyToClipboard"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
       {{uiLabels.copy}}
     </button>
+    <br>
+    {{ data }}
     <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
     </div>
@@ -124,6 +126,13 @@ export default {
       copyID.setAttribute('type', 'text')
       copyID.select()
       document.execCommand('copy')
+    },
+    switchLanguage: function() {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
     }
   }
 }
@@ -139,6 +148,12 @@ export default {
 
 body {
   background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
+}
+
+#changeLanguage{
+  position: absolute;
+  right: 1em;
+  top: 1em;
 }
 
 .qInputClass {

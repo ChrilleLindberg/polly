@@ -5,19 +5,19 @@
     </h1>
   </header>
   <body id="bodyID" >
+    <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
       <label v-show="isVisible==1">
         <!--{{uiLabels.writeField}}-->
-        <input type="text" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField">
+        <input type="text" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @keyup.enter="$router.push('/poll/'+id)" @input="checkPollId">
       </label>
-      <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
+      <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" disabled> <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
       <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
       </button>
       <br>
-      <button id="changeLanguage" v-on:click="switchLanguage" v-show="isVisible==1">{{uiLabels.changeLanguage}}</button>
       <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{uiLabels.createPoll}}</button>
     </div>
 
@@ -38,6 +38,9 @@
         {{uiLabels.editExisting}}
       </p>
       <input @focus="switchVisibleFocus" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
+      <button>
+        GO!
+      </button>
     </div>
   </body>
 </template>
@@ -53,7 +56,8 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
-      isVisible: 1
+      isVisible: 1,
+      pollIds: []
     }
   },
   created: function () {
@@ -83,8 +87,16 @@ export default {
     },
     switchVisibleFocus: function (){
       document.body.style.backgroundColor = "lightgrey";
+      //document.querySelector("#participate").disabled = true    //gör GO-knappen inaktiv, men detta ska göras i checkPollId istället
+    },
+    checkPollId: function () {
+      //socket.on('getPollIds', data =>
+      //    this.pollId = data.pollId);
+      //if (document.getElementById("#participate") in socket.data.poll.pollId) {
+      //  console.log("det funkar!")
+      }
+
     }
-  }
 }
 </script>
 
@@ -94,4 +106,5 @@ export default {
   right: 1em;
   top: 1em;
 }
+
 </style>

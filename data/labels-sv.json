@@ -13,5 +13,6 @@
 	"twoOptionsText": "Vill du skapa en ny eller redigera en existerande glossary?",
 	"editExistingText": "Fyll i glossary ID",
 	"congratulations": "Grattis! Du har skapat en glossary med glossary ID: ",
-	"copy": "Kopiera ID"
+	"copy": "Kopiera ID",
+	"glossaryCreator": "Skapa glossary"
 }
