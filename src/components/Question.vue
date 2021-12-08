@@ -3,8 +3,11 @@
 
   <p v-for="(q, i) in question.q" :key="q">
     {{ q }}
-    <input type="string" id="answers" v-model="myAnswers[i]">
+
+    <input type="string" id="answers" placeholder=" Answer" v-model="myAnswers[i]">
+
   </p>
+
 
 
 
@@ -30,3 +33,8 @@ export default {
   }
 }
 </script>
+<style>
+
+
+
+</style>

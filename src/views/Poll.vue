@@ -11,9 +11,9 @@
 
 
 
-    <div >
+    <div class="div1">
     <button class="button" v-on:click="FinishedQuiz">
-      Submit Quiz
+     {{uiLabels.submitQuiz}}
     </button>
     <transition name="fade" appear>
       <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
@@ -33,11 +33,14 @@
   </div>
   </div>
   <div id="yourResult" v-show="!isVisible">
-   {{correctOrNot}}
+   
     <h1>{{nameContendor}}</h1>
 
-    Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt
+    <h3>  Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt </h3>
+    <br>
+    <h3 class="rubrikSpalt" ><div>Fråga</div> <div>Svar</div> <div>Resultat</div> </h3>
     <div class="wrapper">
+
     <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
       <span> {{ q }}</span>
@@ -53,7 +56,7 @@
 
     </div>
     </div>
-    <button class="button" v-on:click="$router.replace('/')">Go back to home page</button>
+    <button class="button" id="distanceButton" v-on:click="$router.replace('/')">Go back to home page</button>
   </div>
   </body>
 </template>
@@ -93,7 +96,8 @@ export default {
       correctOrNot: [],
       showModal: false,
       nameContendor: "",
-      isVisible:true
+      isVisible:true,
+
     }
 
   },
@@ -105,9 +109,10 @@ export default {
       this.question = q
     )
 
-
-
   },
+
+
+
 
   methods: {
     BackToHome: function(){
@@ -152,7 +157,9 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+.div1 {
+  margin-top: 10em;
+}
 body {
   font-family: 'montserrat', sans-serif;
   background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
@@ -218,6 +225,9 @@ body {
 
   padding: 25px;
 }
+#distanceButton{
+  margin-top:4em;
+}
 h1 {
   color: #222;
   font-size: 32px;
@@ -260,6 +270,17 @@ height: 3em;
   font-family: "Times New Roman", Times, serif,italic;
 
   font-size:15px;
+}
+.rubrikSpalt{
+  margin-top:1em;
+  margin-bottom:0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5em;
+  margin-left: 33%;
+  margin-right: 33%;
+
+
 }
 .wrapper{
 margin-left: 33%;
