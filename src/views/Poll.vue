@@ -271,17 +271,7 @@ height: 3em;
 
   font-size:15px;
 }
-.rubrikSpalt{
-  margin-top:1em;
-  margin-bottom:0.5em;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1.5em;
-  margin-left: 33%;
-  margin-right: 33%;
 
-
-}
 .wrapper{
 margin-left: 33%;
   margin-right: 33%;
