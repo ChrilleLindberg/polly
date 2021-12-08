@@ -13,6 +13,10 @@ function sockets(io, socket, data) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
 
+  socket.on('sendPollId', function(d) {
+    socket.emit('checkPollId', data.pollExists(d))
+  });
+
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getAnswers(d.pollId));

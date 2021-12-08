@@ -5,6 +5,7 @@
     </h1>
   </header>
   <body id="bodyID" >
+  {{pollExists}}
     <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <button id="goBack" v-show="isVisible==2" v-on:click="switchVisibleOne">{{uiLabels.goBack}}</button>
     <button id="goBack" v-show="isVisible==3" v-on:click="switchVisibleTwo">{{uiLabels.goBack}}</button>
@@ -13,9 +14,9 @@
       <br>
       <label v-show="isVisible==1">
         <!--{{uiLabels.writeField}}-->
-        <input type="text" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @keyup.enter="$router.push('/poll/'+id)" @input="checkPollId">
+        <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @keyup.enter="$router.push('/poll/'+id)" @input="checkPollId">
       </label>
-      <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" disabled> <!-- denna knapp ska bli grön när man har skrivit in i input -->
+      <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
       <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
       </button>
@@ -59,46 +60,47 @@ export default {
       id: "",
       lang: "en",
       isVisible: 1,
-      pollIds: []
+      pollIds: [],
+      pollExists: false
     }
   },
   created: function () {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
+    socket.on("checkPollId", (polls) =>
+        this.polls = polls)
   },
   methods: {
-    switchLanguage: function() {
+    switchLanguage: function () {
       if (this.lang === "en")
         this.lang = "sv"
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
-    switchVisibleOne: function (){
+    switchVisibleOne: function () {
       this.isVisible = 1,
-      document.body.style.backgroundColor = "white";
+          document.body.style.backgroundColor = "white";
       document.body.style.background = "1";
     },
-    switchVisibleTwo: function (){
+    switchVisibleTwo: function () {
       this.isVisible = 2
     },
-    switchVisibleThree: function (){
+    switchVisibleThree: function () {
       this.isVisible = 3
       document.body.style.backgroundColor = "white";
     },
-    switchVisibleFocus: function (){
+    switchVisibleFocus: function () {
       document.body.style.backgroundColor = "lightgrey";
       //document.querySelector("#participate").disabled = true    //gör GO-knappen inaktiv, men detta ska göras i checkPollId istället
     },
     checkPollId: function () {
-      //socket.on('getPollIds', data =>
-      //    this.pollId = data.pollId);
-      //if (document.getElementById("#participate") in socket.data.poll.pollId) {
-      //  console.log("det funkar!")
-      },
-
+      socket.emit("sendPollId", this.id)
+      socket.on("checkPollId", (pollExists) =>
+          this.pollExists = pollExists)
     }
+  }
 }
 </script>
 

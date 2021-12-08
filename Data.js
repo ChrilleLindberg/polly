@@ -88,6 +88,16 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
+
+Data.prototype.pollExists = function(pollId) {
+  if (typeof this.polls[pollId] === "undefined") {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
 module.exports = Data;
 
 
