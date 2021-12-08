@@ -33,10 +33,11 @@
   </div>
   </div>
   <div id="yourResult" v-show="!isVisible">
-   {{correctOrNot}}
+
     <h1>{{nameContendor}}</h1>
 
     Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt
+    <h3 class="rubrikSpalt" ><div>Fråga</div> <div>Svar</div> <div>Resultat</div> </h3>
     <div class="wrapper">
     <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
@@ -270,6 +271,18 @@ margin-left: 33%;
   border-style: dotted;
 
 }
+.rubrikSpalt{
+  margin-top:1em;
+  margin-bottom:0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.5em;
+  margin-left: 33%;
+  margin-right: 33%;
+
+
+}
+
 
 .table {
   display: grid;

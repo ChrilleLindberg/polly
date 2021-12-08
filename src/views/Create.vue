@@ -33,9 +33,10 @@
       </div>
 
     </div>
-    <button v-on:click="addWord">
-      +
+    <button v-on:click="addWord" id="test">
+      Test
     </button>
+      <input id="prefilled1">
     <br>
     <button v-on:click="createPoll">
       Create poll
@@ -51,7 +52,11 @@
       {{uiLabels.copy}}
     </button>
     <br>
-    {{ data }}
+      {{ data }}
+      <br>
+
+<!--      {{ data.questions[data.questions.length-1] }}-->
+
     <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
     </div>
@@ -97,6 +102,15 @@ export default {
         this.data = data)
   },
   methods: {
+    test: function(){
+      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
+      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers})
+      console.log(this.q)
+      console.log(this.answer)
+      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
+      document.getElementById('prefilled1').setAttribute('value',this.answers)
+
+    },
     createPoll: function () {
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
       socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers})
