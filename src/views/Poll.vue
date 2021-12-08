@@ -13,7 +13,7 @@
 
     <div class="div1">
     <button class="button" v-on:click="FinishedQuiz">
-     {{uiLabels.submitQuiz}}
+     Submit Quiz
     </button>
     <transition name="fade" appear>
       <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
@@ -226,7 +226,7 @@ body {
   padding: 25px;
 }
 #distanceButton{
-  margin-top:4em;
+  margin-top:2em;
 }
 h1 {
   color: #222;
