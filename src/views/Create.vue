@@ -31,6 +31,13 @@
                v-bind:key="'answer'+i"
                id="aInput">
       </div>
+      <div class="removeWords">
+        <button v-for="index in answers.length" :key="index"
+               @click="removeLine(index-1)"
+               id="aInput">
+          -
+        </button>
+      </div>
 
     </div>
     <button v-on:click="addWord">
@@ -146,6 +153,10 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     },
+    removeLine: function (index) {
+      this.question.splice(index,1)
+      this.answers.splice(index,1)
+    }
   }
 }
 </script>
@@ -154,7 +165,7 @@ export default {
 <style>
 .classInput {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 4fr 4fr 1fr;
   grid-template-rows: repeat(auto-fit,4em);
 }
 
@@ -182,6 +193,10 @@ body {
 .aInputClass {
   grid-column: 2;
   text-align: center;
+  display: grid;
+}
+
+.removeWords {
   display: grid;
 }
 
