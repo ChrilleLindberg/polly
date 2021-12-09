@@ -13,6 +13,10 @@ function sockets(io, socket, data) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
 
+  socket.on('clearPollId', function (d) {
+    socket.emit('deletePoll', data.clearPollId(d))
+  })
+
   socket.on('sendPollId', function(d) {
     socket.emit('checkPollId', data.pollExists(d))
   });
@@ -21,6 +25,10 @@ function sockets(io, socket, data) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
+
+  socket.on('sendGlossary', function (d) {
+    socket.emit('sendGlossary',d)
+  })
 
   socket.on('joinPoll', function(pollId) {
     socket.join(pollId);

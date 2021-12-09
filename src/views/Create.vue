@@ -38,7 +38,7 @@
     </button>
     <br>
     <button v-on:click="createPoll">
-      Create poll
+      {{ uiLabels.createGlossary }}
     </button>
     <br>
     </div>
@@ -98,6 +98,7 @@ export default {
   },
   methods: {
     createPoll: function () {
+      //socket.emit("clearPollId", {pollId: this.pollId}) //tar bort gamla frågor och svar, med index 0
       socket.emit("createPoll", {pollId: this.pollId, lang: this.lang})
       socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers})
       console.log(this.q)

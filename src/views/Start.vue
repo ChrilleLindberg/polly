@@ -40,7 +40,7 @@
         {{uiLabels.editExisting}}
       </p>
       <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2">
-      <button @click="$router.push('/create/'+lang)" v-bind:disabled="!editExists">
+      <button @click="editExistingGo" v-bind:disabled="!editExists">
         GO!
       </button>
     </div>
@@ -104,7 +104,11 @@ export default {
       socket.emit("sendPollId", this.idEdit)
       socket.on("checkPollId", (editExists) =>
           this.editExists = editExists)
-    }
+    },
+    editExistingGo: function () {
+      this.$router.push('/create/'+this.lang)
+      socket.emit("sendGlossary",this.idEdit)
+}
   }
 }
 </script>
