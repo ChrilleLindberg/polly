@@ -25,7 +25,7 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     poll.questions = [];
     poll.answers = [];
     poll.currentQuestion = 0;
-    poll.myAnswers=[];
+    poll.studentCorrects = [];
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -90,16 +90,20 @@ Data.prototype.getAnswers = function(pollId) {
   return {}
 }
 
-Data.prototype.getMyAnswer =function(para, pollId) {
+Data.prototype.getMyAnswer =function(numberCorrect,pollId, name) {
   const poll = this.polls[pollId];
-  poll.myAnswers.push(para);
-  console.log(para)
-  console.log(poll.myAnswers)
+
+  poll.studentCorrects.push({nameStudent:name, AmountCorrects:numberCorrect})
+
+
+
+
 }
 Data.prototype.getResults = function(pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
-    return poll.myAnswers
+    return poll.studentCorrects
+
   }
   return "false"
 }

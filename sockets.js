@@ -38,9 +38,9 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
-  socket.on("finishAnswer", function(myAnswers,pollId){
-    data.getMyAnswer(myAnswers,pollId)
-    console.log("myA" + myAnswers)
+  socket.on("finishAnswer", function(numberCorrect,pollId, name){
+    data.getMyAnswer(numberCorrect,pollId, name)
+
   });
 
   socket.on('getResults', function(pollId){

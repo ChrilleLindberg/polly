@@ -12,7 +12,7 @@
 
 
     <div >
-    <button class="button" v-on:click="FinishedQuiz">
+    <button class="button" v-on:click="showModal=true" >
       Submit Quiz
     </button>
     <transition name="fade" appear>
@@ -21,10 +21,10 @@
     <transition name="slide" appear>
       <div class="modal" v-if="showModal">
         <h1>To submit please enter your full name</h1>
-        <p> <input type="string" id="fullnamebox" v-model="nameContendor">
+        <p> <input type="string" id="fullnamebox" v-model="nameContendor" >
           <br>
           </p>
-        <button class="button" v-on:click="isVisible=false">
+        <button class="button" v-on:click="FinishedQuiz" >
           Submit your final answer
 <!--        <button class="button" v-on:click="$router.replace('/')" id="participate" >  Submit your answer-->
         </button>
@@ -36,7 +36,9 @@
    {{correctOrNot}}
     <h1>{{nameContendor}}</h1>
 
-    Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt
+    <h3>  Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt </h3>
+    <br>
+    <h3 class="rubrikSpalt" ><div>Fråga</div> <div>Svar</div> <div>Resultat</div> </h3>
     <div class="wrapper">
     <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
@@ -53,8 +55,10 @@
 
     </div>
     </div>
-    <button class="button" v-on:click="$router.replace('/')">Go back to home page</button>
-  </div>
+    <div id="buttonUnder">
+    <button class="button"  v-on:click="$router.replace('/')">Go back to home page</button>
+    </div>
+    </div>
   </body>
 </template>
 
@@ -110,9 +114,7 @@ export default {
   },
 
   methods: {
-    BackToHome: function(){
 
-    },
 
     submitAnswer: function (answer) {
       this.myAnswers=answer
@@ -122,8 +124,9 @@ export default {
 
 
       FinishedQuiz: function(){
-      this.showModal = true;
-      socket.emit("finishAnswer",this.myAnswers.answer,this.pollId)
+      this.isVisible=false;
+      this.showModal = false;
+
       for (let i = 0; i <this.question.a.length; i++) {
 
         if(this.question.a[i] === this.myAnswers.answer[i]) {
@@ -136,7 +139,8 @@ export default {
           this.correctOrNot.push("https://cdn.pixabay.com/photo/2014/03/24/13/45/incorrect-294245_960_720.png")
         }
       }
-      console.log(this.numbCorrectAnswers)
+        socket.emit("finishAnswer",this.numbCorrectAnswers,this.pollId,this.nameContendor)
+
     }
 
 
@@ -255,12 +259,24 @@ p {
 
 
 }
+
+#buttonUnder{
+  margin-top: 2em;
+  margin-bottom:5em;
+}
 #fullnamebox{
 height: 3em;
   width: 15em;
   font-family: "Times New Roman", Times, serif,italic;
 
   font-size:15px;
+}
+.rubrikSpalt{
+  margin-left: 33%;
+  margin-right: 33%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: column;
 }
 .wrapper{
 margin-left: 33%;
