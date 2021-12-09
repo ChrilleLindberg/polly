@@ -13,6 +13,10 @@ function sockets(io, socket, data) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
 
+  socket.on('getPollInfo', function(d) {
+    socket.emit('getPollInfo2', data.getPollInfo(d))
+  })
+
   socket.on('clearPollId', function (d) {
     socket.emit('deletePoll', data.clearPollId(d))
   })

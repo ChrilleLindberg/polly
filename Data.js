@@ -29,17 +29,13 @@ Data.prototype.createPoll = function(pollId, lang="en") {
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
+  console.log(this.polls[pollId])
   return this.polls[pollId];
 }
 
-//Data.prototype.pollDoesNotExist = function(pollId) {
-//  if (typeof this.polls[pollId] === "undefined") {
-//    return true;
-//  }
-//  else {
-//    return false;
-//  }
-//}
+Data.prototype.getPollInfo = function(pollId) {
+  return this.polls[pollId]
+}
 
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];

@@ -27,7 +27,7 @@
       <h2>
         {{uiLabels.twoOptionsText }}
       </h2>
-      <button @click="$router.push('/create/'+lang)" id="create" >
+      <button @click="$router.push('/create/'+ 'new/' + lang)" id="create" >
         {{uiLabels.createNew}}
       </button>
       <br>
@@ -39,7 +39,7 @@
       <p>
         {{uiLabels.editExisting}}
       </p>
-      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2">
+      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2">
       <button @click="editExistingGo" v-bind:disabled="!editExists">
         GO!
       </button>
@@ -106,7 +106,7 @@ export default {
           this.editExists = editExists)
     },
     editExistingGo: function () {
-      this.$router.push('/create/'+this.lang)
+      this.$router.push('/create/'+ this.idEdit + '/' + this.lang)
       socket.emit("sendGlossary",this.idEdit)
 }
   }

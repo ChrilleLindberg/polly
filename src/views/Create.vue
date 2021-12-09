@@ -95,6 +95,16 @@ export default {
     )
     socket.on("pollCreated", (data) =>
         this.data = data)
+
+    if (this.$route.params.pollId !== "new") {
+      this.pollId = this.$route.params.pollId
+      socket.emit("getPollInfo",this.pollId)
+      socket.on('getPollInfo2', (pollInfo) => {
+        this.question = pollInfo.questions[0].q
+        this.answers = pollInfo.questions[0].a
+      })
+    }
+
   },
   methods: {
     createPoll: function () {
