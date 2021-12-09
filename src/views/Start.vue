@@ -5,7 +5,6 @@
     </h1>
   </header>
   <body id="bodyID" >
-  {{pollExists}}
     <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <button id="goBack" v-show="isVisible==2" v-on:click="switchVisibleOne">{{uiLabels.goBack}}</button>
     <button id="goBack" v-show="isVisible==3" v-on:click="switchVisibleTwo">{{uiLabels.goBack}}</button>
@@ -14,7 +13,7 @@
       <br>
       <label v-show="isVisible==1">
         <!--{{uiLabels.writeField}}-->
-        <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @keyup.enter="$router.push('/poll/'+id)" @input="checkPollId">
+        <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @input="checkPollId">
       </label>
       <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
@@ -40,8 +39,8 @@
       <p>
         {{uiLabels.editExisting}}
       </p>
-      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="id" v-bind:placeholder="uiLabels.writeField">
-      <button @click="$router.push('/create/'+lang)" disabled>
+      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2">
+      <button @click="$router.push('/create/'+lang)" v-bind:disabled="!editExists">
         GO!
       </button>
     </div>
@@ -58,10 +57,12 @@ export default {
     return {
       uiLabels: {},
       id: "",
+      idEdit: "",
       lang: "en",
       isVisible: 1,
       pollIds: [],
-      pollExists: false
+      pollExists: false,
+      editExists: false,
     }
   },
   created: function () {
@@ -93,12 +94,16 @@ export default {
     },
     switchVisibleFocus: function () {
       document.body.style.backgroundColor = "lightgrey";
-      //document.querySelector("#participate").disabled = true    //gör GO-knappen inaktiv, men detta ska göras i checkPollId istället
     },
     checkPollId: function () {
       socket.emit("sendPollId", this.id)
       socket.on("checkPollId", (pollExists) =>
           this.pollExists = pollExists)
+    },
+    checkPollId2: function () {
+      socket.emit("sendPollId", this.idEdit)
+      socket.on("checkPollId", (editExists) =>
+          this.editExists = editExists)
     }
   }
 }
