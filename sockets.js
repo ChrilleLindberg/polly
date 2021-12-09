@@ -34,6 +34,16 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
+  socket.on("finishAnswer", function(myAnswers,pollId){
+    data.getMyAnswer(myAnswers,pollId)
+    console.log("myA" + myAnswers)
+  });
+
+  socket.on('getResults', function(pollId){
+    console.log("sockettest")
+    socket.emit('dataGetResults', data.getResults(pollId));
+  });
+
   socket.on('resetAll', () => {
     data = new Data();
     data.initializeData();

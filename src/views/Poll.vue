@@ -123,6 +123,7 @@ export default {
 
       FinishedQuiz: function(){
       this.showModal = true;
+      socket.emit("finishAnswer",this.myAnswers.answer,this.pollId)
       for (let i = 0; i <this.question.a.length; i++) {
 
         if(this.question.a[i] === this.myAnswers.answer[i]) {
