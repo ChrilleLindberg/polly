@@ -89,6 +89,7 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
+
 Data.prototype.getMyAnswer =function(para, pollId) {
   const poll = this.polls[pollId];
   poll.myAnswers.push(para);
@@ -102,6 +103,17 @@ Data.prototype.getResults = function(pollId) {
   }
   return "false"
 }
+
+
+Data.prototype.pollExists = function(pollId) {
+  if (typeof this.polls[pollId] === "undefined") {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
 module.exports = Data;
 
 
