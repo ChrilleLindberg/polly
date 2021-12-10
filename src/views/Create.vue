@@ -31,14 +31,12 @@
         <input v-for="(_, i) in question"
                v-model="question[i]"
                v-bind:key="'question'+i"
-               @input="checkWords"
                id="qInput">
       </div>
       <div class="aInputClass">
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
-               @input="checkWords"
                id="aInput">
       </div>
       <div class="removeWords">
@@ -127,7 +125,7 @@ export default {
     }
 
     this.checkInput()
-    this.checkWords()
+    //this.checkWords()
 
   },
   methods: {
@@ -169,15 +167,15 @@ export default {
       socket.on("checkPollId", (pollExists) =>
           this.pollIdExists = pollExists)
     },
-    checkWords: function () {
-      this.answers.forEach(i=> {
-        if (answer.length < 1) {
-          this.answersEmpty = false
-        } else {
-          this.answersEmpty = true
-        }
-      })
-    }
+    //checkWords: function () {
+    //  this.answers.forEach(i=> {
+    //    if (answer.length < 1) {
+    //      this.answersEmpty = false
+    //    } else {
+    //      this.answersEmpty = true
+    //    }
+    //  })
+    //}
   }
 }
 </script>
