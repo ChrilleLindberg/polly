@@ -19,5 +19,7 @@
 	"createGlossary": "Skapa glossary",
 	"answers": "Svar",
 	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget",
-	"getResult": "Få ditt resultat"
+	"getResult": "Få ditt resultat",
+	"enterWord": "Fyll i ett ord",
+	"enterTranslation": "...och dess översättning"
 }

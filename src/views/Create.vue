@@ -28,14 +28,16 @@
                v-model="question[i]"
                v-bind:key="'question'+i"
                @input="checkWords"
-               id="qInput">
+               id="qInput"
+               v-bind:placeholder="uiLabels.enterWord">
       </div>
       <div class="aInputClass">
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
                @input="checkWords"
-               id="aInput">
+               id="aInput"
+               v-bind:placeholder="uiLabels.enterTranslation">
       </div>
       <div class="removeWords">
         <button v-for="index in answers.length" :key="index"

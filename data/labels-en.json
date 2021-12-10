@@ -19,5 +19,7 @@
 	"createGlossary": "Create glossary",
 	"answers": "Answers",
 	"pollIdAlreadyTaken": "This Glossary ID is already taken",
-	"getResult": "Get results"
+	"getResult": "Get results",
+	"enterWord": "Enter a word",
+	"enterTranslation": "...and its translation"
 }
