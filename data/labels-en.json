@@ -18,5 +18,6 @@
 	"goBack": "Home",
 	"createGlossary": "Create glossary",
 	"answers": "Answers",
-	"pollIdAlreadyTaken": "This Glossary ID is already taken"
+	"pollIdAlreadyTaken": "This Glossary ID is already taken",
+	"getResult": "Get results"
 }

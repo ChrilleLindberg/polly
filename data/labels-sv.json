@@ -18,5 +18,6 @@
 	"goBack": "Hem",
 	"createGlossary": "Skapa glossary",
 	"answers": "Svar",
-	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget"
+	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget",
+	"getResult": "Få ditt resultat"
 }

@@ -38,6 +38,7 @@ function sockets(io, socket, data) {
     socket.join(pollId);
     socket.emit('newQuestion', data.getQuestion(pollId))
     socket.emit('dataUpdate', data.getAnswers(pollId));
+    socket.emit('dataGetResults', data.getResults(pollId))
   });
 
   socket.on('runQuestion', function(d) {
@@ -52,6 +53,7 @@ function sockets(io, socket, data) {
 
   socket.on("finishAnswer", function(numberCorrect,pollId, name){
     data.getMyAnswer(numberCorrect,pollId, name)
+    io.to(pollId).emit('dataGetResults', data.getResults(pollId));
 
   });
 
