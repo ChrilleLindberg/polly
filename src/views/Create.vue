@@ -9,8 +9,11 @@
   <div>
     <div  v-show="showView==1">
     Glossary ID:
-    <input type="text" v-model="pollId" id="pollID" @keydown.space.prevent @input="checkInput">
-    <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new'" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
+    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput">
+    <button v-show="!inputActivated" @click="activateInput">
+      <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark">
+    </button>
+    <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
     <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
     <br>
     <div class="classInput">
@@ -94,7 +97,9 @@ export default {
       pollLengthOk: false,
       showView: 1,
       answersEmpty: true,
-      oldPollSame: false
+      oldPollSame: false,
+      penVisible: false,
+      inputActivated: true
     }
   },
   created: function () {
@@ -116,8 +121,9 @@ export default {
       socket.on('getPollInfo2', (pollInfo) => {
         this.question = pollInfo.questions[0].q
         this.answers = pollInfo.questions[0].a
-        this.checkInput()
+        //this.checkInput()
         this.checkWords()
+        this.showPen()
       })
     }
 
@@ -179,6 +185,14 @@ export default {
           this.answersEmpty = true
         }
       })
+    },
+    showPen: function () {
+      if (this.pollId.length > 0) {
+        this.inputActivated = false
+      }
+    },
+    activateInput: function () {
+      this.inputActivated = true
     }
   }
 }
