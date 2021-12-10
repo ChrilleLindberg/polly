@@ -1,14 +1,13 @@
 <template>
-  <body class="bodyClass">
+  <body>
   <h1>Results</h1>
-  <div>
+
+  <div v-show="showBars">
+  <Bars v-bind:data="data"/>
 
   </div>
 
-  <Bars v-bind:data="data"/>
-  {{data.a}}
-  <button v-on:click="getResults"> Get Results </button>
-  <button v-on:click="getBarsResult"> Get BarResults </button>
+  <div v-show="!showBars">
 
   <div class="wrapper">
     <div class="table">
@@ -20,8 +19,10 @@
       </span>
     </div>
   </div>
-  {{BarAndResults}}
-  {{name}}
+    <button v-on:click="getResults"> Get Results </button>
+    <button v-on:click="getBarsResult"> Show bar results </button>
+  </div>
+
   <br>
   </body>
 </template>
@@ -44,7 +45,8 @@ export default {
       BarAndResults:[],
       name:[],
       studentResult:[],
-      nameStudent:""
+      nameStudent:"",
+      showBars:false,
 
     }
   },
@@ -65,17 +67,10 @@ export default {
       //this.data = {};
 
     })
-
-  },
-  methods: {
-  getResults: function(){
-
-
-    socket.emit('getResults', this.pollId)
     socket.on("dataGetResults", update =>{
       //this.nameAndResults.push(update)
       console.log("update" +update)
-    this.name=[]
+      this.name=[]
       this.studentResult=[]
       for (let i = 0; i <update.length; i++) {
         this.name.push(update[i].nameStudent)
@@ -83,10 +78,17 @@ export default {
       }
     })
   },
+  methods: {
+  getResults: function(){
+
+
+    socket.emit('getResults', this.pollId)
+
+  },
     getBarsResult: function(){
       this.BarAndResults = new Array(this.question.length+1).fill(0);
       console.log("varje index" + this.BarAndResults)
-
+      this.showBars=true
 
       console.log("längd" +this.question.length)
       for (let i = 0; i <this.name.length; i++) {
@@ -106,7 +108,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-.bodyClass{
+body{
   font-family: 'montserrat', sans-serif;
   background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
 }
@@ -117,6 +119,7 @@ export default {
   height: 20em;
   background: #CAD2F9;
   border-style: dotted;
+  margin-bottom:4em;
 
 }
 
