@@ -13,7 +13,7 @@
       <br>
       <label v-show="isVisible==1">
         <!--{{uiLabels.writeField}}-->
-        <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @input="checkPollId">
+        <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent>
       </label>
       <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
@@ -27,7 +27,7 @@
       <h2>
         {{uiLabels.twoOptionsText }}
       </h2>
-      <button @click="$router.push('/create/'+lang)" id="create" >
+      <button @click="$router.push('/create/'+ 'new/' + lang)" id="create" >
         {{uiLabels.createNew}}
       </button>
       <br>
@@ -39,8 +39,8 @@
       <p>
         {{uiLabels.editExisting}}
       </p>
-      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2">
-      <button @click="$router.push('/create/'+lang)" v-bind:disabled="!editExists">
+      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2" @keydown.space.prevent>
+      <button @click="editExistingGo" v-bind:disabled="!editExists">
         GO!
       </button>
     </div>
@@ -104,7 +104,11 @@ export default {
       socket.emit("sendPollId", this.idEdit)
       socket.on("checkPollId", (editExists) =>
           this.editExists = editExists)
-    }
+    },
+    editExistingGo: function () {
+      this.$router.push('/create/'+ this.idEdit + '/' + this.lang)
+      socket.emit("sendGlossary",this.idEdit)
+}
   }
 }
 </script>
