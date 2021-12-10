@@ -17,5 +17,6 @@
 	"glossaryCreator": "Skapa glossary",
 	"goBack": "Hem",
 	"createGlossary": "Skapa glossary",
-	"answers": "Svar"
+	"answers": "Svar",
+	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget"
 }

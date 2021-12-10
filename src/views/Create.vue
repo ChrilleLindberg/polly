@@ -1,7 +1,7 @@
 <template>
 
   <header>
-    <h1>{{uiLabels.glossaryCreator}}</h1>
+    <h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>
   </header>
   <body>
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -9,7 +9,7 @@
   <div>
     <div  v-show="showView==1">
     Glossary ID:
-    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput">
+    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
     <button v-show="!inputActivated" @click="activateInput">
       <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark">
     </button>
@@ -39,9 +39,8 @@
       </div>
       <div class="removeWords">
         <button v-for="index in answers.length" :key="index"
-               @click="removeLine(index-1)"
-               id="aInput">
-          -
+               id="removeLine">
+          <img @click="removeLine(index-1)" src="https://www.shareicon.net/data/512x512/2016/01/05/698410_trash_512x512.png" id="trashCan">
         </button>
       </div>
 
@@ -202,7 +201,7 @@ export default {
 <style>
 .classInput {
   display: grid;
-  grid-template-columns: 1fr 4fr 4fr 1fr;
+  grid-template-columns: 10fr 9fr 1fr;
   grid-template-rows: repeat(auto-fit,4em);
 }
 
@@ -218,17 +217,17 @@ body {
 
 .qInputClass {
   border-radius: 1em;
-  grid-column: 2;
+  grid-column: 1;
   text-align: center;
   display: grid;
 }
 
 #inputQuestion {
-  grid-column: 2;
+  grid-column: 1;
 }
 
 #inputAnswer {
-  grid-column: 3;
+  grid-column: 2;
 }
 
 #qInput {
@@ -236,7 +235,7 @@ body {
 }
 
 .aInputClass {
-  grid-column: 3;
+  grid-column: 2;
   text-align: center;
   display: grid;
 }
@@ -255,6 +254,20 @@ body {
 
 .checkMark {
   height: 1em;
+}
+
+#trashCan {
+  height: 1em;
+  opacity: 50%;
+}
+
+#trashCan:hover {
+  opacity: 100%;
+}
+
+#removeLine {
+  background-color: transparent;
+  border-color: transparent;
 }
 
 </style>

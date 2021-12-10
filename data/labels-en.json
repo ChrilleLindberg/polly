@@ -17,5 +17,6 @@
 	"glossaryCreator": "Glossary creator",
 	"goBack": "Home",
 	"createGlossary": "Create glossary",
-	"answers": "Answers"
+	"answers": "Answers",
+	"pollIdAlreadyTaken": "This Glossary ID is already taken"
 }
