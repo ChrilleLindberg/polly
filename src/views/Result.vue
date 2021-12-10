@@ -51,6 +51,7 @@ export default {
   created: function () {
     this.pollId = this.$route.params.id
 
+
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
       //this.data = update.a;
@@ -64,9 +65,11 @@ export default {
       //this.data = {};
 
     })
+
   },
   methods: {
   getResults: function(){
+
 
     socket.emit('getResults', this.pollId)
     socket.on("dataGetResults", update =>{
