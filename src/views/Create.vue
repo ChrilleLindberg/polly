@@ -4,12 +4,20 @@
     <h1>{{uiLabels.glossaryCreator}}</h1>
   </header>
   <body>
+  {{this.pollId}}
+  {{this.pollOk}}
+  {{this.pollIdExists}}
+  {{this.answersEmpty}}
+  {{this.answers.length}}
+  {{this.answers[0].length}}
+
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
   <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button>
   <div>
     <div  v-show="showView==1">
     Glossary ID:
-    <input type="text" v-model="pollId" id="pollID">
+    <input type="text" v-model="pollId" id="pollID" @keydown.space.prevent @input="checkInput">
+    <img v-show="!pollIdExists && pollId.length > 0" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" id="checkMark">
     <br>
 
     <div class="classInput">
@@ -23,12 +31,14 @@
         <input v-for="(_, i) in question"
                v-model="question[i]"
                v-bind:key="'question'+i"
+               @input="checkWords"
                id="qInput">
       </div>
       <div class="aInputClass">
         <input v-for="(_, i) in answers"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
+               @input="checkWords"
                id="aInput">
       </div>
       <div class="removeWords">
@@ -44,7 +54,7 @@
       +
     </button>
     <br>
-    <button v-on:click="createPoll">
+    <button v-on:click="createPoll" v-bind:disabled="!answersEmpty">
       {{ uiLabels.createGlossary }}
     </button>
     <br>
@@ -88,7 +98,11 @@ export default {
       data: {},
       uiLabels: {},
       willShow: false,
+      pollIdExists: false,
+      pollLengthOk: false,
       showView: 1,
+      pollOk: false,
+      answersEmpty: true
     }
   },
   created: function () {
@@ -112,6 +126,9 @@ export default {
       })
     }
 
+    this.checkInput()
+    this.checkWords()
+
   },
   methods: {
     createPoll: function () {
@@ -125,17 +142,7 @@ export default {
       document.getElementById('prefilledInput').setAttribute('value',this.pollId)
 
     },
-//    addQuestion: function () {
-//      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
-//      console.log(this.q)
-//      console.log(this.answer)
-//    },
-//    addAnswer: function () {
-//      this.answers.push("");
-//    },
-//    runQuestion: function () {
-//      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-//    },
+
     addWord: function () {
       this.answers.push("");
       this.question.push("");
@@ -156,6 +163,20 @@ export default {
     removeLine: function (index) {
       this.question.splice(index,1)
       this.answers.splice(index,1)
+    },
+    checkInput: function () {
+            socket.emit("sendPollId", this.pollId)
+      socket.on("checkPollId", (pollExists) =>
+          this.pollIdExists = pollExists)
+    },
+    checkWords: function () {
+      this.answers.forEach(i=> {
+        if (answer.length < 1) {
+          this.answersEmpty = false
+        } else {
+          this.answersEmpty = true
+        }
+      })
     }
   }
 }
@@ -206,6 +227,10 @@ body {
 
 #prefilledInput {
   text-align: center;
+}
+
+#checkMark {
+  height: 1em;
 }
 
 </style>
