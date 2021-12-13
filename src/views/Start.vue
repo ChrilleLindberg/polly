@@ -6,8 +6,9 @@
   </header>
   <body id="bodyID" >
     <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <button id="goBack" v-show="isVisible==2" v-on:click="switchVisibleOne">{{uiLabels.goBack}}</button>
-    <button id="goBack" v-show="isVisible==3" v-on:click="switchVisibleTwo">{{uiLabels.goBack}}</button>
+    <button id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne">
+      <img src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" >
+     </button>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>

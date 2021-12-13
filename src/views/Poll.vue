@@ -1,19 +1,17 @@
 <template>
   <body>
   <div id="app" v-show="isVisible">
-  <div >
+  <div>
     <h1>{{pollId}}</h1>
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
   {{question.a}}
     {{myAnswers}}
-
-
-
-    <div >
+    <button id="goBack" @click="$router.push('/')"> {{uiLabels.goBack}} </button>
+    <div>
     <button class="button" v-on:click="showModal=true" >
-      Submit Quiz
+      SubmitQuiz
     </button>
     <transition name="fade" appear>
       <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
@@ -72,10 +70,6 @@ import Question from '@/components/Question.vue';
 import io from 'socket.io-client';
 const socket = io();
 
-
-
-
-
 export default {
   name: 'Poll',
   components: {
@@ -97,7 +91,8 @@ export default {
       correctOrNot: [],
       showModal: false,
       nameContendor: "",
-      isVisible:true
+      isVisible:true,
+      uiLabels:{},
     }
 
   },
@@ -107,8 +102,11 @@ export default {
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
       this.question = q
-    )
 
+    )
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
 
 
   },
@@ -141,7 +139,7 @@ export default {
       }
         socket.emit("finishAnswer",this.numbCorrectAnswers,this.pollId,this.nameContendor)
 
-    }
+    },
 
 
   }
@@ -313,6 +311,11 @@ margin-left: 33%;
   border-top: 1px solid #dfdfdf;
   padding-top:2em;
   color: red;
-
 }
+#goBack{
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
 </style>
