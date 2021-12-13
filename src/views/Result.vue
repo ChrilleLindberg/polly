@@ -1,7 +1,9 @@
 <template>
   <body>
   <h1>{{ uiLabels.results }}</h1>
-  <button id="goBack" @click="$router.push('/')" >{{ uiLabels.goBack }}</button>
+  <!-- <button id="goBack" @click="$router.push('/')" >{{ uiLabels.goBack }}</button> -->
+  <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+
 
   <div v-show="showBars">
   <Bars v-bind:data="data"/>
