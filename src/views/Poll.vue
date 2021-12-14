@@ -10,22 +10,23 @@
     {{myAnswers}}
     <!-- <button id="goBack" @click="$router.push('/')"> {{uiLabels.goBack}} </button> -->
     <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+    <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
     <div>
     <button class="button" v-on:click="showModal=true" >
-      SubmitQuiz
+      {{ uiLabels.submitQuiz }}
     </button>
     <transition name="fade" appear>
       <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
     </transition>
     <transition name="slide" appear>
       <div class="modal" v-if="showModal">
-        <h1>To submit please enter your full name</h1>
+        <h1>{{uiLabels.enterName}}</h1>
         <p> <input type="string" id="fullnamebox" v-model="nameContendor" >
           <br>
           </p>
         <button class="button" v-on:click="FinishedQuiz" >
-          Submit your final answer
+          {{ uiLabels.submitFinal }}
 <!--        <button class="button" v-on:click="$router.replace('/')" id="participate" >  Submit your answer-->
         </button>
       </div>
@@ -36,9 +37,9 @@
    {{correctOrNot}}
     <h1>{{nameContendor}}</h1>
 
-    <h3>  Du har fått {{numbCorrectAnswers}}/{{question.a.length}} rätt </h3>
+    <h3> {{ uiLabels.youHave }} {{numbCorrectAnswers}}/{{question.a.length}} {{ uiLabels.correct }} </h3>
     <br>
-    <h3 class="rubrikSpalt" ><div>Fråga</div> <div>Svar</div> <div>Resultat</div> </h3>
+    <h3 class="rubrikSpalt" ><div>{{ uiLabels.question }}</div> <div>{{ uiLabels.answers }}</div> <div>{{ uiLabels.result }}</div> </h3>
     <div class="wrapper">
     <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
@@ -56,7 +57,7 @@
     </div>
     </div>
     <div id="buttonUnder">
-    <button class="button"  v-on:click="$router.replace('/')">Go back to home page</button>
+    <button class="button"  v-on:click="$router.replace('/')">{{ uiLabels.backHome }}</button>
     </div>
     </div>
   </body>
@@ -142,6 +143,14 @@ export default {
         socket.emit("finishAnswer",this.numbCorrectAnswers,this.pollId,this.nameContendor)
 
     },
+
+  switchLanguage: function() {
+    if (this.lang === "en")
+      this.lang = "sv"
+    else
+      this.lang = "en"
+    socket.emit("switchLanguage", this.lang)
+  }
 
 
   }

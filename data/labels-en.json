@@ -3,7 +3,6 @@
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create or edit a glossary",
 	"participatePoll": "Participate in poll",
-	"question": "Question",
 	"changeLanguage": "Byt till svenska",
 	"welcomeMessage": "Welcome to Glossary",
 	"infoText": "Enter glossary ID or create your own glossary",
@@ -18,7 +17,9 @@
 	"goBack": "Home",
 	"goHome": "home",
 	"createGlossary": "Create glossary",
+	"question": "Question",
 	"answers": "Answers",
+	"result": "Result",
 	"pollIdAlreadyTaken": "This Glossary ID is already taken",
 	"getResult": "Get results",
 	"enterWord": "Enter a word",
@@ -26,5 +27,12 @@
 	"submitQuiz": "Submit",
 	"results": "Results",
 	"getResults": "Get results",
-	"showBarResults": "Show bar results"
+	"showBarResults": "Show bar results",
+	"enterName": "To submit please enter your full name",
+	"submitFinal": "Submit your final answer",
+	"youHave": "You've gotten",
+	"backHome": "Go back to home page",
+	"correct": "correct answers",
+	"flag": "https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg",
+	"language": "English"
 }

@@ -3,6 +3,7 @@
   <h1>{{ uiLabels.results }}</h1>
   <!-- <button id="goBack" @click="$router.push('/')" >{{ uiLabels.goBack }}</button> -->
   <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+  <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
 
   <div v-show="showBars">
@@ -22,8 +23,8 @@
       </span>
     </div>
   </div>
-    <button v-on:click="getResults"> {{ uiLabels.getResults }} </button>
-    <button v-on:click="getBarsResult"> {{ uiLabels.showBarResults }} </button>
+
+  <button class="buttonNice" v-on:click="getBarsResult"> {{ uiLabels.showBarResults }} </button>
   </div>
 
   <br>
@@ -104,7 +105,14 @@ export default {
         this.BarAndResults[correct] += 1;
       }
       this.data=this.BarAndResults
-      }
+      },
+    switchLanguage: function() {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
+    }
   }
 }
 </script>
@@ -117,7 +125,7 @@ export default {
 }
 body{
   font-family: 'montserrat', sans-serif;
-  background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
+  background: white;
 }
 .wrapper{
   margin-left: 33%;
@@ -127,6 +135,36 @@ body{
   background: #CAD2F9;
   border-style: dotted;
   margin-bottom:4em;
+
+}
+.buttonNice{
+
+  width: 11em;
+  height: 3em;
+  color:#EF8584;
+  font-size: 1em;
+  font-weight: 800;
+  font-family: "Times New Roman", serif;
+  border-radius: 5px;
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: white;
+}
+.buttonNice:hover{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
+}
+.buttonNice:active{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
 
 }
 

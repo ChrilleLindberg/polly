@@ -1,9 +1,9 @@
 <template>
-<div class="wrapper1">
+<div class="wrapper1" >
 
   <div class="bar" v-for="(_, key) in data" v-bind:key="key">
 
-    <div v-bind:style="{height: 500*data[key]/(28*data.length) +'em', width: 40/data.length + 'em' }" v-if="key>=0*(data.length-1)"  style="background-color:red;">
+    <div  v-bind:style="{height:5000*data[key]/(28*data.length) +'em', width: 40/data.length + 'em' }" v-if="key>=0*(data.length-1)"  style="background-color:red; top:100em">
     <div v-bind:style="{height: 500*data[key]/(28*data.length) + 'em', width:40/data.length + 'em'}" v-if="key>=0.33*(data.length-1)"  style="background-color:yellow;">
       <div v-bind:style="{height: 500*data[key]/(28*data.length)  +'em', width:40/data.length + 'em'}" v-if="key>0.66*(data.length-1)"  style="background-color:green;">
       </div>
@@ -34,31 +34,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .bar {
-  left:-5em;
+  position: relative;
   display: inline-block;
   vertical-align: bottom;
-  position: relative;
-  top:10em;
+  left:-5em;
+
   margin-left:1em;
 
 
-
-
 }
 
-.bar span {
-  position: relative;
-  top: -1.2em;
 
-
-}
-.bar div:nth-child(1){
-
-
-}
-.BarClass{
-  margin-top:1em;
-}
 
 /*.bar:nth-child(1) div:nth-child(1) {
   background-color:red;
@@ -80,6 +66,7 @@ export default {
   width:64em;
   margin-left:10%;
 
+background-color:white;
   margin-right:10%;
 
   border-bottom: gray solid;
