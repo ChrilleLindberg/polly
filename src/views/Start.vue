@@ -5,9 +5,17 @@
     </h1>
   </header>
   <body id="bodyID" >
-   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}
-     <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
-   </button>
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">{{uiLabels.language}}</div>
+      <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+    </div>
+  </div>
+
+    <span id="positionFlag">
+       <div class="tooltip">Svenska</div>
+
+    </span>
    <!-- svenska flaggan:https://cdn.countryflags.com/thumbs/sweden/flag-400.png
         engelska flaggan: https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg
         -->
@@ -25,7 +33,7 @@
       <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
     </button>
     <br>
-    <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
+    <button class="buttonNice" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
   </div>
 
   <div id="twoOptions" v-show="isVisible==2">
@@ -141,11 +149,7 @@ body {
   top: 1em;
 }
 
-#changeLanguage {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-}
+
 #inputPollId{
   text-align: center;
   width: 12em;
@@ -157,11 +161,6 @@ margin-bottom: 2em;
   height:2em;
 }
 
-#switchVisible{
-
-  width: 12em;
-  height:3em;
-}
 
 #inputPollId {
   text-align: center;
@@ -179,4 +178,106 @@ margin-bottom: 2em;
   width: 12em;
   height: 3em;
 }
+.pictureFlag{
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.wrapper {
+  display: inline-flex;
+  position: absolute;
+  right: 1em;
+  top: 1.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  width:2em;
+  height:2em;
+
+}
+
+.wrapper .icon {
+
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.buttonNice{
+
+  width: 11em;
+  height: 3em;
+
+  color:#EF8584;
+  font-size: 1em !important;
+  font-weight: 800;
+  border-radius: 50%;
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: white;
+  cursor: pointer;
+}
+.buttonNice:hover{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
+}
+.buttonNice:active{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
+
+}
+
 </style>

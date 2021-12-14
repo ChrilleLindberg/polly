@@ -1,5 +1,7 @@
 <template>
   <body>
+
+
   <div class="maincontainer">
 
     <transition name="slideLeft" :css="!swipeRight">
@@ -153,4 +155,39 @@ body{
   transform: translateY(-50%) translateX(100vw);
 
 }
+/*
+    Auther: Abdelrhman Said
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  place-items: center;
+  background: linear-gradient(315deg, #ffffff, #d7e1ec);
+}
+
+
+
+
+
+
+
+
 </style>
