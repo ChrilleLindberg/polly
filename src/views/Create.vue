@@ -6,7 +6,7 @@
   <body>
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
   <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button>
-  <div>
+  <div class="middlePart">
     <div  v-show="showView==1">
     Glossary ID:
     <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
@@ -208,7 +208,12 @@ export default {
 }
 
 body {
-  background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
+  background-color: #FBE4C9;
+}
+
+.middlePart {
+  padding-right: 30%;
+  padding-left: 30%;
 }
 
 #changeLanguage{
@@ -222,6 +227,7 @@ body {
   grid-column: 1;
   text-align: center;
   display: grid;
+  grid-row-gap: 0.5em;
 }
 
 #inputQuestion {
@@ -234,12 +240,22 @@ body {
 
 #qInput {
   text-align: center;
+  border-style: solid;
+  height: 2em;
+  border-bottom-left-radius: 0.5em;
+  border-top-left-radius: 0.5em;
+  border-color: #EF8584;
+  border-width: 0.2em;
+  border-right-style: outset;
+  border-right-width: 0.05em;
+  border-right-color: #666666;
 }
 
 .aInputClass {
   grid-column: 2;
   text-align: center;
   display: grid;
+  grid-row-gap: 0.5em;
 }
 
 .removeWords {
@@ -248,6 +264,17 @@ body {
 
 #aInput {
   text-align: center;
+  border-style: solid;
+  border-bottom-right-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  border-color: #EF8584;
+  border-width: 0.2em;
+  border-left-width: 0;
+}
+
+
+input:focus::placeholder {
+  color: transparent;
 }
 
 #prefilledInput {
