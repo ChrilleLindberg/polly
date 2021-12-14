@@ -21,5 +21,6 @@
 	"pollIdAlreadyTaken": "This Glossary ID is already taken",
 	"getResult": "Get results",
 	"enterWord": "Enter a word",
-	"enterTranslation": "...and its translation"
+	"enterTranslation": "...and its translation",
+	"flag": "https://cdn.countryflags.com/thumbs/sweden/flag-400.png"
 }
