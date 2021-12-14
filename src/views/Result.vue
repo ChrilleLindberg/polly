@@ -23,8 +23,8 @@
       </span>
     </div>
   </div>
-    <button v-on:click="getResults"> {{ uiLabels.getResults }} </button>
-    <button v-on:click="getBarsResult"> {{ uiLabels.showBarResults }} </button>
+
+  <button class="buttonNice" v-on:click="getBarsResult"> {{ uiLabels.showBarResults }} </button>
   </div>
 
   <br>
@@ -125,7 +125,7 @@ export default {
 }
 body{
   font-family: 'montserrat', sans-serif;
-  background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
+  background: white;
 }
 .wrapper{
   margin-left: 33%;
@@ -135,6 +135,36 @@ body{
   background: #CAD2F9;
   border-style: dotted;
   margin-bottom:4em;
+
+}
+.buttonNice{
+
+  width: 11em;
+  height: 3em;
+  color:#EF8584;
+  font-size: 1em;
+  font-weight: 800;
+  font-family: "Times New Roman", serif;
+  border-radius: 5px;
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: white;
+}
+.buttonNice:hover{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
+}
+.buttonNice:active{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
 
 }
 
