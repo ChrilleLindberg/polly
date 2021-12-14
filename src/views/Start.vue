@@ -3,27 +3,47 @@
     <h1>
       {{ uiLabels.welcomeMessage }}
     </h1>
-  </header>
-  <body id="bodyID" >
-   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}
-     <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
-   </button>
-   <!-- svenska flaggan:https://cdn.countryflags.com/thumbs/sweden/flag-400.png
-        engelska flaggan: https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg
-        -->
 
-   <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
-    <div id="nav" v-show="isVisible==1">
-      <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
-      <br>
-      <label v-show="isVisible==1">
-        <!--{{uiLabels.writeField}}-->
-        <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne" v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent>
-      </label>
-      <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
-        GO!
-      <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
-    </button>
+  </header>
+  <body id="bodyID">
+  <button id="changeLanguage" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}
+    <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
+  </button>
+
+  <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne"
+       src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
+       alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em">
+  <div id="nav" v-show="isVisible==1">
+    <p v-show="isVisible==1">{{ uiLabels.infoText }}</p>
+
+    <!--
+    <label v-show="isVisible==1">
+      <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne"
+             v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent>
+    </label>
+    -->
+    <ul id="growing-search-freebie">
+      <li>
+        <div class="growing-search">
+          <div class="input">
+            <input type="text" name="search" id="inputPollId" v-model="id"
+                   v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
+          </div><!-- Space hack -->
+          <div class="submit">
+            <!--<button type="submit" name="go_search" >
+              <span class="fa fa-search"></span>
+            </button>-->
+          </div>
+          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+            GO!
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <!-- <button type="submit" name="go_search" @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+      GO!
+    </button> -->
     <br>
     <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
   </div>
@@ -116,6 +136,8 @@ export default {
       this.$router.push('/create/' + this.idEdit + '/' + this.lang)
       socket.emit("sendGlossary", this.idEdit)
     }
+
+
   }
 }
 </script>
@@ -135,7 +157,7 @@ body {
   font-size: 1.3em;
 }
 
-#goBack{
+#goBack {
   position: absolute;
   left: 1em;
   top: 1em;
@@ -146,24 +168,8 @@ body {
   right: 1em;
   top: 1em;
 }
-#inputPollId{
-  text-align: center;
-  width: 12em;
-  height:2em;
-margin-bottom: 2em;
-  margin-right:0.5em;
-}
-#participate{
-  height:2em;
-}
 
-#switchVisible{
-
-  width: 12em;
-  height:3em;
-}
-
-#inputPollId {
+/* #inputPollId {
   text-align: center;
   width: 12em;
   height: 2em;
@@ -174,9 +180,85 @@ margin-bottom: 2em;
 #participate {
   height: 2em;
 }
+*/
 
 #switchVisible {
+
   width: 12em;
   height: 3em;
+}
+
+/* Input field */
+ul#growing-search-freebie {
+  display: table;
+  list-style: none;
+  margin: 1em auto 0 auto;
+  padding: 0;
+}
+
+ul#growing-search-freebie > li {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding: 0em 0em;
+}
+
+ul#growing-search-freebie > li:last-child {
+  margin-right: 0;
+}
+
+ul#growing-search-freebie > li > span {
+  margin-bottom: 1em;
+}
+
+.growing-search {
+  padding: 0.1em 0.1em 0.1em 0.3em;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.growing-search div {
+  display: inline-block;
+  font-size: 20px;
+}
+
+.growing-search .input input {
+  margin-right: 0;
+  border: none;
+  font-size: inherit;
+  transition: width 200ms;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-bottom: 0.5em;
+  width: 8em;
+  color: #aaa;
+  border-bottom: 1px solid #eee;
+}
+
+.growing-search .input input:focus {
+  width: 16em;
+}
+
+.growing-search .submit button {
+  margin-left: 0;
+  border: none;
+  font-size: 1.15em;
+  color: #aaa;
+  background-color: #fff;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  transition: color 200ms;
+}
+
+.growing-search .input input:hover, .growing-search .submit button:hover {
+  cursor: pointer;
+}
+
+.growing-search .input input:focus, .growing-search .submit button:focus {
+  outline: none;
+}
+
+.growing-search .submit button:hover {
+  color: #3498db;
 }
 </style>
