@@ -1,16 +1,18 @@
 <template>
   <header>
     <h1>
-      {{uiLabels.welcomeMessage}}
+      {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
   <body id="bodyID" >
-    <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <!--<button id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne">
-      <img src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 1em; height: 1em" >
-     </button> -->
-    <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}
+     <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
+   </button>
+   <!-- svenska flaggan:https://cdn.countryflags.com/thumbs/sweden/flag-400.png
+        engelska flaggan: https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg
+        -->
 
+   <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
@@ -21,39 +23,41 @@
       <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists"> <!-- denna knapp ska bli grön när man har skrivit in i input -->
         GO!
       <!-- <router-link v-bind:to="'/poll/'+id" tag="button">{{uiLabels.participatePoll}}</router-link> -->
-      </button>
-      <br>
-      <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{uiLabels.createPoll}}</button>
-    </div>
+    </button>
+    <br>
+    <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
+  </div>
 
-    <div id="twoOptions" v-show="isVisible==2">
-      <h2>
-        {{uiLabels.twoOptionsText }}
-      </h2>
-      <button @click="$router.push('/create/'+ 'new/' + lang)" id="create" >
-        {{uiLabels.createNew}}
-      </button>
-      <br>
-      <button id="edit" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
-        {{uiLabels.editExisting}}
-      </button>
-    </div>
-    <div id="editExisting" v-show="isVisible==3">
-      <p>
-        {{uiLabels.editExisting}}
-      </p>
-      <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)" @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField" @input="checkPollId2" @keydown.space.prevent>
-      <button @click="editExistingGo" v-bind:disabled="!editExists">
-        GO!
-      </button>
-    </div>
+  <div id="twoOptions" v-show="isVisible==2">
+    <p>
+      {{ uiLabels.twoOptionsText }}
+    </p>
+    <button @click="$router.push('/create/'+ 'new/' + lang)" id="create">
+      {{ uiLabels.createNew }}
+    </button>
+    <br>
+    <button id="edit" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
+      {{ uiLabels.editExisting }}
+    </button>
+  </div>
+  <div id="editExisting" v-show="isVisible==3">
+    <p>
+      {{ uiLabels.editExisting }}
+    </p>
+    <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)"
+           @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField"
+           @input="checkPollId2" @keydown.space.prevent>
+    <button @click="editExistingGo" v-bind:disabled="!editExists">
+      GO!
+    </button>
+  </div>
   </body>
 </template>
 
 <script>
 import io from 'socket.io-client';
-const socket = io();
 
+const socket = io();
 export default {
   name: 'Start',
   data: function () {
@@ -109,25 +113,35 @@ export default {
           this.editExists = editExists)
     },
     editExistingGo: function () {
-      this.$router.push('/create/'+ this.idEdit + '/' + this.lang)
-      socket.emit("sendGlossary",this.idEdit)
-}
+      this.$router.push('/create/' + this.idEdit + '/' + this.lang)
+      socket.emit("sendGlossary", this.idEdit)
+    }
   }
 }
 </script>
 
 <style>
-body{
- background-color: #FBE4C9;
-  color: #EF8584;
+
+header {
+  font-size: 2em;
+  font-family: "beirut ";
+  margin-top: 2em;
 }
+
+body {
+  background-color: #FBE4C9;
+  color: #EF8584;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+}
+
 #goBack{
   position: absolute;
   left: 1em;
   top: 1em;
 }
 
-#changeLanguage{
+#changeLanguage {
   position: absolute;
   right: 1em;
   top: 1em;
@@ -149,4 +163,20 @@ margin-bottom: 2em;
   height:3em;
 }
 
+#inputPollId {
+  text-align: center;
+  width: 12em;
+  height: 2em;
+  margin-bottom: 2em;
+  margin-right: 0.5em;
+}
+
+#participate {
+  height: 2em;
+}
+
+#switchVisible {
+  width: 12em;
+  height: 3em;
+}
 </style>
