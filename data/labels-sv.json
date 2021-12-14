@@ -16,10 +16,15 @@
 	"copy": "Kopiera ID",
 	"glossaryCreator": "Skapa glossary",
 	"goBack": "Hem",
+	"goHome": "hem",
 	"createGlossary": "Skapa glossary",
 	"answers": "Svar",
 	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget",
 	"getResult": "Få ditt resultat",
 	"enterWord": "Fyll i ett ord",
-	"enterTranslation": "...och dess översättning"
+	"enterTranslation": "...och dess översättning",
+	"submitQuiz": "Skicka in",
+	"results": "Resultat",
+	"getResults": "Hämta resultat",
+	"showBarResults": "Visa resultat i staplar"
 }
