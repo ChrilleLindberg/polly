@@ -4,24 +4,6 @@
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-  <body id="bodyID">
-  <button id="changeLanguage" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}
-    <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
-  </button>
-  <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne"
-       src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
-       alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em">
-  <div id="nav" v-show="isVisible==1">
-    <p v-show="isVisible==1">{{ uiLabels.infoText }}</p>
-    <br>
-    <label v-show="isVisible==1">
-      <!--{{uiLabels.writeField}}-->
-      <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne"
-             v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent>
-    </label>
-    <button @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
-      <!-- denna knapp ska bli grön när man har skrivit in i input -->
-      GO!
   <body id="bodyID" >
    <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}
      <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
@@ -139,7 +121,7 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
+
 header {
   font-size: 2em;
   font-family: "beirut ";
@@ -153,10 +135,6 @@ body {
   font-size: 1.3em;
 }
 
-body{
- background-color: #FBE4C9;
-  color: #EF8584;
-}
 #goBack{
   position: absolute;
   left: 1em;
