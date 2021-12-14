@@ -6,8 +6,11 @@
   </header>
   <body id="bodyID" >
     <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <button id="goBack" v-show="isVisible==2" v-on:click="switchVisibleOne">{{uiLabels.goBack}}</button>
-    <button id="goBack" v-show="isVisible==3" v-on:click="switchVisibleTwo">{{uiLabels.goBack}}</button>
+    <!--<button id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne">
+      <img src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 1em; height: 1em" >
+     </button> -->
+    <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
@@ -114,6 +117,10 @@ export default {
 </script>
 
 <style>
+body{
+ background-color: #FBE4C9;
+  color: #EF8584;
+}
 #goBack{
   position: absolute;
   left: 1em;
@@ -124,6 +131,22 @@ export default {
   position: absolute;
   right: 1em;
   top: 1em;
+}
+#inputPollId{
+  text-align: center;
+  width: 12em;
+  height:2em;
+margin-bottom: 2em;
+  margin-right:0.5em;
+}
+#participate{
+  height:2em;
+}
+
+#switchVisible{
+
+  width: 12em;
+  height:3em;
 }
 
 </style>

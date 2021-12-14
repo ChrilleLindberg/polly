@@ -16,10 +16,15 @@
 	"copy": "Copy ID",
 	"glossaryCreator": "Glossary creator",
 	"goBack": "Home",
+	"goHome": "home",
 	"createGlossary": "Create glossary",
 	"answers": "Answers",
 	"pollIdAlreadyTaken": "This Glossary ID is already taken",
 	"getResult": "Get results",
 	"enterWord": "Enter a word",
-	"enterTranslation": "...and its translation"
+	"enterTranslation": "...and its translation",
+	"submitQuiz": "Submit",
+	"results": "Results",
+	"getResults": "Get results",
+	"showBarResults": "Show bar results"
 }
