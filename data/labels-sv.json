@@ -3,7 +3,6 @@
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa eller redigera en glossary",
 	"participatePoll": "Delta i röstning",
-	"question": "Fråga",
 	"changeLanguage": "Change to English",
 	"welcomeMessage": "Välkommen till Glossary",
 	"infoText": "Fyll i glossary ID eller skapa din egna glossary",
@@ -18,7 +17,9 @@
 	"goBack": "Hem",
 	"goHome": "hem",
 	"createGlossary": "Skapa glossary",
+	"question": "Fråga",
 	"answers": "Svar",
+	"result": "Resultat",
 	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget",
 	"getResult": "Få ditt resultat",
 	"enterWord": "Fyll i ett ord",
@@ -26,5 +27,11 @@
 	"submitQuiz": "Skicka in",
 	"results": "Resultat",
 	"getResults": "Hämta resultat",
-	"showBarResults": "Visa resultat i staplar"
+	"showBarResults": "Visa resultat i staplar",
+	"enterName": "Vänligen skriv in ditt namn för att skicka in",
+	"submitFinal": "Skicka in dina slutgiltiga svar",
+	"youHave": "Du har fått",
+	"backHome": "Gå tillbaka till startsidan",
+	"correct": "rätt",
+	"flag": "https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg"
 }

@@ -2,7 +2,9 @@
   <body>
   <div class="maincontainer">
 
-    <div class="thecard">
+    <transition name="slideLeft" :css="!swipeRight">
+
+      <div class="thecard" v-show="showCard">
 
       <div class="thefront"><h1>Front of Card</h1><p>This is the front of the card. It contains important information. Please see overleaf for more details.</p></div>
 
@@ -10,8 +12,15 @@
         <button>Submit</button></div>
 
     </div>
+    </transition>
   </div>
 
+  <button @click="swipeRight = false, showCard = false">
+    Nej
+  </button>
+  <button @click="swipeRight = true, showCard2 = false">
+    JA
+  </button>
   </body>
 </template>
 
@@ -20,6 +29,9 @@ export default {
   name: "flipCards",
 data: function () {
   return {
+    showCard: true,
+    showCard2: true,
+    swipeRight: true
   }
 },
 }
@@ -110,4 +122,35 @@ body{
 }
 /*This block (ends here) is merely styling for the flip card, and is NOT an essential part of the flip code */
 
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slideRight-enter-active,
+.slideRight-leave-active {
+  transition: transform .5s;
+}
+
+.slideRight-enter,
+.slideRight-leave-to {
+  transform: translateY(-50%) translateX(-100vw);
+}
+
+.slideLeft-enter-active,
+.slideLeft-leave-active {
+  transition: transform .5s;
+}
+
+.slideLeft-enter,
+.slideLeft-leave-to {
+  transform: translateY(-50%) translateX(100vw);
+
+}
 </style>
