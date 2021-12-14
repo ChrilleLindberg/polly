@@ -5,47 +5,35 @@
     </h1>
 
   </header>
-  <body id="bodyID">
-  <button id="changeLanguage" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}
-    <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
-  </button>
 
-  <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne"
-       src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
-       alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em">
-  <div id="nav" v-show="isVisible==1">
-    <p v-show="isVisible==1">{{ uiLabels.infoText }}</p>
+  <body id="bodyID" >
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">{{uiLabels.language}}</div>
+      <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+    </div>
+  </div>
 
-    <!--
-    <label v-show="isVisible==1">
-      <input type="text" id="inputPollId" v-model="id" @focus="switchVisibleFocus" @blur="switchVisibleOne"
-             v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent>
-    </label>
-    -->
-    <ul id="growing-search-freebie">
-      <li>
-        <div class="growing-search">
-          <div class="input">
-            <input type="text" name="search" id="inputPollId" v-model="id"
-                   v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
-          </div><!-- Space hack -->
-          <div class="submit">
-            <!--<button type="submit" name="go_search" >
-              <span class="fa fa-search"></span>
-            </button>-->
+   <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+    <div id="nav" v-show="isVisible==1">
+      <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
+      <ul id="growing-search-freebie">
+        <li>
+          <div class="growing-search">
+            <div class="input">
+              <input type="text" name="search" id="inputPollId" v-model="id"
+                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
+            </div><!-- Space hack -->
+            <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+              GO!
+            </button>
           </div>
-          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
-            GO!
-          </button>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+      <br>
 
-    <!-- <button type="submit" name="go_search" @click="$router.push('/poll/'+id)" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
-      GO!
-    </button> -->
     <br>
-    <button id="switchVisible" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
+    <button class="buttonNice" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
   </div>
 
   <div id="twoOptions" v-show="isVisible==2">
@@ -163,32 +151,8 @@ body {
   top: 1em;
 }
 
-#changeLanguage {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-}
 
-/* #inputPollId {
-  text-align: center;
-  width: 12em;
-  height: 2em;
-  margin-bottom: 2em;
-  margin-right: 0.5em;
-}
 
-#participate {
-  height: 2em;
-}
-*/
-
-#switchVisible {
-
-  width: 12em;
-  height: 3em;
-}
-
-/* Input field */
 ul#growing-search-freebie {
   display: table;
   list-style: none;
@@ -260,5 +224,107 @@ ul#growing-search-freebie > li > span {
 
 .growing-search .submit button:hover {
   color: #3498db;
+}
+
+.pictureFlag{
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.wrapper {
+  display: inline-flex;
+  position: absolute;
+  right: 1em;
+  top: 1.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  width:2em;
+  height:2em;
+
+}
+
+.wrapper .icon {
+
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.buttonNice{
+
+  width: 11em;
+  height: 3em;
+
+  color:#EF8584;
+  font-size: 1em;
+  font-weight: 800;
+  border-radius: 50%;
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: white;
+  cursor: pointer;
+}
+.buttonNice:hover{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
+}
+.buttonNice:active{
+
+  color:white;
+
+  border-style: solid;
+  border-color:#EF8584;
+  background-color: #EF8584;
+
 }
 </style>
