@@ -1,6 +1,10 @@
 <template>
   <body>
-  <h1>Results</h1>
+  <h1>{{ uiLabels.results }}</h1>
+  <!-- <button id="goBack" @click="$router.push('/')" >{{ uiLabels.goBack }}</button> -->
+  <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+  <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+
 
   <div v-show="showBars">
   <Bars v-bind:data="data"/>
@@ -19,8 +23,8 @@
       </span>
     </div>
   </div>
-    <button v-on:click="getResults"> Get Results </button>
-    <button v-on:click="getBarsResult"> Show bar results </button>
+    <button v-on:click="getResults"> {{ uiLabels.getResults }} </button>
+    <button v-on:click="getBarsResult"> {{ uiLabels.showBarResults }} </button>
   </div>
 
   <br>
@@ -40,6 +44,7 @@ export default {
   },
   data: function () {
     return {
+      lang:"",
       question: "",
       data: [],
       BarAndResults:[],
@@ -47,12 +52,15 @@ export default {
       studentResult:[],
       nameStudent:"",
       showBars:false,
+      uiLabels:{},
 
     }
   },
   created: function () {
     this.pollId = this.$route.params.id
-
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
 
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
@@ -97,7 +105,14 @@ export default {
         this.BarAndResults[correct] += 1;
       }
       this.data=this.BarAndResults
-      }
+      },
+    switchLanguage: function() {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
+    }
   }
 }
 </script>

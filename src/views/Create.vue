@@ -5,7 +5,8 @@
   </header>
   <body>
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-  <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button>
+  <!-- <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button> -->
+  <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
   <div>
     <div  v-show="showView==1">
     Glossary ID:
