@@ -1,10 +1,9 @@
 <template>
   <body>
   <h1>Results</h1>
-
-  <div v-show="showBars">
+<br>
+  <div v-show="showBars" >
   <Bars v-bind:data="data"/>
-
   </div>
 
   <div v-show="!showBars">
@@ -47,6 +46,7 @@ export default {
       studentResult:[],
       nameStudent:"",
       showBars:false,
+      amountStudent:0,
 
     }
   },
@@ -96,7 +96,12 @@ export default {
         console.log(correct)
         this.BarAndResults[correct] += 1;
       }
+      for (let i = 0; i <this.name.length; i++) {
+        this.BarAndResults[i]=this.BarAndResults[i]/this.name.length
+      }
+
       this.data=this.BarAndResults
+      console.log(this.data + "hur ser dettta ut?")
       }
   }
 }
