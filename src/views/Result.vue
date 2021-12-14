@@ -3,6 +3,7 @@
   <h1>{{ uiLabels.results }}</h1>
   <!-- <button id="goBack" @click="$router.push('/')" >{{ uiLabels.goBack }}</button> -->
   <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+  <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
 
 
   <div v-show="showBars">
@@ -104,7 +105,14 @@ export default {
         this.BarAndResults[correct] += 1;
       }
       this.data=this.BarAndResults
-      }
+      },
+    switchLanguage: function() {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
+    }
   }
 }
 </script>

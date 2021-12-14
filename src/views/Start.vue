@@ -5,12 +5,14 @@
     </h1>
   </header>
   <body id="bodyID" >
-    <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <!--<button id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne">
-      <img src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 1em; height: 1em" >
-     </button> -->
-    <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}
+     <img src="{{uiLabels.flag}}" style="height: 2em;width: 3em">
+   </button>
+   <!-- svenska flaggan:https://cdn.countryflags.com/thumbs/sweden/flag-400.png
+        engelska flaggan: https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg
+        -->
 
+   <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <br>
