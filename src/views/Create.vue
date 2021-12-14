@@ -1,7 +1,13 @@
 <template>
 
   <header>
-    <h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>
+    <!--<h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>-->
+    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
+    <button v-show="!inputActivated" @click="activateInput" id="pen">
+      <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark" id="penImg">
+    </button>
+    <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
+    <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
   </header>
   <body>
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -9,14 +15,6 @@
   <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
   <div class="middlePart">
     <div  v-show="showView==1">
-    Glossary ID:
-    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
-    <button v-show="!inputActivated" @click="activateInput">
-      <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark">
-    </button>
-    <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
-    <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
-    <br>
     <div class="classInput">
       <div id="inputQuestion">
         {{ uiLabels.question }}:
@@ -48,11 +46,11 @@
       </div>
 
     </div>
-    <button v-on:click="addWord">
+    <button v-on:click="addWord" id="plusButton">
       +
     </button>
     <br>
-    <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'">
+    <button id="createButton" v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'">
       {{ uiLabels.createGlossary }}
     </button>
     <br>
@@ -203,18 +201,29 @@ export default {
 
 <style>
 .classInput {
+  padding-top: 5%;
+  padding-bottom: 0.5em;
   display: grid;
   grid-template-columns: 10fr 9fr 1fr;
   grid-template-rows: repeat(auto-fit,4em);
+  vertical-align: center;
 }
 
 body {
   background-color: #FBE4C9;
+  color: #666666;
+}
+
+header {
+  padding-bottom: 5%;
+  padding-top: 2%;
 }
 
 .middlePart {
   padding-right: 30%;
   padding-left: 30%;
+  vertical-align: center;
+  horiz-align: center;
 }
 
 #changeLanguage{
@@ -278,12 +287,16 @@ input:focus::placeholder {
   color: transparent;
 }
 
+input:focus {
+  outline: none;
+}
+
 #prefilledInput {
   text-align: center;
 }
 
 .checkMark {
-  height: 1em;
+  height: 1.5em;
 }
 
 #trashCan {
@@ -298,6 +311,55 @@ input:focus::placeholder {
 #removeLine {
   background-color: transparent;
   border-color: transparent;
+}
+
+
+#plusButton {
+  border-style: solid;
+  border-color: #EF8584;
+  border-width: 0.2em;
+  border-radius: 0.5em;
+  background-color: white;
+  color: #666666;
+  height: 2em;
+  width: 3em;
+  margin-bottom: 5em;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+#plusButton:hover, #plusButton:active {
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+#createButton {
+  height: 2em;
+  border-radius: 0.5em;
+  background-color: #EF8584;
+  color: white;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: #EF8584;
+}
+
+#pen {
+  background-color: transparent;
+  border:none;
+}
+
+#penImg {
+  height: 1.5em;
+}
+
+#pollID {
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 0.2em;
 }
 
 </style>
