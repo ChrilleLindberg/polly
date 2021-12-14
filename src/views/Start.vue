@@ -119,6 +119,10 @@ export default {
 </script>
 
 <style>
+body{
+ background-color: #FBE4C9;
+  color: #EF8584;
+}
 #goBack{
   position: absolute;
   left: 1em;
@@ -129,6 +133,22 @@ export default {
   position: absolute;
   right: 1em;
   top: 1em;
+}
+#inputPollId{
+  text-align: center;
+  width: 12em;
+  height:2em;
+margin-bottom: 2em;
+  margin-right:0.5em;
+}
+#participate{
+  height:2em;
+}
+
+#switchVisible{
+
+  width: 12em;
+  height:3em;
 }
 
 </style>
