@@ -205,7 +205,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .classInput {
   padding-top: 5%;
   padding-bottom: 0.5em;
@@ -366,6 +366,82 @@ input:focus {
   font-size: 1.5em;
   text-align: center;
   border-radius: 0.2em;
+}
+.pictureFlag{
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+
+
+}
+.wrapper {
+  display: inline-flex;
+  position: absolute;
+  right: 1em;
+  top: 1.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  width:2em;
+  height:2em;
+}
+
+.wrapper .icon {
+
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+#goBack {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  mix-blend-mode: multiply;
+  cursor:pointer
 }
 
 </style>

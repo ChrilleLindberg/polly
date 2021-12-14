@@ -8,9 +8,15 @@
   </div>
   {{question.a}}
     {{myAnswers}}
-    <!-- <button id="goBack" @click="$router.push('/')"> {{uiLabels.goBack}} </button> -->
+
     <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
-    <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+
+    <div class="wrapper">
+      <div class="icon facebook">
+        <div class="tooltip">{{uiLabels.language}}</div>
+        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+      </div>
+    </div>
 
     <div>
     <button class="button" v-on:click="showModal=true" >
@@ -34,13 +40,12 @@
   </div>
   </div>
   <div id="yourResult" v-show="!isVisible">
-   {{correctOrNot}}
     <h1>{{nameContendor}}</h1>
 
     <h3> {{ uiLabels.youHave }} {{numbCorrectAnswers}}/{{question.a.length}} {{ uiLabels.correct }} </h3>
     <br>
     <h3 class="rubrikSpalt" ><div>{{ uiLabels.question }}</div> <div>{{ uiLabels.answers }}</div> <div>{{ uiLabels.result }}</div> </h3>
-    <div class="wrapper">
+    <div class="wrapper2">
     <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
       <span> {{ q }}</span>
@@ -287,7 +292,7 @@ height: 3em;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-flow: column;
 }
-.wrapper{
+.wrapper2{
 margin-left: 33%;
   margin-right: 33%;
   overflow: scroll;
@@ -323,10 +328,81 @@ margin-left: 33%;
   padding-top:2em;
   color: red;
 }
-#goBack{
+#goBack {
   position: absolute;
-  top: 1em;
   left: 1em;
+  top: 1em;
+  mix-blend-mode: multiply;
+  cursor:pointer
+}
+.pictureFlag{
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+
 }
 
+.wrapper {
+  display: inline-flex;
+  position: absolute;
+  right: 1em;
+  top: 1.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  width:2em;
+  height:2em;
+
+}
+
+.wrapper .icon {
+
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 </style>

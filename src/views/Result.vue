@@ -1,19 +1,22 @@
 <template>
   <body>
   <h1>{{ uiLabels.results }}</h1>
-  <!-- <button id="goBack" @click="$router.push('/')" >{{ uiLabels.goBack }}</button> -->
   <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
-  <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">{{uiLabels.language}}</div>
+      <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+    </div>
+  </div>
 
 
   <div v-show="showBars">
   <Bars v-bind:data="data"/>
-
   </div>
 
   <div v-show="!showBars">
 
-  <div class="wrapper">
+  <div class="wrapper3">
     <div class="table">
     <span v-for="(idName) in name" :key="idName" id="table1">
       <span> {{ idName }}</span>
@@ -104,6 +107,9 @@ export default {
         console.log(correct)
         this.BarAndResults[correct] += 1;
       }
+      for (let i = 0; i <this.name.length; i++) {
+        this.BarAndResults[i]=this.BarAndResults[i]/this.name.length
+      }
       this.data=this.BarAndResults
       },
     switchLanguage: function() {
@@ -127,16 +133,92 @@ body{
   font-family: 'montserrat', sans-serif;
   background: white;
 }
-.wrapper{
-  margin-left: 33%;
-  margin-right: 33%;
+.wrapper3 {
+  margin: 1em 33% 1em 33%;
+
   overflow: scroll;
-  height: 20em;
+  height: 15em;
   background: #CAD2F9;
   border-style: dotted;
-  margin-bottom:4em;
 
 }
+.pictureFlag{
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
+
+
+}
+.wrapper {
+  display: inline-flex;
+  position: absolute;
+  right: 1em;
+  top: 1.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  width:2em;
+  height:2em;
+}
+
+.wrapper .icon {
+
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+#goBack {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  mix-blend-mode: multiply;
+  cursor:pointer
+}
+
 .buttonNice{
 
   width: 11em;
