@@ -23,16 +23,17 @@
             <div class="input">
               <input type="text" name="search" id="inputPollId" v-model="id"
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
-            </div><!-- Space hack -->
+            </div>
             <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
               GO!
             </button>
           </div>
+
         </li>
       </ul>
-      <br>
 
-    <br>
+
+
     <button class="buttonNice" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
   </div>
 
@@ -40,11 +41,12 @@
     <p>
       {{ uiLabels.twoOptionsText }}
     </p>
-    <button @click="$router.push('/create/'+ 'new/' + lang)" id="create">
+    <button class="buttonNice" style="font-size: 1em;" @click="$router.push('/create/'+ 'new/' + lang)" id="create">
       {{ uiLabels.createNew }}
     </button>
     <br>
-    <button id="edit" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
+
+    <button class="buttonNice" id="edit"  style="font-size: 1em;" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
       {{ uiLabels.editExisting }}
     </button>
   </div>
@@ -139,7 +141,7 @@ header {
 }
 
 body {
-  background-color: #FBE4C9;
+  background-color: #3C5377;
   color: #EF8584;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
@@ -149,9 +151,9 @@ body {
   position: absolute;
   left: 1em;
   top: 1em;
+  mix-blend-mode: multiply;
+  cursor:pointer
 }
-
-
 
 ul#growing-search-freebie {
   display: table;
@@ -176,14 +178,16 @@ ul#growing-search-freebie > li > span {
 }
 
 .growing-search {
-  padding: 0.1em 0.1em 0.1em 0.3em;
-  border-radius: 5px;
-  background: #fff;
+
 }
 
 .growing-search div {
   display: inline-block;
   font-size: 20px;
+  padding: 0.1em 0.5em 0.1em 0.5em;
+  border-radius: 5px;
+  background: #fff;
+  margin-right: 0.5em;
 }
 
 .growing-search .input input {
@@ -193,13 +197,18 @@ ul#growing-search-freebie > li > span {
   transition: width 200ms;
   padding-top: 0.5em;
   padding-left: 0.5em;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.2em;
+  margin-bottom: 0.2em;
   width: 8em;
-  color: #aaa;
-  border-bottom: 1px solid #eee;
+  color: black;
+  border-bottom: 1.5px solid  gray;
 }
 
 .growing-search .input input:focus {
+  width: 16em;
+}
+
+.growing-search .input input:submit {
   width: 16em;
 }
 
@@ -215,7 +224,7 @@ ul#growing-search-freebie > li > span {
 }
 
 .growing-search .input input:hover, .growing-search .submit button:hover {
-  cursor: pointer;
+  cursor: text;
 }
 
 .growing-search .input input:focus, .growing-search .submit button:focus {
@@ -298,17 +307,18 @@ ul#growing-search-freebie > li > span {
 }
 .buttonNice{
 
-  width: 11em;
-  height: 3em;
-
+  width: auto;
+  height: auto;
+  padding: 0.5em 0.5em 0.5em 0.5em;
   color:#EF8584;
-  font-size: 1em;
+  font-size: 0.5em;
   font-weight: 800;
-  border-radius: 50%;
+  border-radius: 10px;
   border-style: solid;
   border-color:#EF8584;
   background-color: white;
   cursor: pointer;
+  margin-top:1em;
 }
 .buttonNice:hover{
 
@@ -326,5 +336,14 @@ ul#growing-search-freebie > li > span {
   border-color:#EF8584;
   background-color: #EF8584;
 
+}
+#participate{
+  position:static;
+  height: 3.3em;
+  margin-left: 0;
+  margin-bottom: 0.2em;
+}
+#participate:hover{
+  cursor:pointer;
 }
 </style>

@@ -10,8 +10,14 @@
     <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
   </header>
   <body>
-  <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-  <!-- <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button> -->
+
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">{{uiLabels.language}}</div>
+      <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+    </div>
+  </div>
+
   <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
   <div class="middlePart">
     <div  v-show="showView==1">
@@ -50,7 +56,7 @@
       +
     </button>
     <br>
-    <button id="createButton" v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'">
+    <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
       {{ uiLabels.createGlossary }}
     </button>
     <br>
@@ -210,7 +216,7 @@ export default {
 }
 
 body {
-  background-color: #FBE4C9;
+  background-color: #3C5377;
   color: #666666;
 }
 
