@@ -3,7 +3,7 @@
   <p id="Y-axel">Antal personer</p>
   <p id="X-axel">Antal rätt</p>
   <div class="wrapper">
-  <p style="background-color:#F22259;padding: 1em 0.2em 1em 0.2em; margin-top:1em;margin-bottom:1em;">0%-33%</p>
+  <p style="background-color:#F22259;padding: 1em 0.2em 1em 0.2em; margin-top:1em;margin-bottom:1em;">0%-33% </p>
   <p style="background-color:#0a6abf; padding: 1em 0.2em 1em 0.2em; margin-top:1em;margin-bottom:1em;">33%-66%</p>
   <p style="background-color:#f25c05; padding: 1em 0.2em 1em 0.2em;margin-top:1em;margin-bottom:1em;">66%-100%</p>
   </div>
