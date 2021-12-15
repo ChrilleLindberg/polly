@@ -6,8 +6,7 @@
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
-  {{question.a}}
-    {{myAnswers}}
+
 
     <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
 
@@ -42,6 +41,12 @@
   </div>
   <div id="yourResult" v-show="!isVisible">
     <h1>{{nameContendor}}</h1>
+    <div class="wrapper">
+      <div class="icon facebook">
+        <div class="tooltip">{{uiLabels.language}}</div>
+        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+      </div>
+    </div>
 
     <h3> {{ uiLabels.youHave }} {{numbCorrectAnswers}}/{{question.a.length}} {{ uiLabels.correct }} </h3>
     <br>
@@ -102,6 +107,8 @@ export default {
       nameContendor: "",
       isVisible:true,
       uiLabels:{},
+      questionsConverted:[],
+      answersConverted:[]
     }
 
   },
@@ -135,8 +142,10 @@ export default {
       this.showModal = false;
 
       for (let i = 0; i <this.question.a.length; i++) {
+        this.questionsConverted[i]=this.question.a[i].toLowerCase()
+        this.answersConverted[i]=this.myAnswers.answer[i].toLowerCase()
 
-        if(this.question.a[i] === this.myAnswers.answer[i]) {
+        if(this.questionsConverted[i] === this.answersConverted[i]) {
           this.numbCorrectAnswers += 1;
           this.correctOrNot.push("https://cdn.pixabay.com/photo/2013/07/13/10/48/check-157822_1280.png");
 
@@ -171,16 +180,20 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body {
-  font-family: 'montserrat', sans-serif;
-  background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
-  width: 100%;
-  height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
+  width:100%;
+  min-height: 100%;
+  top:0;
+  left:0;
+  font-family: 'montserrat', sans-serif;
+
+  background-color: rgb(16,111,103);
+  /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
+
 }
 
 #app {
@@ -189,8 +202,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  width: 100vw;
-  min-height: 100vh;
+
   overflow-x: hidden;
 }
 
@@ -367,24 +379,23 @@ margin-left: 33%;
   cursor:pointer
 }
 .pictureFlag{
-  border-radius: 50%;
-  width:1.2em;
-  height:1em;
+  border-radius: 60%;
+  width:2.3em;
+  height:1.6em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 
 
-}
 
+}
 .wrapper {
   display: inline-flex;
   position: absolute;
-  right: 1em;
-  top: 1.3em;
+  right: 1.8em;
+  top: 1.8em;
   cursor: pointer;
   border-radius: 50%;
   width:2em;
   height:2em;
-
 }
 
 .wrapper .icon {
@@ -424,7 +435,7 @@ margin-left: 33%;
   height: 8px;
   width: 8px;
   background-color: #ffffff;
-  bottom: -3px;
+  bottom: -2.2px;
   left: 50%;
   transform: translate(-50%) rotate(45deg);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -436,4 +447,5 @@ margin-left: 33%;
   visibility: visible;
   pointer-events: auto;
 }
+
 </style>
