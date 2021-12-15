@@ -27,6 +27,7 @@
     </transition>
     <transition name="slide" appear>
       <div class="modal" v-if="showModal">
+        <button class="xModulButton" v-on:click="showModal = false" > x </button>
         <h1>{{uiLabels.enterName}}</h1>
         <p> <input type="string" id="fullnamebox" v-model="nameContendor" >
           <br>
@@ -175,11 +176,15 @@ export default {
 body {
   font-family: 'montserrat', sans-serif;
   background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #app {
   position: relative;
-
   /*display: flex; makes the table go vertical instead*/
   justify-content: center;
   align-items: center;
@@ -213,14 +218,38 @@ body {
  }
 }
 
-.modal-overlay {
+.xModulButton{
+  border: solid orange 0.1em;
+  color:orange;
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  font-size: 1.2em;
+  background-color: transparent;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 0.5em;
+  top: 0.5em;
+  font-weight: lighter;
+}
+.xModulButton:hover{
+  color:red;
+  cursor: pointer;
+  border:solid red 0.1em;
+}
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+
   z-index: 98;
-  background-color: rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(1.5em);
+  box-shadow: 0px 10px 15px 10px rgb(177, 80, 80);
+  background-color: rgba(9, 108, 238, 0.3);
 }
 
 .modal {
@@ -232,16 +261,18 @@ body {
 
   width: 100%;
   max-width: 400px;
-  background-color: #FFF;
+  background-color: rgb(18,54,90);
   border-radius: 16px;
+
 
   padding: 25px;
 }
 h1 {
-  color: #222;
+  color:rgb(249,228,201);
   font-size: 32px;
   font-weight: 900;
   margin-bottom: 15px;
+  margin-top: 0.5em;
 }
 
 p {
@@ -269,7 +300,7 @@ p {
 
 .slide-enter,
 .slide-leave-to {
-  transform: translateY(-50%) translateX(100vw);
+  transform: translateY(-50%) translateX(-100vw);
 
 
 }

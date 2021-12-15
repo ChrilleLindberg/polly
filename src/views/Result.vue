@@ -141,25 +141,32 @@ export default {
 }
 body{
   font-family: 'montserrat', sans-serif;
-  background: white;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  background-color: rgb(255,238,235);
+;
+
+}
+body h1{
+  color: rgb(254,70,21);
+
+
 }
 .wrapper3 {
   margin: 1em 33% 1em 33%;
-
   overflow: scroll;
-  height: 15em;
-  background: #CAD2F9;
-  border-style: dotted;
-
+  height: 35em;
+  background: rgb(249,228,201);
+  box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
 }
 .pictureFlag{
   border-radius: 50%;
   width:1.2em;
   height:1em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
-
-
 }
 .wrapper {
   display: inline-flex;
