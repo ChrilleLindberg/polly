@@ -1,19 +1,19 @@
 <template>
 
   <header>
-    <!--<h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>-->
+    <h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>
+
+
   </header>
   <body>
-  <div class="inputFieldTop">
-    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldTop" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
+  <div class="inputFieldTop" v-show="showView==1">
+    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
     <button v-show="!inputActivated" @click="activateInput" id="pen">
       <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark" id="penImg">
     </button>
     <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
     <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
-
   </div>
-
 
   <div class="wrapper">
     <div class="icon facebook">
@@ -60,12 +60,12 @@
     <br>
     </div>
     <div v-show="showView==2">
-    <p>
+    <h3>
       {{uiLabels.congratulations}}
-    </p>
+    </h3>
     <input type="text" id="prefilledInput" readonly="readonly">
-    <button @click="copyToClipboard"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
-      {{uiLabels.copy}}
+    <button @click="copyToClipboard" id="copyButton"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
+      <img src="https://cdn-icons-png.flaticon.com/512/126/126498.png" id="copyImg">
     </button>
     <br>
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
@@ -209,18 +209,16 @@ export default {
   padding-bottom: 0.5em;
   display: grid;
   grid-template-columns: 10fr 9fr 1fr;
-  grid-template-rows: repeat(auto-fit,4em);
+  grid-template-rows: repeat(auto-fit,1fr);
   vertical-align: center;
 }
 
-body {
+html {
   background-color: #FFFAF1;
 }
 
 .middlePart {
-  padding-top: 5%;
-  padding-right: 30%;
-  padding-left: 30%;
+  padding: 5%;
 }
 
 #changeLanguage{
@@ -289,12 +287,22 @@ input:focus {
   outline: none;
 }
 
-#prefilledInput {
-  text-align: center;
+.checkMark, #copyImg {
+  height: 1em;
 }
 
-.checkMark {
-  height: 1em;
+#copyButton {
+  margin-left: 1em;
+  height: 2.5em;
+  width: 2.5em;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 0.2em;
+  border-radius: 1.25em;
+}
+
+#copyButton:hover {
+  cursor: pointer;
 }
 
 #trashCan {
@@ -338,7 +346,7 @@ input:focus {
   transform: scale(0.8);
 }
 
-#createButton {
+.buttonNice {
   height: 3em;
   border-radius: 0.5em;
   background-color: #EF8584;
@@ -348,7 +356,7 @@ input:focus {
   border-color: #EF8584;
 }
 
-#createButton:disabled {
+.buttonNice:disabled {
   height: 3em;
   border-radius: 0.5em;
   background-color: transparent;
@@ -367,36 +375,33 @@ input:focus {
   height: 1em;
 }
 
-#inputFieldTop {
-  text-align: center;
-  border-width: 0;
-  border-bottom-width: 0.05em;
-  border-color: #aaaaaa;
-  background-color: transparent;
-  color: #333333;
-  font-size: 1em;
+.inputFieldTop {
   position: relative;
-  bottom: 1em;
+  top: 1em;
 }
 
-#inputFieldTop::placeholder {
-  color: #aaaaaa;
+#inputFieldPollId, #prefilledInput {
+  border-radius: 0.5em;
+  border-style: solid;
+  border-color: lightgray;
+  height: 2em;
+  text-align: center;
+}
+
+#inputFieldPollId:disabled {
+  background-color: #EBECE5;
+  border-color: lightgreen;
 }
 
 #inputFieldTop:focus::placeholder {
   color: transparent;
 }
 
-.inputFieldTop {
-
-}
 .pictureFlag{
   border-radius: 50%;
   width:1.2em;
   height:1em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
-
 
 }
 .wrapper {
@@ -473,5 +478,23 @@ input:focus {
   top: 1em;
 }
 
+footer {
+  position: absolute;
+  bottom: 1em;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
 
 </style>
