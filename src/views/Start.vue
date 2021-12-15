@@ -1,12 +1,16 @@
 <template>
-  <header>
+  <body class="container">
+  <header id="movedown">
     <h1>
       {{ uiLabels.welcomeMessage }}
     </h1>
-
   </header>
 
-  <body id="bodyID" >
+  <button id="buttonTest">
+    OK
+  </button>
+
+
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -132,17 +136,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 header {
   font-size: 2em;
   font-family: "beirut ";
-  margin-top: 2em;
+
 }
 
 body {
-  background-color: #3C5377;
-  color: #EF8584;
+  /*background-color: #3C5377;
+  color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
 }
@@ -345,5 +349,137 @@ ul#growing-search-freebie > li > span {
 }
 #participate:hover{
   cursor:pointer;
+}
+#movedown{
+  margin-top: 5em;
+}
+#buttonTest{
+  top: 1.5em;
+  left: 1.4em;
+  position: absolute;
+  background: transparent;
+  color: transparent;
+  border: none !important;
+  font-size:2em;
+}
+#buttonTest:hover{
+  cursor:pointer;
+}
+
+
+.container{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0px!important;
+  top: 0em;
+  left: 0em;
+  /*background-color: #FBE4C9;*/
+  /*transition: 0.5ms;*/
+  animation-name: animate;
+  animation-direction: alternate-reverse;
+  animation-duration: 44s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  /*animation-timing-function: ease-in-out;*/
+  background-size: 3em;
+  background-position: top 3em left 3em;
+  background-repeat: no-repeat;
+}
+
+@keyframes animate{
+  0%
+  {
+    background-color: rgb(236,87,46);
+    color: rgb(255,238,235);
+    background-image:url(/eye/eyeLightPink.svg);
+  }
+  11.1%{
+    background-color: rgb(236,87,46);
+    color: rgb(255,238,235);
+    background-image:url(/eye/eyeLightPink.svg);
+  }
+  11.11%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  22.21%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  22.22%{
+    background-color: rgb(255,238,235);
+    color: rgb(254,70,21);
+    background-image:url(/eye/eyeRed.svg);
+  }
+  33.32%{
+    background-color: rgb(255,238,235);
+    color: rgb(254,70,21);
+    background-image:url(/eye/eyeRed.svg);
+  }
+  33.33%{
+    background-color: rgb(251,228,201);
+    color: rgb(239,134,132);
+    background-image:url(/eye/eyePinkRed.svg);
+  }
+  44.43%{
+    background-color: rgb(251,228,201);
+    color: rgb(239,134,132);
+    background-image:url(/eye/eyePinkRed.svg);
+  }
+  44.44%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  55.54%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  55.55%{
+    background-color: rgb(16,111,103);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  66.65%{
+    background-color: rgb(16,111,103);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  66.66%{
+    background-color: rgb(241,153,125);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  77.76%{
+    background-color: rgb(241,153,125);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  77.77%{
+    background-color: rgb(241,203,98);
+    color: rgb(0,93,158);
+    background-image:url(/eye/eyeBlue.svg);
+  }
+  88.87%{
+    background-color: rgb(241,203,98);
+    color: rgb(0,93,158);
+    background-image:url(/eye/eyeBlue.svg);
+  }
+  88.88%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+  100%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+  }
+
 }
 </style>
