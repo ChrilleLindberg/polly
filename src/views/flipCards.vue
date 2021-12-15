@@ -1,7 +1,7 @@
 <template>
+  <div class="container">
+    <h1> HEJ</h1>
   <body>
-
-
   <div class="maincontainer">
 
     <transition name="slideLeft" :css="!swipeRight">
@@ -24,6 +24,7 @@
     JA
   </button>
   </body>
+  </div>
 </template>
 
 <script>
@@ -35,14 +36,120 @@ data: function () {
     showCard2: true,
     swipeRight: true
   }
-},
-}
+} /* created: function () {
+    const infinite = true;
+    while(infinite) {
+      setTimeout(() => this.isShown = false, 2000);
+      setTimeout(() => this.isShown = true, 4000);
+      console.log("hej")
+      this.timeDelay();
+
+    }
+},   methods:{
+    timeDelay: function() {
+    setTimeout(function () {}, 2000)
+    }
+    } */
+  }
+
+
 
 </script>
 
 <style scoped>
-body{
-  background: #3C5377;
+
+.container{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /*background-color: #FBE4C9;*/
+  /*transition: 0.5ms;*/
+  animation-name: animate;
+  animation-direction: alternate-reverse;
+  animation-duration: 44s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  /*animation-timing-function: ease-in-out;*/
+
+}
+
+@keyframes animate{
+  0%
+  {
+    background-color: rgb(236,87,46);
+    color: rgb(255,238,235);
+    /*background-image:url(/eyePink.svg);*/
+  }
+  11.1%{
+    background-color: rgb(236,87,46);
+    color: rgb(255,238,235);
+  }
+  11.11%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+  }
+  22.21%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+  }
+  22.22%{
+    background-color: rgb(255,238,235);
+    color: rgb(254,70,21);
+  }
+  33.32%{
+    background-color: rgb(255,238,235);
+    color: rgb(254,70,21);
+  }
+  33.33%{
+    background-color: rgb(251,228,201);
+    color: rgb(239,134,132);
+  }
+  44.43%{
+    background-color: rgb(251,228,201);
+    color: rgb(239,134,132);
+  }
+  44.44%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+  }
+  55.54%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+  }
+  55.55%{
+    background-color: rgb(16,111,103);
+    color: rgb(249,228,201);
+  }
+  66.65%{
+    background-color: rgb(16,111,103);
+    color: rgb(249,228,201);
+  }
+  66.66%{
+    background-color: rgb(241,153,125);
+    color: rgb(249,228,201);
+  }
+  77.76%{
+    background-color: rgb(241,153,125);
+    color: rgb(249,228,201);
+  }
+  77.77%{
+    background-color: rgb(241,203,98);
+    color: rgb(0,93,158);
+  }
+  88.87%{
+    background-color: rgb(241,203,98);
+    color: rgb(0,93,158);
+  }
+  88.88%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+  }
+  100%{
+    background-color: rgb(18,54,90);
+    color: rgb(249,228,201);
+  }
+
 }
 
 /* THE MAINCONTAINER HOLDS EVERYTHING */
