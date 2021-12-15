@@ -204,7 +204,6 @@ export default {
 
 
 <style scoped>
-
 .classInput {
   padding-top: 5%;
   padding-bottom: 0.5em;
