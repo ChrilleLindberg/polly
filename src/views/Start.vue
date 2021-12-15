@@ -130,7 +130,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 header {
   font-size: 2em;
@@ -220,6 +220,10 @@ ul#growing-search-freebie > li > span {
 
 .growing-search .input input:focus, .growing-search .submit button:focus {
   outline: none;
+}
+
+input:focus::placeholder {
+  color: transparent;
 }
 
 .growing-search .submit button:hover {

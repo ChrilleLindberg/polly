@@ -2,26 +2,22 @@
 
   <header>
     <!--<h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>-->
-    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="pollID" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
+  </header>
+  <body>
+  <div class="inputFieldTop">
+    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldTop" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
     <button v-show="!inputActivated" @click="activateInput" id="pen">
       <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark" id="penImg">
     </button>
     <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
     <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
-  </header>
-  <body>
+  </div>
   <button id="changeLanguage" v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
   <!-- <button id="goBack" @click="$router.back()">{{uiLabels.goBack}}</button> -->
   <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
   <div class="middlePart">
     <div  v-show="showView==1">
     <div class="classInput">
-      <div id="inputQuestion">
-        {{ uiLabels.question }}:
-      </div>
-      <div id="inputAnswer">
-        {{ uiLabels.answers }}:
-      </div>
       <div class="qInputClass">
         <input v-for="(_, i) in question"
                v-model="question[i]"
@@ -199,31 +195,17 @@ export default {
 </script>
 
 
-<style>
-.classInput {
-  padding-top: 5%;
-  padding-bottom: 0.5em;
-  display: grid;
-  grid-template-columns: 10fr 9fr 1fr;
-  grid-template-rows: repeat(auto-fit,4em);
-  vertical-align: center;
-}
+<style scoped>
+
 
 body {
-  background-color: #FBE4C9;
-  color: #666666;
-}
-
-header {
-  padding-bottom: 5%;
-  padding-top: 2%;
+  background-color: #FFFAF1;
 }
 
 .middlePart {
+  padding-top: 5%;
   padding-right: 30%;
   padding-left: 30%;
-  vertical-align: center;
-  horiz-align: center;
 }
 
 #changeLanguage{
@@ -232,20 +214,20 @@ header {
   top: 1em;
 }
 
+.classInput {
+  padding-top: 5%;
+  padding-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: 10fr 9fr 1fr;
+  grid-template-rows: repeat(auto-fit,1fr);
+  vertical-align: center;
+}
 .qInputClass {
   border-radius: 1em;
   grid-column: 1;
   text-align: center;
   display: grid;
   grid-row-gap: 0.5em;
-}
-
-#inputQuestion {
-  grid-column: 1;
-}
-
-#inputAnswer {
-  grid-column: 2;
 }
 
 #qInput {
@@ -270,6 +252,7 @@ header {
 
 .removeWords {
   display: grid;
+  margin: 0 auto;
 }
 
 #aInput {
@@ -296,12 +279,13 @@ input:focus {
 }
 
 .checkMark {
-  height: 1.5em;
+  height: 1em;
 }
 
 #trashCan {
   height: 1em;
   opacity: 50%;
+  vertical-align: center;
 }
 
 #trashCan:hover {
@@ -311,6 +295,8 @@ input:focus {
 #removeLine {
   background-color: transparent;
   border-color: transparent;
+  horiz-align: center;
+  vertical-align: center;
 }
 
 
@@ -338,13 +324,23 @@ input:focus {
 }
 
 #createButton {
-  height: 2em;
+  height: 3em;
   border-radius: 0.5em;
   background-color: #EF8584;
-  color: white;
+  color: #FFFAF1;
   border-style: solid;
   border-width: 0.2em;
   border-color: #EF8584;
+}
+
+#createButton:disabled {
+  height: 3em;
+  border-radius: 0.5em;
+  background-color: transparent;
+  color: lightgray;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: lightgray;
 }
 
 #pen {
@@ -353,13 +349,38 @@ input:focus {
 }
 
 #penImg {
-  height: 1.5em;
+  height: 1em;
 }
 
-#pollID {
-  font-size: 1.5em;
+#inputFieldTop {
   text-align: center;
-  border-radius: 0.2em;
+  border-width: 0;
+  border-bottom-width: 0.05em;
+  border-color: #aaaaaa;
+  background-color: transparent;
+  color: #333333;
+  font-size: 1em;
+  position: relative;
+  bottom: 1em;
 }
+
+#inputFieldTop::placeholder {
+  color: #aaaaaa;
+}
+
+#inputFieldTop:focus::placeholder {
+  color: transparent;
+}
+
+.inputFieldTop {
+
+}
+
+#goBack {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
+
 
 </style>
