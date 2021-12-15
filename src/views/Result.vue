@@ -146,8 +146,9 @@ body{
   position: absolute;
   top: 0em;
   left: 0em;
+
   background-color: rgb(255,238,235);
-;
+
 
 }
 body h1{
@@ -158,7 +159,7 @@ body h1{
 .wrapper3 {
   margin: 1em 33% 1em 33%;
   overflow: scroll;
-  height: 35em;
+  height: 25em;
   background: rgb(249,228,201);
   box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
 }
