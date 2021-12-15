@@ -5,7 +5,6 @@
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-
   <button id="buttonTest">
     OK
   </button>
@@ -28,7 +27,7 @@
         <li>
           <div class="growing-search">
             <div class="inputpollID">
-              <input type="text" name="search" id="inputPollId" v-model="id"
+              <input autocomplete="off" type="text" name="search" id="inputPollId" v-model="id"
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
             </div><!-- Space hack -->
           </div>
@@ -77,6 +76,7 @@
 
 <script>
 import io from 'socket.io-client';
+
 
 const socket = io();
 export default {
@@ -227,7 +227,6 @@ ul#growing-search-freebie > li > span {
 .growing-search .inputpollID input:hover {
   width: 16em;
 }
-
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -238,9 +237,8 @@ ul#growing-search-freebie > li > span {
   padding-bottom: 0.1em;
   transition: color 200ms;
 }
-
-
 .growing-search .inputpollID input:hover, .growing-search .submit button:hover {
+
   cursor: text;
 }
 
@@ -360,13 +358,33 @@ input:focus::placeholder {
 }
 #participate{
   position:static;
-  height: 3.3em;
+  background-color: lawngreen;
+  font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
+  margin-top: 0.2em;
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  font-weight: 100;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  color: #000000;
+  text-align:center;
+  transition: all 0.2s;
+  cursor: default;
+}
+#participate:disabled{
+  background-color: lightgray;
+  color: gray! important;
+  cursor: default !important;
 }
 #participate:hover{
   cursor:pointer;
+  color: #000000;
 }
+
+
 #movedown{
   margin-top: 5em;
 }
