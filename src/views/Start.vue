@@ -27,7 +27,7 @@
           <div class="growing-search">
             <div class="input">
               <input type="text" name="search" id="inputPollId" v-model="id"
-                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
+                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
             </div><!-- Space hack -->
           </div>
           <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
@@ -58,7 +58,7 @@
     <p>
       {{ uiLabels.editExisting }}
     </p>
-    <input @focus="switchVisibleFocus" @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)"
+    <input @focus="switchVisibleFocus" @keyup.enter="pressEnter"
            @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField"
            @input="checkPollId2" @keydown.space.prevent>
     <button @click="editExistingGo" v-bind:disabled="!editExists">
@@ -129,6 +129,14 @@ export default {
     editExistingGo: function () {
       this.$router.push('/create/' + this.idEdit + '/' + this.lang)
       socket.emit("sendGlossary", this.idEdit)
+    },
+    pressEnter: function () {
+      if (this.editExists && this.isVisible==3) {
+        this.$router.push('/create/'+ this.idEdit + '/' + this.lang)
+      }
+      if (this.pollExists && this.isVisible==1) {
+        this.$router.push('/poll/'+ this.id)
+      }
     }
 
 
@@ -349,10 +357,30 @@ input:focus::placeholder {
 }
 #participate{
   position:static;
-  height: 3.3em;
-  margin-left: 0;
+  height: 3em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 1em;
   margin-bottom: 0.2em;
+  margin-left: 0;
+  border-radius: 0.5em;
+  background-color: darkgreen;
+  color: #FFFAF1;
+  border-style: none;
+  border-width: 0.2em;
+  font-weight: bold;
 }
+
+#participate:disabled {
+  border-radius: 0.5em;
+  background-color: lightgray;
+  color: #666666;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: lightgray;
+  font-weight: initial;
+}
+
 #participate:hover{
   cursor:pointer;
 }
