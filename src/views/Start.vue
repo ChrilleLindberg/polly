@@ -10,6 +10,8 @@
   </button>
 
 
+
+
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -24,7 +26,7 @@
       <ul id="growing-search-freebie">
         <li>
           <div class="growing-search">
-            <div class="input">
+            <div class="inputpollID">
               <input autocomplete="off" type="text" name="search" id="inputPollId" v-model="id"
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
             </div><!-- Space hack -->
@@ -34,36 +36,41 @@
           </button>
         </li>
       </ul>
-
-
-
-    <button class="buttonNice" v-on:click="switchVisibleTwo" v-show="isVisible==1"> {{ uiLabels.createPoll }}</button>
-  </div>
-
-  <div id="twoOptions" v-show="isVisible==2">
-    <p>
-      {{ uiLabels.twoOptionsText }}
-    </p>
-    <button class="buttonNice" style="font-size: 1em;" @click="$router.push('/create/'+ 'new/' + lang)" id="create">
-      {{ uiLabels.createNew }}
-    </button>
-    <br>
-
-    <button class="buttonNice" id="edit"  style="font-size: 1em;" v-on:click="switchVisibleThree"> <!-- Ska öppna createsidan fast alla fält ska vara ifyllda. -->
-      {{ uiLabels.editExisting }}
-    </button>
   </div>
   <div id="editExisting" v-show="isVisible==3">
     <p>
       {{ uiLabels.editExisting }}
     </p>
-    <input @focus="switchVisibleFocus" @keyup.enter="pressEnter"
-           @blur="switchVisibleThree" type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField"
+    <input @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)"
+           type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField"
            @input="checkPollId2" @keydown.space.prevent>
     <button @click="editExistingGo" v-bind:disabled="!editExists">
       GO!
     </button>
   </div>
+
+  <div id="showResult" v-show="isVisible==4">
+    <p>
+      Show result
+    </p>
+    <input @keyup.enter="$router.push('/result/'+ idResult + '/' + lang)"
+           type="text" v-model="idResult" v-bind:placeholder="uiLabels.writeField"
+           @input="checkPollId2" @keydown.space.prevent>
+    <button @click="editExistingGo" v-bind:disabled="!editExists">
+      GO!
+    </button>
+  </div>
+
+  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4">
+    <h2>Menu</h2>
+    <input id="toggle" type="checkbox" checked>
+    <ul id="test">
+      <li id="test1" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
+      <li id="test1" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
+      <li id="test1" v-on:click="switchVisibleFour">Show result</li>
+    </ul>
+  </nav>
+
   </body>
 </template>
 
@@ -79,6 +86,7 @@ export default {
       uiLabels: {},
       id: "",
       idEdit: "",
+      idResult:"",
       lang: "en",
       isVisible: 1,
       pollIds: [],
@@ -106,6 +114,7 @@ export default {
       this.isVisible = 1,
           document.body.style.backgroundColor = "white";
       document.body.style.background = "1";
+      this.hideCon=false;
     },
     switchVisibleTwo: function () {
       this.isVisible = 2
@@ -115,8 +124,8 @@ export default {
       this.isVisible = 3
       document.body.style.backgroundColor = "white";
     },
-    switchVisibleFocus: function () {
-      document.body.style.backgroundColor = "lightgrey";
+    switchVisibleFour: function () {
+      this.isVisible = 4
     },
     checkPollId: function () {
       socket.emit("sendPollId", this.id)
@@ -205,7 +214,7 @@ ul#growing-search-freebie > li > span {
   margin-right: 0.5em;
 }
 
-.growing-search .input input {
+.growing-search .inputpollID input {
   margin-right: 0;
   border: none;
   font-size: inherit;
@@ -219,10 +228,13 @@ ul#growing-search-freebie > li > span {
   border-bottom: 1.5px solid  gray;
 }
 
-.growing-search .input input:focus {
+.growing-search .inputpollID input:focus {
   width: 16em;
 }
 
+.growing-search .inputpollID input:hover {
+  width: 16em;
+}
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -233,12 +245,12 @@ ul#growing-search-freebie > li > span {
   padding-bottom: 0.1em;
   transition: color 200ms;
 }
+.growing-search .inputpollID input:hover, .growing-search .submit button:hover {
 
-.growing-search .input input:hover, .growing-search .submit button:hover {
   cursor: text;
 }
 
-.growing-search .input input:focus, .growing-search .submit button:focus {
+.growing-search .inputpollID input:focus, .growing-search .submit button:focus {
   outline: none;
 }
 
@@ -421,6 +433,96 @@ input:focus::placeholder {
   cursor:pointer;
 }
 
+nav {
+  margin: auto;
+  margin-top: 40px;
+  position: relative;
+  width: 50vw;
+  min-width: 320px;
+  height: 200px;
+}
+
+nav h2 {
+  border-radius: 2px;
+  position: relative;
+  background: tomato;
+  height: 40px;
+  text-transform: uppercase;
+  color: ivory;
+  font-weight: 200;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+}
+
+nav:hover h2{
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+nav:hover:active h2{
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
+
+.dropMenu input{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
+  height: 40px;
+}
+
+#toggle:checked ~ul {
+  height: 0%;
+}
+
+nav ul#test {
+  padding-left: 0;
+  padding-top: 0;
+  margin-top: 0;
+  list-style: none;
+  overflow: hidden;
+  text-align: right;
+  margin-bottom: 22px;
+  text-align: center;
+  transition: all .4s ease-out;
+  height: 100%;
+
+}
+nav ul#test li#test1{
+  border-radius: 2px;
+  position: relative;
+  display: inline-block;
+  margin-left: 35px;
+  line-height: 1.5;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 5px;
+  background: tomato;
+  transition: background 3s;
+  box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
+}
+
+nav ul#test li#test1:hover {
+  background: mediumorchid;
+  transition: background .45s;
+}
+
+nav ul#test a {
+  display: block;
+  color: ivory;
+  text-transform: lowercase;
+  font-size: 18px;
+  font-weight: 200;
+  text-decoration: none;
+  transition: color .3s;
+}
 
 .container{
   width: 100%;
