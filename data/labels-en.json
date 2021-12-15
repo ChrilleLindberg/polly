@@ -33,6 +33,9 @@
 	"youHave": "You've gotten",
 	"backHome": "Go back to home page",
 	"correct": "correct answers",
-	"flag": "https://image.freepik.com/free-vector/illustration-uk-flag_53876-18166.jpg",
-	"language": "English"
+	"flag": "https://cdn.countryflags.com/thumbs/sweden/flag-400.png",
+	"language": "Svenska",
+	"answer": "Write your answer",
+	"userWord":"Word",
+	"translation": "Tra"
 }

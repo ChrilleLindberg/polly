@@ -153,9 +153,9 @@ body{
 
 }
 .pictureFlag{
-  border-radius: 50%;
-  width:1.2em;
-  height:1em;
+  border-radius: 60%;
+  width:2.3em;
+  height:1.6em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 
 
@@ -164,8 +164,8 @@ body{
 .wrapper {
   display: inline-flex;
   position: absolute;
-  right: 1em;
-  top: 1.3em;
+  right: 1.8em;
+  top: 1.8em;
   cursor: pointer;
   border-radius: 50%;
   width:2em;
@@ -209,7 +209,7 @@ body{
   height: 8px;
   width: 8px;
   background-color: #ffffff;
-  bottom: -3px;
+  bottom: -2.2px;
   left: 50%;
   transform: translate(-50%) rotate(45deg);
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
