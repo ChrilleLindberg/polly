@@ -1,11 +1,10 @@
 <template>
-  <body class="container">
+  <body  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
   <header id="movedown">
     <h1>
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-
   <button id="buttonTest">
     OK
   </button>
@@ -26,7 +25,7 @@
         <li>
           <div class="growing-search">
             <div class="input">
-              <input type="text" name="search" id="inputPollId" v-model="id"
+              <input autocomplete="off" type="text" name="search" id="inputPollId" v-model="id"
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
             </div><!-- Space hack -->
           </div>
@@ -71,6 +70,7 @@
 <script>
 import io from 'socket.io-client';
 
+
 const socket = io();
 export default {
   name: 'Start',
@@ -84,6 +84,7 @@ export default {
       pollIds: [],
       pollExists: false,
       editExists: false,
+      hideCon:false,
     }
   },
   created: function () {
@@ -108,6 +109,7 @@ export default {
     },
     switchVisibleTwo: function () {
       this.isVisible = 2
+      this.hideCon=true
     },
     switchVisibleThree: function () {
       this.isVisible = 3
@@ -213,10 +215,6 @@ ul#growing-search-freebie > li > span {
   width: 16em;
 }
 
-.growing-search .input input:hover {
-  width: 16em;
-}
-
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -227,7 +225,6 @@ ul#growing-search-freebie > li > span {
   padding-bottom: 0.1em;
   transition: color 200ms;
 }
-
 
 .growing-search .input input:hover, .growing-search .submit button:hover {
   cursor: text;
@@ -349,13 +346,33 @@ input:focus::placeholder {
 }
 #participate{
   position:static;
-  height: 3.3em;
+  background-color: lawngreen;
+  font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
+  margin-top: 0.2em;
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  font-weight: 100;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  color: #000000;
+  text-align:center;
+  transition: all 0.2s;
+  cursor: default;
+}
+#participate:disabled{
+  background-color: lightgray;
+  color: gray! important;
+  cursor: default !important;
 }
 #participate:hover{
   cursor:pointer;
+  color: #000000;
 }
+
+
 #movedown{
   margin-top: 5em;
 }
@@ -383,7 +400,7 @@ input:focus::placeholder {
   /*background-color: #FBE4C9;*/
   /*transition: 0.5ms;*/
   animation-name: animate;
-  animation-direction: alternate-reverse;
+  animation-direction: alternate;
   animation-duration: 44s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
@@ -394,12 +411,27 @@ input:focus::placeholder {
   background-repeat: no-repeat;
 }
 
+.nextPage{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0px!important;
+  top: 0em;
+  left: 0em;
+
+  color: rgb(18,54,90);
+  background-color: rgb(249,228,201);
+}
+
 @keyframes animate{
   0%
   {
     background-color: rgb(236,87,46);
     color: rgb(255,238,235);
     background-image:url(/eye/eyeLightPink.svg);
+  }
+  9.71%{
+    transform: scale(1,1);
   }
   11.1%{
     background-color: rgb(236,87,46);
@@ -410,6 +442,13 @@ input:focus::placeholder {
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+    transform: scale(1.01,1.01);
+  }
+  12%{
+    transform: scale(1,1);
+  }
+  20.82%{
+  transform: scale(1,1);
   }
   22.21%{
     background-color: rgb(18,54,90);
@@ -420,6 +459,13 @@ input:focus::placeholder {
     background-color: rgb(255,238,235);
     color: rgb(254,70,21);
     background-image:url(/eye/eyeRed.svg);
+    transform: scale(1.01,1.01);
+  }
+  23.1%{
+  transform: scale(1,1);
+  }
+  31.93%{
+  transform: scale(1,1);
   }
   33.32%{
     background-color: rgb(255,238,235);
@@ -430,6 +476,13 @@ input:focus::placeholder {
     background-color: rgb(251,228,201);
     color: rgb(239,134,132);
     background-image:url(/eye/eyePinkRed.svg);
+    transform: scale(1.01,1.01);
+  }
+34.2%{
+  transform: scale(1,1);
+}
+  43.04%{
+  transform: scale(1,1);
   }
   44.43%{
     background-color: rgb(251,228,201);
@@ -440,6 +493,13 @@ input:focus::placeholder {
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+    transform: scale(1.01,1.01);
+  }
+  45.2%{
+    transform: scale(1,1);
+  }
+  54.15%{
+  transform: scale(1,1);
   }
   55.54%{
     background-color: rgb(18,54,90);
@@ -450,6 +510,13 @@ input:focus::placeholder {
     background-color: rgb(16,111,103);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+    transform: scale(1.01,1.01);
+  }
+  56.3%{
+    transform: scale(1,1);
+  }
+  65.26%{
+  transform: scale(1,1);
   }
   66.65%{
     background-color: rgb(16,111,103);
@@ -460,6 +527,13 @@ input:focus::placeholder {
     background-color: rgb(241,153,125);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+    transform: scale(1.01,1.01);
+  }
+  67.5%{
+    transform: scale(1,1);
+  }
+  76.37%{
+  transform: scale(1,1);
   }
   77.76%{
     background-color: rgb(241,153,125);
@@ -470,16 +544,31 @@ input:focus::placeholder {
     background-color: rgb(241,203,98);
     color: rgb(0,93,158);
     background-image:url(/eye/eyeBlue.svg);
+    transform: scale(1.01,1.01);
+  }
+  78.6%{
+    transform: scale(1,1);
+  }
+  87.48%{
+  transform: scale(1,1);
   }
   88.87%{
     background-color: rgb(241,203,98);
     color: rgb(0,93,158);
     background-image:url(/eye/eyeBlue.svg);
+
   }
   88.88%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+    transform: scale(1.01,1.01);
+  }
+  89.7%{
+    transform: scale(1,1);
+  }
+  98.6%{
+  transform: scale(1,1);
   }
   100%{
     background-color: rgb(18,54,90);
