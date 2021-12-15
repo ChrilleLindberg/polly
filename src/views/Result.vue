@@ -109,6 +109,8 @@ export default {
       }
       for (let i = 0; i <this.name.length; i++) {
         this.BarAndResults[i]=this.BarAndResults[i]/this.name.length
+        var hej=this.name.length%4
+        console.log("vad blir heltasldivision"+ hej)
       }
       this.data=this.BarAndResults
       },

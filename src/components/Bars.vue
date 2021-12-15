@@ -8,7 +8,7 @@
 
 
   <div class="bar" v-for="(_, key) in data" v-bind:key="key">
-    
+
     <div  v-bind:style="{height:20*data[key] +'em', width: 20/data.length + 'em' }" v-if="key>=0*(data.length-1)"  style="background-color:red; ">
     <div v-bind:style="{height: 20*data[key] + 'em', width:20/data.length + 'em'}" v-if="key>=0.33*(data.length-1)"  style="background-color:yellow;">
       <div v-bind:style="{height: 20*data[key]  +'em', width:20/data.length + 'em'}" v-if="key>0.66*(data.length-1)"  style="background-color:green;">
