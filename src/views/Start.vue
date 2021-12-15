@@ -13,8 +13,9 @@
       <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
     </div>
   </div>
-
-   <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+<div style="width:2em;height:2em ">
+  <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+</div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <ul id="growing-search-freebie">
@@ -23,12 +24,11 @@
             <div class="input">
               <input type="text" name="search" id="inputPollId" v-model="id"
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
-            </div>
-            <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
-              GO!
-            </button>
+            </div><!-- Space hack -->
           </div>
-
+          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+            GO!
+          </button>
         </li>
       </ul>
 
@@ -153,6 +153,7 @@ body {
   top: 1em;
   mix-blend-mode: multiply;
   cursor:pointer
+
 }
 
 ul#growing-search-freebie {
@@ -208,7 +209,7 @@ ul#growing-search-freebie > li > span {
   width: 16em;
 }
 
-.growing-search .input input:submit {
+.growing-search .input input:hover {
   width: 16em;
 }
 
@@ -223,12 +224,17 @@ ul#growing-search-freebie > li > span {
   transition: color 200ms;
 }
 
+
 .growing-search .input input:hover, .growing-search .submit button:hover {
   cursor: text;
 }
 
 .growing-search .input input:focus, .growing-search .submit button:focus {
   outline: none;
+}
+
+input:focus::placeholder {
+  color: transparent;
 }
 
 .growing-search .submit button:hover {
