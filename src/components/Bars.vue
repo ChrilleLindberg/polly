@@ -1,25 +1,36 @@
 <template>
 <div class="wrapper4" >
-  <div class="line-1" style="height: 5em;"></div>
+  <p id="Y-axel">Antal personer</p>
+  <p id="X-axel">Antal rätt</p>
+  <div class="wrapper">
+  <p style="background-color:#F22259;padding: 1em 0.2em 1em 0.2em; margin-top:1em;margin-bottom:1em;">0%-33%</p>
+  <p style="background-color:#0a6abf; padding: 1em 0.2em 1em 0.2em; margin-top:1em;margin-bottom:1em;">33%-66%</p>
+  <p style="background-color:#f25c05; padding: 1em 0.2em 1em 0.2em;margin-top:1em;margin-bottom:1em;">66%-100%</p>
+  </div>
+
+  <div class="line-1" style="height: 5em;" ></div>
   <div class="line-1" style="height: 10em;"></div>
   <div class="line-1" style="height: 15em;"></div>
   <div class="line-1" style="height: 20em;"></div>
   <div class="line-1" style="height: 25em;"></div>
 
 
-  <div class="bar" v-for="(_, key) in data" v-bind:key="key">
-
-    <div  v-bind:style="{height:20*data[key] +'em', width: 20/data.length + 'em' }" v-if="key>=0*(data.length-1)"  style="background-color:red; ">
-    <div v-bind:style="{height: 20*data[key] + 'em', width:20/data.length + 'em'}" v-if="key>=0.33*(data.length-1)"  style="background-color:yellow;">
-      <div v-bind:style="{height: 20*data[key]  +'em', width:20/data.length + 'em'}" v-if="key>0.66*(data.length-1)"  style="background-color:green;">
+  <div class="bar" v-for="(_, key) in data.list" v-bind:key="key">
+{{data.list[key]*data.amountStudent}}
+    <div  v-bind:style="{height:20*data.list[key] +'em', width: 20/data.list.length + 'em' }" v-if="key>=0*(data.list.length-1)"  style="background-color:#F22259; ">
+    <div v-bind:style="{height: 20*data.list[key] + 'em', width:20/data.list.length + 'em'}" v-if="key>=0.33*(data.list.length-1)"  style="background-color:#0a6abf;">
+      <div v-bind:style="{height: 20*data.list[key]  +'em', width:20/data.list.length + 'em'}" v-if="key>0.66*(data.list.length-1)"  style="background-color:#f25c05;">
       </div>
     </div>
   </div>
 
 
+
+
     <div class="BarClass" >
       <p>{{key}}</p>
     </div>
+
   </div>
 
 
@@ -42,11 +53,13 @@ export default {
 <style scoped>
 .bar {
   position: relative;
+
   display: inline-block;
   vertical-align: bottom;
-  bottom:-1.15em;
+  bottom:-3.16em;
   z-index: 2;
-  margin-left:3em;
+  margin:0 auto;
+
 
 
 }
@@ -93,4 +106,30 @@ export default {
   height:28em;
 
 }
+#Y-axel{
+  writing-mode: vertical-rl;
+  text-orientation:sideways;
+  position: absolute;
+  left: -3em;
+  top:10em;
+}
+
+#X-axel{
+  position:absolute;
+  top:29.5em;
+  left:30em;
+}
+.wrapper{
+  writing-mode: vertical-rl;
+  text-orientation:sideways;
+  color:white;
+  font-weight: bold;
+  display:grid;
+  padding-left:1em;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: absolute;
+  left: 66em;
+  top:0;
+}
+
 </style>

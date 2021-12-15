@@ -49,7 +49,7 @@ export default {
     return {
       lang:"",
       question: "",
-      data: [],
+      data: {list:[], amountStudent:0},
       BarAndResults:[],
       name:[],
       studentResult:[],
@@ -104,16 +104,24 @@ export default {
       console.log("längd" +this.question.length)
       for (let i = 0; i <this.name.length; i++) {
         let correct = this.studentResult[i];
-        console.log(correct)
+
+
         this.BarAndResults[correct] += 1;
+
+
       }
-      for (let i = 0; i <this.name.length; i++) {
+      for (let i = 0; i <this.question.length+1; i++) {
+        console.log("enstaka resultat" +this.BarAndResults[2])
         this.BarAndResults[i]=this.BarAndResults[i]/this.name.length
-        var hej=this.name.length%4
-        console.log("vad blir heltasldivision"+ hej)
+        console.log("enstaka resultat efter" +this.BarAndResults[2])
+
       }
-      this.data=this.BarAndResults
+      this.data.list=this.BarAndResults
+      this.data.amountStudent=this.name.length
+      console.log("hur lång är listan" +this.name.length)
+      console.log("titta listan" +this.BarAndResults)
       },
+
     switchLanguage: function() {
       if (this.lang === "en")
         this.lang = "sv"
