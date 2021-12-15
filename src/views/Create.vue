@@ -357,6 +357,7 @@ input:focus {
 }
 
 .buttonNice:disabled {
+  cursor: initial;
   height: 3em;
   border-radius: 0.5em;
   background-color: transparent;
@@ -364,6 +365,10 @@ input:focus {
   border-style: solid;
   border-width: 0.2em;
   border-color: lightgray;
+}
+
+button {
+  cursor: pointer;
 }
 
 #pen {
