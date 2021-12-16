@@ -9,9 +9,6 @@
     OK
   </button>
 
-
-
-
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -23,7 +20,7 @@
 </div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
-      <ul id="growing-search-freebie">
+      <ul class="growing-search-freebie">
         <li>
           <div class="growing-search">
             <div class="inputpollID">
@@ -31,7 +28,7 @@
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
             </div><!-- Space hack -->
           </div>
-          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" class="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
             GO!
           </button>
         </li>
@@ -41,24 +38,38 @@
     <p>
       {{ uiLabels.editExisting }}
     </p>
-    <input @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)"
-           type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField"
-           @input="checkPollId2" @keydown.space.prevent>
-    <button @click="editExistingGo" v-bind:disabled="!editExists">
-      GO!
-    </button>
+    <ul class="growing-search-freebie">
+      <li>
+        <div class="growing-search">
+          <div class="inputpollID">
+            <input autocomplete="off" type="text" name="search" class="inputPollId" v-model="idEdit"
+                   v-bind:placeholder="uiLabels.writeField" @input="checkPollId2" @keydown.space.prevent @keyup.enter="pressEnter"/>
+          </div><!-- Space hack -->
+        </div>
+        <button type="submit" name="go_search" @click="editExistingGo" class="participate" v-bind:disabled="!editExists">
+          GO!
+        </button>
+      </li>
+    </ul>
   </div>
 
   <div id="showResult" v-show="isVisible==4">
     <p>
       Show result
     </p>
-    <input @keyup.enter="$router.push('/result/'+ idResult + '/' + lang)"
-           type="text" v-model="idResult" v-bind:placeholder="uiLabels.writeField"
-           @input="checkPollId2" @keydown.space.prevent>
-    <button @click="editExistingGo" v-bind:disabled="!editExists">
-      GO!
-    </button>
+    <ul class="growing-search-freebie">
+      <li>
+        <div class="growing-search">
+          <div class="inputpollID">
+            <input autocomplete="off" type="text" name="search" class="inputPollId" v-model="idResult"
+                   v-bind:placeholder="uiLabels.writeField" @input="checkPollId3" @keydown.space.prevent @keyup.enter="pressEnter"/>
+          </div><!-- Space hack -->
+        </div>
+        <button type="submit" name="go_search" @click="$router.push('/result/'+idResult)" class="participate" v-bind:disabled="!resultExists">
+          GO!
+        </button>
+      </li>
+    </ul>
   </div>
 
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4">
@@ -92,6 +103,7 @@ export default {
       pollIds: [],
       pollExists: false,
       editExists: false,
+      resultExists: false,
       hideCon:false,
     }
   },
@@ -137,6 +149,11 @@ export default {
       socket.on("checkPollId", (editExists) =>
           this.editExists = editExists)
     },
+    checkPollId3: function () {
+      socket.emit("sendPollId", this.idResult)
+      socket.on("checkPollId", (resultExists) =>
+          this.resultExists = resultExists)
+    },
     editExistingGo: function () {
       this.$router.push('/create/' + this.idEdit + '/' + this.lang)
       socket.emit("sendGlossary", this.idEdit)
@@ -146,8 +163,12 @@ export default {
         this.$router.push('/create/'+ this.idEdit + '/' + this.lang)
       }
       if (this.pollExists && this.isVisible==1) {
-        this.$router.push('/poll/'+ this.id)
+        this.$router.push('/poll/'+ this.id )
       }
+      if (this.resultExists && this.isVisible==4) {
+        this.$router.push('/result/'+ this.idResult)
+      }
+
     }
 
 
@@ -179,25 +200,25 @@ body {
 
 }
 
-ul#growing-search-freebie {
+ul.growing-search-freebie {
   display: table;
   list-style: none;
   margin: 1em auto 0 auto;
   padding: 0;
 }
 
-ul#growing-search-freebie > li {
+ul.growing-search-freebie > li {
   float: left;
   margin-right: 1em;
   margin-bottom: 1em;
   padding: 0em 0em;
 }
 
-ul#growing-search-freebie > li:last-child {
+ul.growing-search-freebie > li:last-child {
   margin-right: 0;
 }
 
-ul#growing-search-freebie > li > span {
+ul.growing-search-freebie > li > span {
   margin-bottom: 1em;
 }
 
@@ -363,7 +384,7 @@ input:focus::placeholder {
   background-color: #EF8584;
 
 }
-#participate{
+.participate{
   position:static;
   background-color: lawngreen;
   font-size: 2em;
@@ -381,7 +402,7 @@ input:focus::placeholder {
   transition: all 0.2s;
   cursor: default;
 }
-#participate:disabled{
+.participate:disabled{
   background-color: lightgray;
   color: gray! important;
   cursor: default !important;
@@ -399,7 +420,7 @@ input:focus::placeholder {
   font-weight: bold;
 }
 
-#participate:disabled {
+.participate:disabled {
   border-radius: 0.5em;
   background-color: lightgray;
   color: #666666;
@@ -410,7 +431,7 @@ input:focus::placeholder {
 
 }
 
-#participate:hover{
+.participate:hover{
   cursor:pointer;
   color: #000000;
 }
