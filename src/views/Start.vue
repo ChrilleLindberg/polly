@@ -189,6 +189,7 @@ body {
   color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
+  overflow: hidden;
 }
 
 #goBack {
@@ -312,7 +313,7 @@ input:focus::placeholder {
   width:1.2em;
   height:1em;
   display: flex;
-
+  margin-top: 1.2em;
   align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -390,26 +391,27 @@ input:focus::placeholder {
   font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
-  margin-top: 0.2em;
+  margin-top: 0.5em;
   padding:0em 1em 0em 1em;
   display:inline-block;
   font-weight: 100;
-  border-radius: 0.2em;
+  border-radius: 0.5em;
   box-sizing: border-box;
   text-decoration:none;
   color: #000000;
   text-align:center;
   transition: all 0.2s;
   cursor: default;
+  height: 2em;
 }
 .participate:disabled{
   background-color: lightgray;
   color: gray! important;
   cursor: default !important;
-  height: 3em;
+  height: 2em;
   padding-left: 1em;
   padding-right: 1em;
-  margin-top: 1em;
+  margin-top: 0.5em;
   margin-bottom: 0.2em;
   margin-left: 0;
   border-radius: 0.5em;
@@ -438,7 +440,8 @@ input:focus::placeholder {
 
 
 #movedown{
-  margin-top: 5em;
+  margin-top: 3em;
+  margin-bottom: -2em;
 }
 #buttonTest{
   top: 1.5em;
@@ -455,15 +458,15 @@ input:focus::placeholder {
 
 nav {
   margin: auto;
-  margin-top: 40px;
+  margin-top: -3em;
   position: relative;
-  width: 50vw;
-  min-width: 320px;
+  width: 13vw;
+
   height: 200px;
 }
 
 nav h2 {
-  border-radius: 2px;
+  border-radius: 0.5em;
   position: relative;
   background: tomato;
   height: 40px;
@@ -496,6 +499,7 @@ nav:hover:active h2{
   opacity: 0;
   cursor: pointer;
   height: 40px;
+  border-radius: 0.5em;
 }
 
 #toggle:checked ~ul {
@@ -516,7 +520,7 @@ nav ul#test {
 
 }
 nav ul#test li#test1{
-  border-radius: 2px;
+  border-radius: 0.5em;
   position: relative;
   display: inline-block;
   margin-left: 35px;
@@ -561,8 +565,9 @@ nav ul#test a {
   animation-play-state: running;
   /*animation-timing-function: ease-in-out;*/
   background-size: 3em;
-  background-position: top 3em left 3em;
+  background-position: top 2.5em left 2.5em;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .nextPage{
@@ -585,8 +590,7 @@ nav ul#test a {
     background-image:url(/eye/eyeLightPink.svg);
   }
   9.71%{
-    transform: scale(1,1);
-  }
+    transform: scale(1,1);}
   11.1%{
     background-color: rgb(236,87,46);
     color: rgb(255,238,235);
@@ -596,8 +600,7 @@ nav ul#test a {
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
-    transform: scale(1.01,1.01);
-  }
+    transform: scale(1.01,1.01);}
   12%{
     transform: scale(1,1);
   }
