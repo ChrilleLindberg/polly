@@ -436,6 +436,9 @@ input:focus::placeholder {
 .participate:hover{
   cursor:pointer;
   color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+
 }
 
 
@@ -468,10 +471,9 @@ nav {
 nav h2 {
   border-radius: 0.5em;
   position: relative;
-  background: tomato;
+
   height: 40px;
   text-transform: uppercase;
-  color: ivory;
   font-weight: 200;
   display: flex;
   flex: 1;
@@ -528,21 +530,18 @@ nav ul#test li#test1{
   width: 100%;
   margin: 0;
   margin-bottom: 5px;
-  background: tomato;
   transition: background 3s;
   box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
 }
 
 nav ul#test li#test1:hover {
-  background: mediumorchid;
+  background: rgba(186, 85, 211, 0.96);
   transition: background .45s;
 }
 
 nav ul#test a {
   display: block;
-  color: ivory;
   text-transform: lowercase;
-  font-size: 18px;
   font-weight: 200;
   text-decoration: none;
   transition: color .3s;
