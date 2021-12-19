@@ -387,7 +387,9 @@ input:focus::placeholder {
 }
 .participate{
   position:static;
-  background-color: lawngreen;
+  color: rgb(16,111,103);
+  background-color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
   font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
@@ -397,18 +399,20 @@ input:focus::placeholder {
   font-weight: 100;
   border-radius: 0.5em;
   box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
   text-decoration:none;
-  color: #000000;
   text-align:center;
   transition: all 0.2s;
   cursor: default;
-  height: 2em;
+  height: 1.7em;
+
 }
 .participate:disabled{
   background-color: lightgray;
   color: gray! important;
   cursor: default !important;
-  height: 2em;
+  height: 1.7em;
   padding-left: 1em;
   padding-right: 1em;
   margin-top: 0.5em;
@@ -427,18 +431,21 @@ input:focus::placeholder {
   background-color: lightgray;
   color: #666666;
   border-style: solid;
-  border-width: 0.2em;
-  border-color: lightgray;
+  border-width: thin;
   font-weight: initial;
 
 }
-
+.participate:disabled:hover{
+  transform: translateY(0px);
+}
 .participate:hover{
   cursor:pointer;
-  color: #000000;
   transform: translateY(-2px);
-  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 
+}
+.participate:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
 
 
@@ -463,7 +470,7 @@ nav {
   margin: auto;
   margin-top: -3em;
   position: relative;
-  width: 13vw;
+  width: 9em;
 
   height: 200px;
 }
@@ -471,7 +478,8 @@ nav {
 nav h2 {
   border-radius: 0.5em;
   position: relative;
-
+  border-style: solid;
+  border-width: thin;
   height: 40px;
   text-transform: uppercase;
   font-weight: 200;
@@ -518,25 +526,27 @@ nav ul#test {
   margin-bottom: 22px;
   text-align: center;
   transition: all .4s ease-out;
-  height: 100%;
+  height: 99%;
 
 }
 nav ul#test li#test1{
   border-radius: 0.5em;
+  border-style: solid;
+  border-width: thin;
   position: relative;
   display: inline-block;
-  margin-left: 35px;
   line-height: 1.5;
-  width: 100%;
-  margin: 0;
+  width: 95%;
   margin-bottom: 5px;
   transition: background 3s;
   box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
 }
 
 nav ul#test li#test1:hover {
-  background: rgba(186, 85, 211, 0.96);
-  transition: background .45s;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.55);
+  transition: background 3s;
+
 }
 
 nav ul#test a {
