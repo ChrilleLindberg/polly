@@ -29,7 +29,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Result.vue')
   },
   {
-    path: '/flipCards/',
+    path: '/flipCards/:id',
     name: 'flipCards',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
