@@ -5,7 +5,7 @@
     <h2 style="display:flex;margin-right:5%; margin-left:12%;text-decoration: underline;">{{uiLabels.translation }}</h2>
   </div>
   <div v-for="(q, i) in question.q" :key="q">
-    <div class="container">
+   <div class="container">
    <div id="answer"><span style="padding-top:0.5em;">  {{ q }}</span></div>
     <div id="picture"><img src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg"  >
     </div>

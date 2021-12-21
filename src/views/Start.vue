@@ -9,9 +9,6 @@
     OK
   </button>
 
-
-
-
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -23,7 +20,7 @@
 </div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
-      <ul id="growing-search-freebie">
+      <ul class="growing-search-freebie">
         <li>
           <div class="growing-search">
             <div class="inputpollID">
@@ -31,7 +28,7 @@
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
             </div><!-- Space hack -->
           </div>
-          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" id="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" class="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
             GO!
           </button>
         </li>
@@ -41,24 +38,38 @@
     <p>
       {{ uiLabels.editExisting }}
     </p>
-    <input @keyup.enter="$router.push('/create/'+ idEdit + '/' + lang)"
-           type="text" v-model="idEdit" v-bind:placeholder="uiLabels.writeField"
-           @input="checkPollId2" @keydown.space.prevent>
-    <button @click="editExistingGo" v-bind:disabled="!editExists">
-      GO!
-    </button>
+    <ul class="growing-search-freebie">
+      <li>
+        <div class="growing-search">
+          <div class="inputpollID">
+            <input autocomplete="off" type="text" name="search" class="inputPollId" v-model="idEdit"
+                   v-bind:placeholder="uiLabels.writeField" @input="checkPollId2" @keydown.space.prevent @keyup.enter="pressEnter"/>
+          </div><!-- Space hack -->
+        </div>
+        <button type="submit" name="go_search" @click="editExistingGo" class="participate" v-bind:disabled="!editExists">
+          GO!
+        </button>
+      </li>
+    </ul>
   </div>
 
   <div id="showResult" v-show="isVisible==4">
     <p>
       Show result
     </p>
-    <input @keyup.enter="$router.push('/result/'+ idResult + '/' + lang)"
-           type="text" v-model="idResult" v-bind:placeholder="uiLabels.writeField"
-           @input="checkPollId2" @keydown.space.prevent>
-    <button @click="editExistingGo" v-bind:disabled="!editExists">
-      GO!
-    </button>
+    <ul class="growing-search-freebie">
+      <li>
+        <div class="growing-search">
+          <div class="inputpollID">
+            <input autocomplete="off" type="text" name="search" class="inputPollId" v-model="idResult"
+                   v-bind:placeholder="uiLabels.writeField" @input="checkPollId3" @keydown.space.prevent @keyup.enter="pressEnter"/>
+          </div><!-- Space hack -->
+        </div>
+        <button type="submit" name="go_search" @click="$router.push('/result/'+idResult)" class="participate" v-bind:disabled="!resultExists">
+          GO!
+        </button>
+      </li>
+    </ul>
   </div>
 
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4">
@@ -92,6 +103,7 @@ export default {
       pollIds: [],
       pollExists: false,
       editExists: false,
+      resultExists: false,
       hideCon:false,
     }
   },
@@ -137,6 +149,11 @@ export default {
       socket.on("checkPollId", (editExists) =>
           this.editExists = editExists)
     },
+    checkPollId3: function () {
+      socket.emit("sendPollId", this.idResult)
+      socket.on("checkPollId", (resultExists) =>
+          this.resultExists = resultExists)
+    },
     editExistingGo: function () {
       this.$router.push('/create/' + this.idEdit + '/' + this.lang)
       socket.emit("sendGlossary", this.idEdit)
@@ -146,8 +163,12 @@ export default {
         this.$router.push('/create/'+ this.idEdit + '/' + this.lang)
       }
       if (this.pollExists && this.isVisible==1) {
-        this.$router.push('/poll/'+ this.id)
+        this.$router.push('/poll/'+ this.id )
       }
+      if (this.resultExists && this.isVisible==4) {
+        this.$router.push('/result/'+ this.idResult)
+      }
+
     }
 
 
@@ -180,25 +201,25 @@ body {
 
 }
 
-ul#growing-search-freebie {
+ul.growing-search-freebie {
   display: table;
   list-style: none;
   margin: 1em auto 0 auto;
   padding: 0;
 }
 
-ul#growing-search-freebie > li {
+ul.growing-search-freebie > li {
   float: left;
   margin-right: 1em;
   margin-bottom: 1em;
   padding: 0em 0em;
 }
 
-ul#growing-search-freebie > li:last-child {
+ul.growing-search-freebie > li:last-child {
   margin-right: 0;
 }
 
-ul#growing-search-freebie > li > span {
+ul.growing-search-freebie > li > span {
   margin-bottom: 1em;
 }
 
@@ -292,7 +313,7 @@ input:focus::placeholder {
   width:1.2em;
   height:1em;
   display: flex;
-
+  margin-top: 1.2em;
   align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -364,32 +385,37 @@ input:focus::placeholder {
   background-color: #EF8584;
 
 }
-#participate{
+.participate{
   position:static;
-  background-color: lawngreen;
+  color: rgb(16,111,103);
+  background-color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
   font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
-  margin-top: 0.2em;
+  margin-top: 0.5em;
   padding:0em 1em 0em 1em;
   display:inline-block;
   font-weight: 100;
-  border-radius: 0.2em;
+  border-radius: 0.5em;
   box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
   text-decoration:none;
-  color: #000000;
   text-align:center;
   transition: all 0.2s;
   cursor: default;
+  height: 1.7em;
+
 }
-#participate:disabled{
+.participate:disabled{
   background-color: lightgray;
   color: gray! important;
   cursor: default !important;
-  height: 3em;
+  height: 1.7em;
   padding-left: 1em;
   padding-right: 1em;
-  margin-top: 1em;
+  margin-top: 0.5em;
   margin-bottom: 0.2em;
   margin-left: 0;
   border-radius: 0.5em;
@@ -400,25 +426,32 @@ input:focus::placeholder {
   font-weight: bold;
 }
 
-#participate:disabled {
+.participate:disabled {
   border-radius: 0.5em;
   background-color: lightgray;
   color: #666666;
   border-style: solid;
-  border-width: 0.2em;
-  border-color: lightgray;
+  border-width: thin;
   font-weight: initial;
 
 }
-
-#participate:hover{
+.participate:disabled:hover{
+  transform: translateY(0px);
+}
+.participate:hover{
   cursor:pointer;
-  color: #000000;
+  transform: translateY(-2px);
+
+}
+.participate:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
 
 
 #movedown{
-  margin-top: 5em;
+  margin-top: 3em;
+  margin-bottom: -2em;
 }
 #buttonTest{
   top: 1.5em;
@@ -435,20 +468,20 @@ input:focus::placeholder {
 
 nav {
   margin: auto;
-  margin-top: 40px;
+  margin-top: -3em;
   position: relative;
-  width: 50vw;
-  min-width: 320px;
+  width: 9em;
+
   height: 200px;
 }
 
 nav h2 {
-  border-radius: 2px;
+  border-radius: 0.5em;
   position: relative;
-  background: tomato;
+  border-style: solid;
+  border-width: thin;
   height: 40px;
   text-transform: uppercase;
-  color: ivory;
   font-weight: 200;
   display: flex;
   flex: 1;
@@ -476,6 +509,7 @@ nav:hover:active h2{
   opacity: 0;
   cursor: pointer;
   height: 40px;
+  border-radius: 0.5em;
 }
 
 #toggle:checked ~ul {
@@ -492,33 +526,32 @@ nav ul#test {
   margin-bottom: 22px;
   text-align: center;
   transition: all .4s ease-out;
-  height: 100%;
+  height: 99%;
 
 }
 nav ul#test li#test1{
-  border-radius: 2px;
+  border-radius: 0.5em;
+  border-style: solid;
+  border-width: thin;
   position: relative;
   display: inline-block;
-  margin-left: 35px;
   line-height: 1.5;
-  width: 100%;
-  margin: 0;
+  width: 95%;
   margin-bottom: 5px;
-  background: tomato;
   transition: background 3s;
   box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
 }
 
 nav ul#test li#test1:hover {
-  background: mediumorchid;
-  transition: background .45s;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.55);
+  transition: background 3s;
+
 }
 
 nav ul#test a {
   display: block;
-  color: ivory;
   text-transform: lowercase;
-  font-size: 18px;
   font-weight: 200;
   text-decoration: none;
   transition: color .3s;
@@ -542,8 +575,9 @@ nav ul#test a {
   animation-play-state: running;
   /*animation-timing-function: ease-in-out;*/
   background-size: 3em;
-  background-position: top 3em left 3em;
+  background-position: top 2.5em left 2.5em;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .nextPage{
@@ -566,8 +600,7 @@ nav ul#test a {
     background-image:url(/eye/eyeLightPink.svg);
   }
   9.71%{
-    transform: scale(1,1);
-  }
+    transform: scale(1,1);}
   11.1%{
     background-color: rgb(236,87,46);
     color: rgb(255,238,235);
@@ -577,8 +610,7 @@ nav ul#test a {
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
-    transform: scale(1.01,1.01);
-  }
+    transform: scale(1.01,1.01);}
   12%{
     transform: scale(1,1);
   }
