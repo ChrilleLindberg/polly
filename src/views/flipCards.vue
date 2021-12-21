@@ -6,7 +6,7 @@
       <!--<gameCard v-for="card in gameCards" v-bind:key="card">
 
       </gameCard>-->
-      <transition-group v-bind:class="{slideLeft: left, slideRight:!left}">
+      <transition-group v-bind:name="transitionType">
       <gameCard v-for="(item, i) in gameCards.question"
           v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
       :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]">
@@ -26,6 +26,15 @@
       JA
     </button>
 
+  <p>
+    Antal avklarade kort: {{gameCards.doneCard.filter(Boolean).length}}
+  </p>
+  <p>
+    Antal kort kvar: {{gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length}}
+  </p>
+<div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
+  Du har klarat alla ord!
+</div>
 
 </template>
 
@@ -47,10 +56,10 @@ export default {
       gameCards: {
         question: [""],
         answers: [""],
-        showCard: [false, false,true],
+        showCard: [],
         doneCard: []},
-      left: Boolean,
-      j: Number
+      j: Number,
+      transitionType: ""
     }
   }, created: function () {
     this.pollId = this.$route.params.id
@@ -59,14 +68,14 @@ export default {
       this.gameCards.question = pollInfo.questions[0].q
       this.gameCards.answers = pollInfo.questions[0].a
       this.j = this.gameCards.question.length-1;
-      this.doneCard = new Array(this.gameCards.question.length).fill(false);
-      this.showCard = new Array(this.gameCards.question.length).fill(false);
-      this.showCard[this.gameCards.question.length-1] = true;
+      this.gameCards.doneCard = new Array(this.gameCards.question.length).fill(false);
+      this.gameCards.showCard = new Array(this.gameCards.question.length).fill(false);
+      this.gameCards.showCard[this.gameCards.question.length-1] = true;
     })
   },
   methods: {
     swipeLeft: function () {
-      this.left = true;                  //skulle vi kunna använda doneCard här istället?
+      this.transitionType = "slideLeft";                  //skulle vi kunna använda doneCard här istället?
       this.gameCards.showCard[this.j] = false;
       this.j--;
 
@@ -90,7 +99,7 @@ export default {
     }
     ,
     swipeRight: function () {
-      this.left = false;                  //skulle vi kunna använda doneCard här istället?
+      this.transitionType = "slideRight";                    //skulle vi kunna använda doneCard här istället?
       this.gameCards.showCard[this.j] = false;
       this.gameCards.doneCard[this.j] = true;
       this.j--;
@@ -144,7 +153,7 @@ export default {
 
 .slideRight-enter,
 .slideRight-leave-to {
-  transform: translateY(-50%) translateX(-100vw);
+  transform: translateY(-50%) translateX(100vw);
 }
 
 .slideLeft-enter-active,
@@ -154,7 +163,7 @@ export default {
 
 .slideLeft-enter,
 .slideLeft-leave-to {
-  transform: translateY(-50%) translateX(100vw);
+  transform: translateY(-50%) translateX(-100vw);
 
 }
 
