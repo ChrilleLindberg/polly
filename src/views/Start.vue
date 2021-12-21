@@ -168,6 +168,7 @@ body {
   color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
+
 }
 
 #goBack {
@@ -530,6 +531,7 @@ nav ul#test a {
   margin: 0px!important;
   top: 0em;
   left: 0em;
+
   /*background-color: #FBE4C9;*/
   /*transition: 0.5ms;*/
   animation-name: animate;

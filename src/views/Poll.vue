@@ -6,7 +6,7 @@
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
-
+<br>
 
     <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
 
@@ -191,7 +191,7 @@ body {
   left:0;
   font-family: 'montserrat', sans-serif;
 
-  background-color: rgb(16,111,103);
+  background-color: rgb(18,54,90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
 }

@@ -1,14 +1,15 @@
 <template>
 
   <div class="container">
-<h2 style="display:flex;margin-right:20%;text-decoration: underline;" >{{uiLabels.userWord}}</h2><h2 style="display:flex; margin-right:10%;text-decoration: underline;">{{uiLabels.translation }}</h2>
+<h2 style="display:flex;text-decoration: underline;" >{{uiLabels.userWord}}</h2>
+    <h2 style="display:flex;margin-right:5%; margin-left:12%;text-decoration: underline;">{{uiLabels.translation }}</h2>
   </div>
   <div v-for="(q, i) in question.q" :key="q">
     <div class="container">
    <div id="answer"><span style="padding-top:0.5em;">  {{ q }}</span></div>
     <div id="picture"><img src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg"  >
     </div>
-    <input id="input" style="display: flex" type="string" class="answers" v-model="myAnswers[i]" placeholder={{uiLabels.answer}} autocomplete="off">
+    <input id="input" style="display: flex" type="string" class="answers" v-model="myAnswers[i]" v-bind:placeholder="uiLabels.answer" autocomplete="off">
   </div>
   </div>
 
@@ -43,7 +44,15 @@ export default {
 
       this.$emit("answer", {answer: this.myAnswers});
 
-  }
+  },
+  methods:{
+    switchLanguage: function() {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
+    },}
 }
 </script>
 <style scoped>
@@ -54,10 +63,11 @@ export default {
   flex-direction: row;
   align-items: end;
   width:auto;
-  margin-right: 30%;
+  margin-right: 33%;
 
 }
 #picture{
+  margin: 0 2em 0 2em;
   height:2em;
   width:2em;
   display:flex;
@@ -70,6 +80,7 @@ export default {
 
   border-style: solid;
   padding:0em 1em 0 1em;
+
   height: 2em;
   width:auto;
   height:2em;
@@ -79,10 +90,10 @@ export default {
   background-color: gray;
 }
 #input {
-  text-align: center;
+  text-align: ;
   border-style: solid;
   height: 2em;
-  width:15em;
+  width:20%;
   height:2em;
 
   left:50em;
