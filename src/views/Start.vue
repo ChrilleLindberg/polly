@@ -253,10 +253,7 @@ ul.growing-search-freebie > li > span {
 .growing-search .inputpollID input:focus {
   width: 16em;
 }
-
-.growing-search .inputpollID input:hover {
-  width: 16em;
-}
+r
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -290,8 +287,6 @@ input:focus::placeholder {
   height:1.6em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 
-
-
 }
 .wrapper {
   display: inline-flex;
@@ -305,9 +300,7 @@ input:focus::placeholder {
 }
 
 .wrapper .icon {
-
   position: relative;
-
   background-color: #ffffff;
   border-radius: 50%;
   width:1.2em;
@@ -371,7 +364,6 @@ input:focus::placeholder {
 .buttonNice:hover{
 
   color:white;
-
   border-style: solid;
   border-color:#EF8584;
   background-color: #EF8584;

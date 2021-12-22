@@ -1,87 +1,97 @@
 <template>
   <body>
   <div id="app" v-show="isVisible">
-  <div>
-    <h1>{{pollId}}</h1>
-    <Question v-bind:question="question"
-              v-on:answer="submitAnswer"/>
-  </div>
-<br>
+    <div>
+      <h1>Poll-ID: {{ pollId }}</h1>
+      <Question v-bind:question="question"
+                v-on:answer="submitAnswer"/>
+    </div>
+    <br>
 
-    <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+    <img id="goBack" v-on:click="$router.push('/')"
+         src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
+         alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em">
 
     <div class="wrapper">
       <div class="icon facebook">
-        <div class="tooltip">{{uiLabels.language}}</div>
-        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+        <div class="tooltip">{{ uiLabels.language }}</div>
+        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
+                                                class="pictureFlag"></i></span>
       </div>
     </div>
 
     <div>
-    <button class="button" v-on:click="showModal=true" >
-      {{ uiLabels.submitQuiz }}
-    </button>
-    <transition name="fade" appear>
-      <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
-    </transition>
-    <transition name="slide" appear>
-      <div class="modal" v-if="showModal">
-        <button class="xModulButton" v-on:click="showModal = false" > x </button>
-        <h1>{{uiLabels.enterName}}</h1>
-        <p> <input type="string" id="fullnamebox" v-model="nameContendor" >
-          <br>
+      <button class="button" v-on:click="showModal=true">
+        {{ uiLabels.submitQuiz }}
+      </button>
+      <transition name="fade" appear>
+        <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
+      </transition>
+      <transition name="slide" appear>
+        <div class="modal" v-if="showModal">
+          <button class="xModulButton" v-on:click="showModal = false"> x</button>
+          <h1>{{ uiLabels.enterName }}</h1>
+          <p><input type="string" id="fullnamebox" v-model="nameContendor">
+            <br>
           </p>
-        <button class="button" v-on:click="FinishedQuiz" >
-          {{ uiLabels.submitFinal }}
-<!--        <button class="button" v-on:click="$router.replace('/')" id="participate" >  Submit your answer-->
-        </button>
-      </div>
-    </transition>
+          <button class="button" v-on:click="FinishedQuiz">
+            {{ uiLabels.submitFinal }}
+            <!--        <button class="button" v-on:click="$router.replace('/')" id="participate" >  Submit your answer-->
+          </button>
+        </div>
+      </transition>
+    </div>
   </div>
-  </div>
+
   <div id="yourResult" v-show="!isVisible">
-    <h1>{{nameContendor}}</h1>
+    <h1>{{ nameContendor }}</h1>
     <div class="wrapper">
       <div class="icon facebook">
-        <div class="tooltip">{{uiLabels.language}}</div>
-        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+        <div class="tooltip">{{ uiLabels.language }}</div>
+        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
+                                                class="pictureFlag"></i></span>
       </div>
     </div>
 
-    <h3> {{ uiLabels.youHave }} {{numbCorrectAnswers}}/{{question.a.length}} {{ uiLabels.correct }} </h3>
+    <h3> {{ uiLabels.youHave }} {{ numbCorrectAnswers }}/{{ question.a.length }} {{ uiLabels.correct }} </h3>
     <br>
-    <h3 class="rubrikSpalt" ><div>{{ uiLabels.question }}</div> <div>{{ uiLabels.answers }}</div> <div>{{ uiLabels.result }}</div> </h3>
+    <h3 class="rubrikSpalt">
+      <div>{{ uiLabels.question }}</div>
+      <div>{{ uiLabels.answers }}</div>
+      <div>{{ uiLabels.result }}</div>
+    </h3>
     <div class="wrapper2">
-    <div class="table">
+      <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
       <span> {{ q }}</span>
     </span>
-    <span v-for="(a) in myAnswers.answer" :key="a" id="table2">
+        <span v-for="(a) in myAnswers.answer" :key="a" id="table2">
 
       <span> {{ a }}</span>
     </span>
-      <span v-for="(t) in correctOrNot" :key="t" id="table3">
+        <span v-for="(t) in correctOrNot" :key="t" id="table3">
 
         <span> <img v-bind:src="t" alt="true" style="height: 40px; width:50px"> </span>
       </span>
 
-    </div>
+      </div>
     </div>
     <div id="buttonUnder">
-    <button class="button"  v-on:click="$router.replace('/')">{{ uiLabels.backHome }}</button>
+      <button class="button" v-on:click="$router.replace('/')">{{ uiLabels.backHome }}</button>
     </div>
-    </div>
+  </div>
   </body>
 </template>
 
 
-<script >
+<script>
 // @ is an alias to /src
 
 
 import Question from '@/components/Question.vue';
 
 import io from 'socket.io-client';
+
 const socket = io();
 
 export default {
@@ -105,10 +115,10 @@ export default {
       correctOrNot: [],
       showModal: false,
       nameContendor: "",
-      isVisible:true,
-      uiLabels:{},
-      questionsConverted:[],
-      answersConverted:[]
+      isVisible: true,
+      uiLabels: {},
+      questionsConverted: [],
+      answersConverted: []
     }
 
   },
@@ -117,8 +127,7 @@ export default {
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("newQuestion", q =>
-      this.question = q
-
+        this.question = q
     )
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -131,41 +140,39 @@ export default {
 
 
     submitAnswer: function (answer) {
-      this.myAnswers=answer
+      this.myAnswers = answer
       //socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
     },
 
 
-
-      FinishedQuiz: function(){
-      this.isVisible=false;
+    FinishedQuiz: function () {
+      this.isVisible = false;
       this.showModal = false;
 
-      for (let i = 0; i <this.question.a.length; i++) {
-        this.questionsConverted[i]=this.question.a[i].toLowerCase()
-        this.answersConverted[i]=this.myAnswers.answer[i].toLowerCase()
+      for (let i = 0; i < this.question.a.length; i++) {
+        this.questionsConverted[i] = this.question.a[i].toLowerCase()
+        this.answersConverted[i] = this.myAnswers.answer[i].toLowerCase()
 
-        if(this.questionsConverted[i] === this.answersConverted[i]) {
+        if (this.questionsConverted[i] === this.answersConverted[i]) {
           this.numbCorrectAnswers += 1;
           this.correctOrNot.push("https://cdn.pixabay.com/photo/2013/07/13/10/48/check-157822_1280.png");
 
 
-        }
-      else {
+        } else {
           this.correctOrNot.push("https://cdn.pixabay.com/photo/2014/03/24/13/45/incorrect-294245_960_720.png")
         }
       }
-        socket.emit("finishAnswer",this.numbCorrectAnswers,this.pollId,this.nameContendor)
+      socket.emit("finishAnswer", this.numbCorrectAnswers, this.pollId, this.nameContendor)
 
     },
 
-  switchLanguage: function() {
-    if (this.lang === "en")
-      this.lang = "sv"
-    else
-      this.lang = "en"
-    socket.emit("switchLanguage", this.lang)
-  }
+    switchLanguage: function () {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
+    }
 
 
   }
@@ -185,13 +192,13 @@ export default {
 
 body {
   position: absolute;
-  width:100%;
+  width: 100%;
   min-height: 100%;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   font-family: 'montserrat', sans-serif;
 
-  background-color: rgb(18,54,90);
+  background-color: rgb(18, 54, 90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
 }
@@ -225,14 +232,16 @@ body {
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
   transition: 0.4s ease-out;
 
-&:hover {
-   box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
- }
+&
+:hover {
+  box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
 }
 
-.xModulButton{
+}
+
+.xModulButton {
   border: solid orange 0.1em;
-  color:orange;
+  color: orange;
   border-radius: 50%;
   width: 1.5em;
   height: 1.5em;
@@ -244,10 +253,11 @@ body {
   top: 0.5em;
   font-weight: lighter;
 }
-.xModulButton:hover{
-  color:red;
+
+.xModulButton:hover {
+  color: red;
   cursor: pointer;
-  border:solid red 0.1em;
+  border: solid red 0.1em;
 }
 
 .modal-overlay {
@@ -273,18 +283,20 @@ body {
 
   width: 100%;
   max-width: 400px;
-  background-color: rgb(18,54,90);
+  background-color: rgb(18, 54, 90);
   border-radius: 16px;
 
 
   padding: 25px;
 }
+
 h1 {
-  color:rgb(249,228,201);
+  color: rgb(249, 228, 201);
   font-size: 32px;
   font-weight: 900;
   margin-bottom: 15px;
   margin-top: 0.5em;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 p {
@@ -317,26 +329,29 @@ p {
 
 }
 
-#buttonUnder{
+#buttonUnder {
   margin-top: 2em;
-  margin-bottom:5em;
+  margin-bottom: 5em;
 }
-#fullnamebox{
-height: 3em;
-  width: 15em;
-  font-family: "Times New Roman", Times, serif,italic;
 
-  font-size:15px;
+#fullnamebox {
+  height: 3em;
+  width: 15em;
+  font-family: "Times New Roman", Times, serif, italic;
+
+  font-size: 15px;
 }
-.rubrikSpalt{
+
+.rubrikSpalt {
   margin-left: 33%;
   margin-right: 33%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-flow: column;
 }
-.wrapper2{
-margin-left: 33%;
+
+.wrapper2 {
+  margin-left: 33%;
   margin-right: 33%;
   overflow: scroll;
   height: 20em;
@@ -354,39 +369,42 @@ margin-left: 33%;
   /*width:auto;
   height:10em ; */
 }
-#table1{
-  grid-column:1;
+
+#table1 {
+  grid-column: 1;
   border-top: 1px solid #dfdfdf;
-  padding-top:2em;
+  padding-top: 2em;
 
 }
+
 #table2 {
   grid-column: 2;
   border-top: 1px solid #dfdfdf;
-  padding-top:2em;
+  padding-top: 2em;
 }
-#table3{
-  grid-column:3;
+
+#table3 {
+  grid-column: 3;
   border-top: 1px solid #dfdfdf;
-  padding-top:2em;
+  padding-top: 2em;
   color: red;
 }
+
 #goBack {
   position: absolute;
   left: 1em;
   top: 1em;
   mix-blend-mode: multiply;
-  cursor:pointer
+  cursor: pointer;
 }
-.pictureFlag{
+
+.pictureFlag {
   border-radius: 60%;
-  width:2.3em;
-  height:1.6em;
+  width: 2.3em;
+  height: 1.6em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
-
-
 }
+
 .wrapper {
   display: inline-flex;
   position: absolute;
@@ -394,20 +412,17 @@ margin-left: 33%;
   top: 1.8em;
   cursor: pointer;
   border-radius: 50%;
-  width:2em;
-  height:2em;
+  width: 2em;
+  height: 2em;
 }
 
 .wrapper .icon {
-
   position: relative;
-
   background-color: #ffffff;
   border-radius: 50%;
-  width:1.2em;
-  height:1em;
+  width: 1.2em;
+  height: 1em;
   display: flex;
-
   align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
