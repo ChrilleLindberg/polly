@@ -1,4 +1,7 @@
 <template>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
   <body  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
   <header id="movedown">
     <h1>
@@ -16,11 +19,11 @@
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
-      <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+      <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
 <div style="width:2em;height:2em ">
-  <img id="goBack" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+  <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" > </i>
 </div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
@@ -216,15 +219,15 @@ body {
   color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
-  overflow: hidden;
+
 }
 
 #goBack {
   position: absolute;
   left: 1em;
   top: 1em;
-  mix-blend-mode: multiply;
-  cursor:pointer
+  cursor:pointer;
+  font-size: 3em;
 
 }
 
@@ -280,10 +283,7 @@ ul.growing-search-freebie > li > span {
 .growing-search .inputpollID input:focus {
   width: 16em;
 }
-
-.growing-search .inputpollID input:hover {
-  width: 16em;
-}
+r
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -317,8 +317,6 @@ input:focus::placeholder {
   height:1.6em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 
-
-
 }
 .wrapper {
   display: inline-flex;
@@ -332,9 +330,7 @@ input:focus::placeholder {
 }
 
 .wrapper .icon {
-
   position: relative;
-
   background-color: #ffffff;
   border-radius: 50%;
   width:1.2em;
@@ -398,7 +394,6 @@ input:focus::placeholder {
 .buttonNice:hover{
 
   color:white;
-
   border-style: solid;
   border-color:#EF8584;
   background-color: #EF8584;
@@ -591,6 +586,7 @@ nav ul.test a {
   margin: 0px!important;
   top: 0em;
   left: 0em;
+
   /*background-color: #FBE4C9;*/
   /*transition: 0.5ms;*/
   animation-name: animate;

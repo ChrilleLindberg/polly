@@ -1,4 +1,7 @@
 <template>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
   <header>
     <h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>
@@ -7,7 +10,7 @@
   </header>
   <body>
   <div class="inputFieldTop" v-show="showView==1">
-    <input type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
+    <input autocomplete="off" type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
     <button v-show="!inputActivated" @click="activateInput" id="pen">
       <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark" id="penImg">
     </button>
@@ -18,16 +21,17 @@
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
-      <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span>
+      <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
 
-  <img id="goBack" v-on:click="$router.push('/')" src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg" alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em" >
+  <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
   <div class="middlePart">
     <div  v-show="showView==1">
     <div class="classInput">
       <div class="qInputClass">
-        <input v-for="(_, i) in question"
+        <input  autocomplete="off"
+                v-for="(_, i) in question"
                v-model="question[i]"
                v-bind:key="'question'+i"
                @input="checkWords"
@@ -473,14 +477,8 @@ button {
   position: absolute;
   left: 1em;
   top: 1em;
-  mix-blend-mode: multiply;
-  cursor:pointer
-}
-
-#goBack {
-  position: absolute;
-  left: 1em;
-  top: 1em;
+  cursor:pointer;
+  font-size: 3em;
 }
 
 footer {
