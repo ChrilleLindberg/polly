@@ -49,21 +49,6 @@ export default {
 
 <style scoped>
 
-enter-enlargeIt {
-  animation: enlargeIt 0.5s;
-}
-
-@keyframes enlargeIt {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
 /* THE MAINCONTAINER HOLDS EVERYTHING */
 .maincontainer {

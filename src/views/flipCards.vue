@@ -32,10 +32,10 @@
   </div>
   <div class="buttons">
     <button @click="swipeLeft"
-            v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length == 1">
+            v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1">
       Nej
     </button>
-    <button @click="swipeRight">
+    <button @click="swipeRight" v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0">
       JA
     </button>
   </div>
@@ -64,7 +64,7 @@ export default {
         doneCard: []
       },
       j: Number,
-      transitionType: ""
+      transitionType: "",
     }
   }, created: function () {
     this.pollId = this.$route.params.id
@@ -168,24 +168,33 @@ export default {
 
 
 .slideRight-enter-active,
-.slideRight-leave-active {
+.slideLeft-enter-active {
   transition: transform 1s;
+  transition-delay: 0.2s;
 }
 
-.slideRight-enter,
 .slideRight-leave-to {
   transform: translateY(-50%) translateX(100vw) rotateZ(45deg);
 }
 
-.slideLeft-enter-active,
+.slideRight-leave-active,
 .slideLeft-leave-active {
   transition: transform 1s;
 }
 
-.slideLeft-enter,
 .slideLeft-leave-to {
   transform: translateY(-50%) translateX(-100vw) rotate(-45deg);
+}
 
+.slideRight-enter-from,
+.slideLeft-enter-from {
+  transform-origin: center;
+  transform: scale(0.75);
+}
+
+.slideRight-enter-to,
+.slideLeft-enter-to {
+  transform: scale(1);
 }
 
 /*
