@@ -5,10 +5,14 @@
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-  <button id="buttonTest">
+  <div class="buttonTest">
+  <button  v-on:click="InfoBox()">
     OK
   </button>
-
+    <span class="Showinfobox" id="popupBox">
+      Testar om det fungerar
+    </span>
+  </div>
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -28,7 +32,7 @@
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
             </div><!-- Space hack -->
           </div>
-          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" class="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+          <button type="submit" name="go_search" @click="switchVisibleFive" class= "participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
             GO!
           </button>
         </li>
@@ -72,10 +76,25 @@
     </ul>
   </div>
 
-  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4">
+  <div id="playMode" v-show="isVisible==5">
+    <p>
+      Choose Gamemode
+    </p>
+    <ul class="growing-search-freebie">
+      <li>
+        <button type="submit" name="go_search" @click="$router.push('/flipcards/'+idResult)" class="participate" >
+          Flipcards
+        </button>
+        <button type="submit" name="go_search" @click="$router.push('/poll/'+idResult)" class="dropMenu">
+          Glossary
+        </button>
+      </li>
+    </ul>
+  </div>
+  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
     <h2>Menu</h2>
     <input id="toggle" type="checkbox" checked>
-    <ul id="test">
+    <ul class="test">
       <li id="test1" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
       <li id="test1" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
       <li id="test1" v-on:click="switchVisibleFour">Show result</li>
@@ -105,6 +124,7 @@ export default {
       editExists: false,
       resultExists: false,
       hideCon:false,
+      popup: ""
     }
   },
   created: function () {
@@ -139,6 +159,9 @@ export default {
     switchVisibleFour: function () {
       this.isVisible = 4
     },
+    switchVisibleFive: function () {
+      this.isVisible = 5
+    },
     checkPollId: function () {
       socket.emit("sendPollId", this.id)
       socket.on("checkPollId", (pollExists) =>
@@ -169,7 +192,11 @@ export default {
         this.$router.push('/result/'+ this.idResult)
       }
 
-    }
+    },
+    InfoBox: function (){
+      this.popup = document.getElementById("popupBox");
+      this.popup.classList.toggle("show");
+}
 
 
   }
@@ -181,7 +208,7 @@ export default {
 header {
   font-size: 2em;
   font-family: "beirut ";
-
+  user-select: none;
 }
 
 body {
@@ -453,7 +480,7 @@ input:focus::placeholder {
   margin-top: 3em;
   margin-bottom: -2em;
 }
-#buttonTest{
+.buttonTest{
   top: 1.5em;
   left: 1.4em;
   position: absolute;
@@ -462,7 +489,7 @@ input:focus::placeholder {
   border: none !important;
   font-size:2em;
 }
-#buttonTest:hover{
+.buttonTest:hover{
   cursor:pointer;
 }
 
@@ -516,7 +543,7 @@ nav:hover:active h2{
   height: 0%;
 }
 
-nav ul#test {
+nav ul.test {
   padding-left: 0;
   padding-top: 0;
   margin-top: 0;
@@ -529,7 +556,7 @@ nav ul#test {
   height: 99%;
 
 }
-nav ul#test li#test1{
+nav ul.test li#test1{
   border-radius: 0.5em;
   border-style: solid;
   border-width: thin;
@@ -542,14 +569,14 @@ nav ul#test li#test1{
   box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
 }
 
-nav ul#test li#test1:hover {
+nav ul.test li#test1:hover {
   cursor: pointer;
   box-shadow: 2px 2px 5px -1px rgba(0,0,0,.55);
   transition: background 3s;
 
 }
 
-nav ul#test a {
+nav ul.test a {
   display: block;
   text-transform: lowercase;
   font-weight: 200;
