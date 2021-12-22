@@ -1,4 +1,7 @@
 <template>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
   <body>
   <div id="app" v-show="isVisible">
     <div>
@@ -8,15 +11,15 @@
     </div>
     <br>
 
-    <img id="goBack" v-on:click="$router.push('/')"
+    <!--<img id="goBack" v-on:click="$router.push('/')"
          src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
-         alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em">
+         alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em"> -->
+    <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
 
     <div class="wrapper">
       <div class="icon facebook">
         <div class="tooltip">{{ uiLabels.language }}</div>
-        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
-                                                class="pictureFlag"></i></span>
+        <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag" class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
       </div>
     </div>
 
@@ -48,8 +51,8 @@
     <div class="wrapper">
       <div class="icon facebook">
         <div class="tooltip">{{ uiLabels.language }}</div>
-        <span><i class="fab fa-facebook-f"><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
-                                                class="pictureFlag"></i></span>
+        <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
+                                                class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
       </div>
     </div>
 
@@ -266,11 +269,9 @@ body {
   position: absolute;
   top: 0em;
   left: 0em;
-
   z-index: 98;
-
   backdrop-filter: blur(1.5em);
-  box-shadow: 0px 10px 15px 10px rgb(177, 80, 80);
+  box-shadow: 0px 1px 15px 10px rgb(177, 80, 80);
   background-color: rgba(9, 108, 238, 0.3);
 }
 
@@ -298,7 +299,13 @@ h1 {
   margin-top: 0.5em;
   font-family: Helvetica, Arial, sans-serif;
 }
+h2{
+  color: rgb(249, 228, 201);
+}
+h3{
+  color: rgb(249, 228, 201);
 
+}
 p {
   color: #666;
   font-size: 18px;
@@ -394,8 +401,10 @@ p {
   position: absolute;
   left: 1em;
   top: 1em;
-  mix-blend-mode: multiply;
   cursor: pointer;
+  font-size: 3em;
+  color: rgb(249, 228, 201);
+
 }
 
 .pictureFlag {
@@ -461,6 +470,11 @@ p {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+#icon{
+  color: white;
+  width: 2em;
+  height: 2em;
 }
 
 </style>
