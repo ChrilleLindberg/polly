@@ -37,6 +37,11 @@
 	"language": "English",
 	"answer": "Skriv ditt svar",
 	"userWord":"Ord",
-	"translation": "Översättning"
+	"translation": "Översättning",
+	"showResult": "Visa resultat",
+	"gamemode" : "Välj spelläge",
+	"flipcards": "Blädderkort",
+	"glossary": "Glosor"
+
 
 }

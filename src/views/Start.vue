@@ -8,14 +8,6 @@
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-  <div class="buttonTest">
-  <button  v-on:click="InfoBox()">
-    OK
-  </button>
-    <span class="Showinfobox" id="popupBox">
-      Testar om det fungerar
-    </span>
-  </div>
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -62,7 +54,7 @@
 
   <div id="showResult" v-show="isVisible==4">
     <p>
-      Show result
+      {{ uiLabels.showResult}}
     </p>
     <ul class="growing-search-freebie">
       <li>
@@ -81,15 +73,16 @@
 
   <div id="playMode" v-show="isVisible==5">
     <p>
-      Choose Gamemode
+      {{ uiLabels.gamemode }}
     </p>
     <ul class="growing-search-freebie">
       <li>
-        <button type="submit" name="go_search" @click="$router.push('/flipcards/'+idResult)" class="participate" >
-          Flipcards
+        <button type="submit" name="go_search" @click="$router.push('/flipcards/'+id)" class="participate" >
+          {{ uiLabels.flipcards }}
         </button>
-        <button type="submit" name="go_search" @click="$router.push('/poll/'+idResult)" class="dropMenu">
-          Glossary
+        <br>
+        <button type="submit" name="go_search" @click="$router.push('/poll/'+id)" class="participate">
+          {{ uiLabels.glossary }}
         </button>
       </li>
     </ul>
@@ -97,10 +90,10 @@
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
     <h2>Menu</h2>
     <input id="toggle" type="checkbox" checked>
-    <ul class="test">
-      <li id="test1" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
-      <li id="test1" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
-      <li id="test1" v-on:click="switchVisibleFour">Show result</li>
+    <ul class="startMenu">
+      <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
+      <li id="menuItem" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
+      <li id="menuItem" v-on:click="switchVisibleFour">{{ uiLabels.showResult }}</li>
     </ul>
   </nav>
 
@@ -196,16 +189,9 @@ export default {
       }
 
     },
-    InfoBox: function (){
-      this.popup = document.getElementById("popupBox");
-      this.popup.classList.toggle("show");
-}
-
-
   }
 }
 </script>
-
 <style scoped>
 
 header {
@@ -538,7 +524,7 @@ nav:hover:active h2{
   height: 0%;
 }
 
-nav ul.test {
+nav ul.startMenu {
   padding-left: 0;
   padding-top: 0;
   margin-top: 0;
@@ -551,7 +537,7 @@ nav ul.test {
   height: 99%;
 
 }
-nav ul.test li#test1{
+nav ul.startMenu li#menuItem{
   border-radius: 0.5em;
   border-style: solid;
   border-width: thin;
@@ -564,14 +550,14 @@ nav ul.test li#test1{
   box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
 }
 
-nav ul.test li#test1:hover {
+nav ul.startMenu li#menuItem:hover {
   cursor: pointer;
   box-shadow: 2px 2px 5px -1px rgba(0,0,0,.55);
   transition: background 3s;
 
 }
 
-nav ul.test a {
+nav ul.startMenu a {
   display: block;
   text-transform: lowercase;
   font-weight: 200;

@@ -37,5 +37,10 @@
 	"language": "Svenska",
 	"answer": "Write your answer",
 	"userWord":"Word",
-	"translation": "Translation"
+	"translation": "Translation",
+	"showResult": "Show Results",
+	"gamemode" : "Choose Gamemode",
+	"flipcards": "Flipcards",
+	"glossary": "Glossary"
+
 }
