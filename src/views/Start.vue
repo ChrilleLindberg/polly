@@ -119,8 +119,7 @@ export default {
       pollExists: false,
       editExists: false,
       resultExists: false,
-      hideCon:false,
-      popup: ""
+      hideCon:false
     }
   },
   created: function () {
@@ -140,8 +139,7 @@ export default {
     },
     switchVisibleOne: function () {
       this.isVisible = 1,
-          document.body.style.backgroundColor = "white";
-      document.body.style.background = "1";
+
       this.hideCon=false;
     },
     switchVisibleTwo: function () {
@@ -150,7 +148,6 @@ export default {
     },
     switchVisibleThree: function () {
       this.isVisible = 3
-      document.body.style.backgroundColor = "white";
     },
     switchVisibleFour: function () {
       this.isVisible = 4
@@ -201,8 +198,6 @@ header {
 }
 
 body {
-  /*background-color: #3C5377;
-  color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
 
@@ -239,10 +234,6 @@ ul.growing-search-freebie > li > span {
   margin-bottom: 1em;
 }
 
-.growing-search {
-
-}
-
 .growing-search div {
   display: inline-block;
   font-size: 20px;
@@ -269,7 +260,7 @@ ul.growing-search-freebie > li > span {
 .growing-search .inputpollID input:focus {
   width: 16em;
 }
-r
+
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -281,7 +272,6 @@ r
   transition: color 200ms;
 }
 .growing-search .inputpollID input:hover, .growing-search .submit button:hover {
-
   cursor: text;
 }
 
@@ -292,17 +282,11 @@ r
 input:focus::placeholder {
   color: transparent;
 }
-
-.growing-search .submit button:hover {
-  color: #3498db;
-}
-
 .pictureFlag{
-  border-radius: 60%;
+  border-radius: 0.5em;
   width:2.3em;
   height:1.6em;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
 .wrapper {
   display: inline-flex;
@@ -362,37 +346,6 @@ input:focus::placeholder {
   visibility: visible;
   pointer-events: auto;
 }
-.buttonNice{
-
-  width: auto;
-  height: auto;
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  color:#EF8584;
-  font-size: 0.5em;
-  font-weight: 800;
-  border-radius: 10px;
-  border-style: solid;
-  border-color:#EF8584;
-  background-color: white;
-  cursor: pointer;
-  margin-top:1em;
-}
-.buttonNice:hover{
-
-  color:white;
-  border-style: solid;
-  border-color:#EF8584;
-  background-color: #EF8584;
-}
-.buttonNice:active{
-
-  color:white;
-
-  border-style: solid;
-  border-color:#EF8584;
-  background-color: #EF8584;
-
-}
 .participate{
   position:static;
   color: rgb(16,111,103);
@@ -427,8 +380,6 @@ input:focus::placeholder {
   margin-bottom: 0.2em;
   margin-left: 0;
   border-radius: 0.5em;
-  background-color: darkgreen;
-  color: #FFFAF1;
   border-style: none;
   border-width: 0.2em;
   font-weight: bold;
@@ -461,28 +412,13 @@ input:focus::placeholder {
   margin-top: 3em;
   margin-bottom: -2em;
 }
-.buttonTest{
-  top: 1.5em;
-  left: 1.4em;
-  position: absolute;
-  background: transparent;
-  color: transparent;
-  border: none !important;
-  font-size:2em;
-}
-.buttonTest:hover{
-  cursor:pointer;
-}
-
 nav {
   margin: auto;
   margin-top: -3em;
   position: relative;
   width: 9em;
-
   height: 200px;
 }
-
 nav h2 {
   border-radius: 0.5em;
   position: relative;
@@ -572,9 +508,6 @@ nav ul.startMenu a {
   margin: 0px!important;
   top: 0em;
   left: 0em;
-
-  /*background-color: #FBE4C9;*/
-  /*transition: 0.5ms;*/
   animation-name: animate;
   animation-direction: alternate;
   animation-duration: 44s;
