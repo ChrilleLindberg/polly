@@ -191,7 +191,7 @@ body {
   /*background-color: #3C5377;
   color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.3em;
+  font-size: 1em;
 
 }
 

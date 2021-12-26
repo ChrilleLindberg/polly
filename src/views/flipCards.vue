@@ -6,38 +6,46 @@
   <!--<gameCard v-for="card in gameCards" v-bind:key="card">
 
   </gameCard>-->
+
   <transition-group v-bind:name="transitionType">
     <gameCard v-for="(item, i) in gameCards.question"
               v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
               :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]">
     </gameCard>
   </transition-group>
-
-  <!--</transition>-->
-  <div class="barContainer">
-    <p>
-      Antal kort kvar: {{ gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length }}
-    </p>
-    <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
-      Du har klarat alla ord!
-    </div>
-
-    <div class="progressBar">
-      <div class="progressBarGreen"
-           v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
+  <div class="centerContainer">
+    <div class="aboveCenterContainer">
+      <div class="barTextContainer">
+        <h4 class="barText"> Antal kort kvar: {{
+            gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length
+          }} </h4>
+      </div>
+      <div class="barContainer">
+        <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
+          Du har klarat alla ord!
+        </div>
+        <div class="progressBar">
+          <div class="progressBarGreen"
+               v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
+          </div>
+        </div>
       </div>
     </div>
-
-
-  </div>
-  <div class="buttons">
-    <button @click="swipeLeft"
-            v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1">
-      Nej
-    </button>
-    <button @click="swipeRight" v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0">
-      JA
-    </button>
+    <div class="belowCenterContainer">
+      <div class="buttons">
+        <button @click="swipeLeft"
+                v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1"
+                >
+          <img id="buttonImage"
+              src="https://cdn.vox-cdn.com/thumbor/nK-7VljWiIL9fCXN8V6eFXTYauc=/36x0:664x353/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/51616429/ios-10-shrug-emoji.0.png">
+        </button>
+        <button @click="swipeRight"
+                v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0">
+          <img id="buttonImage"
+               src="https://cdn.vox-cdn.com/thumbor/nK-7VljWiIL9fCXN8V6eFXTYauc=/36x0:664x353/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/51616429/ios-10-shrug-emoji.0.png">
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -133,35 +141,69 @@ export default {
 <style scoped>
 
 .barContainer {
-  height: 10em;
+  height: 2em;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
+.centerContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.aboveCenterContainer {
+  position: relative;
+  bottom: 240px;
+}
+
+.belowCenterContainer {
+  position: relative;
+  top: 220px;
+}
+
+.barTextContainer {
+  margin-top: 10%;
+  margin-bottom: 0.2em;
+}
+
 .progressBar {
   position: absolute;
-  top: 15%;
   background-color: red;
-  height: 1em;
-  width: 40%;
-  position: center;
-  vertical-align: center;
+  height: 0.2em;
+  width: 10em;
+  border-radius: 2em;
+  border-style: solid;
+  border-color: gray;
+  border-width: 0.1em;
 }
 
 .progressBarGreen {
   height: 100%;
   background-color: green;
   transition: width 2s ease-in-out;
+  border-radius: 2em;
+
 }
 
 .buttons {
-  left:0;
   width: 100%;
   position: absolute;
   bottom: 15%;
-  display: flex;
-  justify-content: center;
+}
+
+button {
+  width: 2em;
+  height: 2em;
+  overflow: hidden;
+}
+
+#buttonImage {
+  height: 1em;
+  right: -10em;
 }
 
 /*This block (ends here) is merely styling for the flip card, and is NOT an essential part of the flip code */
@@ -173,28 +215,31 @@ export default {
   transition-delay: 0.2s;
 }
 
-.slideRight-leave-to {
-  transform: translateY(-50%) translateX(100vw) rotateZ(45deg);
-}
-
 .slideRight-leave-active,
 .slideLeft-leave-active {
+  z-index: 10;
   transition: transform 1s;
 }
 
+.slideRight-leave-to {
+  transform: translateY(-50%) translateX(20vw) rotateZ(45deg);
+}
+
 .slideLeft-leave-to {
+  z-index: 10;
   transform: translateY(-50%) translateX(-100vw) rotate(-45deg);
 }
 
 .slideRight-enter-from,
 .slideLeft-enter-from {
-  transform-origin: center;
-  transform: scale(0.75);
+  transform-origin: -25% -25%;
+  transform: scale(0.75) translate(-50%, -50%);
 }
 
 .slideRight-enter-to,
 .slideLeft-enter-to {
-  transform: scale(1);
+  transform-origin: -25% -25%;
+  transform: scale(1) translate(-50%, -50%);
 }
 
 /*
