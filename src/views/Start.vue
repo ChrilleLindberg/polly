@@ -8,10 +8,6 @@
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-  <button id="buttonTest">
-    OK
-  </button>
-
   <div class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
@@ -31,7 +27,7 @@
                      v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
             </div><!-- Space hack -->
           </div>
-          <button type="submit" name="go_search" @click="$router.push('/poll/'+id) ; console.log('halla')" class="participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
+          <button type="submit" name="go_search" @click="switchVisibleFive" class= "participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
             GO!
           </button>
         </li>
@@ -58,7 +54,7 @@
 
   <div id="showResult" v-show="isVisible==4">
     <p>
-      Show result
+      {{ uiLabels.showResult}}
     </p>
     <ul class="growing-search-freebie">
       <li>
@@ -75,13 +71,29 @@
     </ul>
   </div>
 
-  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4">
+  <div id="playMode" v-show="isVisible==5">
+    <p>
+      {{ uiLabels.gamemode }}
+    </p>
+    <ul class="growing-search-freebie">
+      <li>
+        <button type="submit" name="go_search" @click="$router.push('/flipcards/'+id)" class="participate" >
+          {{ uiLabels.flipcards }}
+        </button>
+        <br>
+        <button type="submit" name="go_search" @click="$router.push('/poll/'+id)" class="participate">
+          {{ uiLabels.glossary }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
     <h2>Menu</h2>
     <input id="toggle" type="checkbox" checked>
-    <ul id="test">
-      <li id="test1" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
-      <li id="test1" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
-      <li id="test1" v-on:click="switchVisibleFour">Show result</li>
+    <ul class="startMenu">
+      <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
+      <li id="menuItem" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
+      <li id="menuItem" v-on:click="switchVisibleFour">{{ uiLabels.showResult }}</li>
     </ul>
   </nav>
 
@@ -107,7 +119,7 @@ export default {
       pollExists: false,
       editExists: false,
       resultExists: false,
-      hideCon:false,
+      hideCon:false
     }
   },
   created: function () {
@@ -127,8 +139,7 @@ export default {
     },
     switchVisibleOne: function () {
       this.isVisible = 1,
-          document.body.style.backgroundColor = "white";
-      document.body.style.background = "1";
+
       this.hideCon=false;
     },
     switchVisibleTwo: function () {
@@ -137,10 +148,12 @@ export default {
     },
     switchVisibleThree: function () {
       this.isVisible = 3
-      document.body.style.backgroundColor = "white";
     },
     switchVisibleFour: function () {
       this.isVisible = 4
+    },
+    switchVisibleFive: function () {
+      this.isVisible = 5
     },
     checkPollId: function () {
       socket.emit("sendPollId", this.id)
@@ -172,24 +185,19 @@ export default {
         this.$router.push('/result/'+ this.idResult)
       }
 
-    }
-
-
+    },
   }
 }
 </script>
-
 <style scoped>
 
 header {
   font-size: 2em;
   font-family: "beirut ";
-
+  user-select: none;
 }
 
 body {
-  /*background-color: #3C5377;
-  color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1em;
 
@@ -226,10 +234,6 @@ ul.growing-search-freebie > li > span {
   margin-bottom: 1em;
 }
 
-.growing-search {
-
-}
-
 .growing-search div {
   display: inline-block;
   font-size: 20px;
@@ -256,7 +260,7 @@ ul.growing-search-freebie > li > span {
 .growing-search .inputpollID input:focus {
   width: 16em;
 }
-r
+
 .growing-search .submit button {
   margin-left: 0;
   border: none;
@@ -268,7 +272,6 @@ r
   transition: color 200ms;
 }
 .growing-search .inputpollID input:hover, .growing-search .submit button:hover {
-
   cursor: text;
 }
 
@@ -279,17 +282,11 @@ r
 input:focus::placeholder {
   color: transparent;
 }
-
-.growing-search .submit button:hover {
-  color: #3498db;
-}
-
 .pictureFlag{
-  border-radius: 60%;
+  border-radius: 0.5em;
   width:2.3em;
   height:1.6em;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
 .wrapper {
   display: inline-flex;
@@ -349,37 +346,6 @@ input:focus::placeholder {
   visibility: visible;
   pointer-events: auto;
 }
-.buttonNice{
-
-  width: auto;
-  height: auto;
-  padding: 0.5em 0.5em 0.5em 0.5em;
-  color:#EF8584;
-  font-size: 0.5em;
-  font-weight: 800;
-  border-radius: 10px;
-  border-style: solid;
-  border-color:#EF8584;
-  background-color: white;
-  cursor: pointer;
-  margin-top:1em;
-}
-.buttonNice:hover{
-
-  color:white;
-  border-style: solid;
-  border-color:#EF8584;
-  background-color: #EF8584;
-}
-.buttonNice:active{
-
-  color:white;
-
-  border-style: solid;
-  border-color:#EF8584;
-  background-color: #EF8584;
-
-}
 .participate{
   position:static;
   color: rgb(16,111,103);
@@ -414,8 +380,6 @@ input:focus::placeholder {
   margin-bottom: 0.2em;
   margin-left: 0;
   border-radius: 0.5em;
-  background-color: darkgreen;
-  color: #FFFAF1;
   border-style: none;
   border-width: 0.2em;
   font-weight: bold;
@@ -448,28 +412,13 @@ input:focus::placeholder {
   margin-top: 3em;
   margin-bottom: -2em;
 }
-#buttonTest{
-  top: 1.5em;
-  left: 1.4em;
-  position: absolute;
-  background: transparent;
-  color: transparent;
-  border: none !important;
-  font-size:2em;
-}
-#buttonTest:hover{
-  cursor:pointer;
-}
-
 nav {
   margin: auto;
   margin-top: -3em;
   position: relative;
   width: 9em;
-
   height: 200px;
 }
-
 nav h2 {
   border-radius: 0.5em;
   position: relative;
@@ -511,7 +460,7 @@ nav:hover:active h2{
   height: 0%;
 }
 
-nav ul#test {
+nav ul.startMenu {
   padding-left: 0;
   padding-top: 0;
   margin-top: 0;
@@ -524,7 +473,7 @@ nav ul#test {
   height: 99%;
 
 }
-nav ul#test li#test1{
+nav ul.startMenu li#menuItem{
   border-radius: 0.5em;
   border-style: solid;
   border-width: thin;
@@ -537,14 +486,14 @@ nav ul#test li#test1{
   box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
 }
 
-nav ul#test li#test1:hover {
+nav ul.startMenu li#menuItem:hover {
   cursor: pointer;
   box-shadow: 2px 2px 5px -1px rgba(0,0,0,.55);
   transition: background 3s;
 
 }
 
-nav ul#test a {
+nav ul.startMenu a {
   display: block;
   text-transform: lowercase;
   font-weight: 200;
@@ -559,9 +508,6 @@ nav ul#test a {
   margin: 0px!important;
   top: 0em;
   left: 0em;
-
-  /*background-color: #FBE4C9;*/
-  /*transition: 0.5ms;*/
   animation-name: animate;
   animation-direction: alternate;
   animation-duration: 44s;
