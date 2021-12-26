@@ -35,6 +35,9 @@ export default {
         this.rotateClass = "thecard2"
         console.log("thecard2")
       }
+    },
+    setTheCard: function () {
+      this.rotateClass = "thecard"
     }
   }
 

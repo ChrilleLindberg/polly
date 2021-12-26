@@ -10,7 +10,8 @@
   <transition-group v-bind:name="transitionType">
     <gameCard v-for="(item, i) in gameCards.question"
               v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
-              :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]">
+              :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]"
+              :ref="'card' + i">
     </gameCard>
   </transition-group>
   <div class="centerContainer">
@@ -73,6 +74,7 @@ export default {
       },
       j: Number,
       transitionType: "",
+      card: ["card1", "card2", "card3", "card4"]
     }
   }, created: function () {
     this.pollId = this.$route.params.id
@@ -107,12 +109,18 @@ export default {
         this.j--;
       }
       this.gameCards.showCard[this.j] = true;
+
+      this.$refs.card0.setTheCard()
+      this.$refs.card1.setTheCard()
+      this.$refs.card2.setTheCard()
+      this.$refs.card3.setTheCard()
+
       console.log("left j end", this.j)
 
     }
     ,
     swipeRight: function () {
-      this.transitionType = "slideRight";                    //skulle vi kunna använda doneCard här istället?
+      this.transitionType = "slideRight";
       this.gameCards.showCard[this.j] = false;
       this.gameCards.doneCard[this.j] = true;
       this.j--;
