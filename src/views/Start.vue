@@ -189,7 +189,7 @@ body {
   color: #EF8584;*/
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.3em;
-
+  overflow:hidden;
 }
 
 #goBack {

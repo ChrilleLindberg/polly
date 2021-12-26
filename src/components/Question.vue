@@ -1,15 +1,15 @@
 <template>
 
   <div class="container">
-<h2 style="display:flex;text-decoration: underline;" >{{uiLabels.userWord}}</h2>
-    <h2 style="display:flex;margin-right:5%; margin-left:12%;text-decoration: underline;">{{uiLabels.translation }}</h2>
+<h2 style="display:flex;text-decoration: underline;" > {{uiLabels.userWord}}</h2>
+    <h2 style="display:flex;margin-right:5%; margin-left:12%;text-decoration: underline;"> {{uiLabels.translation }}</h2>
   </div>
   <div v-for="(q, i) in question.q" :key="q">
    <div class="container">
    <div id="answer"><span style="padding-top:0.5em;">  {{ q }}</span></div>
     <div id="picture"><img src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg"  >
     </div>
-    <input id="input" style="display: flex" type="string" class="answers" v-model="myAnswers[i]" v-bind:placeholder="uiLabels.answer" autocomplete="off">
+    <input id="input" style="display: flex" type="string" class="answers" v-model="myAnswers[i]" v-bind:placeholder=" uiLabels.answer" autocomplete="off">
   </div>
   </div>
 
@@ -63,7 +63,7 @@ export default {
   flex-direction: row;
   align-items: end;
   width:auto;
-  margin-right: 33%;
+  margin-right: 32%;
 
 }
 #picture{
@@ -71,6 +71,7 @@ export default {
   height:2em;
   width:2em;
   display:flex;
+
 
 
 }

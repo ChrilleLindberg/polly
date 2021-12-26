@@ -249,6 +249,7 @@ body h1{
   border-style: solid;
   border-color:#EF8584;
   background-color: white;
+  cursor: pointer;
 }
 .buttonNice:hover{
 
