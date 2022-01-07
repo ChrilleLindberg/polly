@@ -376,7 +376,8 @@ p {
   margin-left: 10%;
   margin-right: 10%;
   overflow: auto;
-  height: 20em;
+  height: auto;
+  max-height: 20em;
   box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
   background-color: white;
 

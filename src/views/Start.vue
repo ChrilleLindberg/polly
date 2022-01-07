@@ -2,7 +2,8 @@
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
+  <body>
+  <div v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]">
   <header id="movedown">
     <h1>
       {{ uiLabels.welcomeMessage }}
@@ -96,7 +97,7 @@
       <li id="menuItem" v-on:click="switchVisibleFour">{{ uiLabels.showResult }}</li>
     </ul>
   </nav>
-
+  </div>
   </body>
 </template>
 
@@ -203,7 +204,6 @@ header {
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1em;
-
 }
 
 #goBack {
@@ -419,7 +419,6 @@ input:focus::placeholder {
 }
 nav {
   margin: auto;
-  margin-top: -3em;
   position: relative;
   width: 9em;
   height: 200px;
@@ -525,6 +524,9 @@ nav ul.startMenu a {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.container::-webkit-scrollbar {
+  display: none;
+}
 
 .nextPage{
   width: 100%;
@@ -538,115 +540,147 @@ nav ul.startMenu a {
   background-color: rgb(249,228,201);
 }
 
+
+
 @keyframes animate{
   0%
   {
     background-color: rgb(236,87,46);
     color: rgb(255,238,235);
     background-image:url(/eye/eyeLightPink.svg);
+
   }
   9.71%{
-    transform: scale(1,1);}
+    transform: scale(1,1);
+
+  ;}
   11.1%{
     background-color: rgb(236,87,46);
     color: rgb(255,238,235);
     background-image:url(/eye/eyeLightPink.svg);
+
+
   }
   11.11%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
-    transform: scale(1.01,1.01);}
+    transform: scale(1.01,1.01);
+
+  }
   12%{
     transform: scale(1,1);
+
   }
   20.82%{
   transform: scale(1,1);
+
   }
   22.21%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+
   }
   22.22%{
     background-color: rgb(255,238,235);
     color: rgb(254,70,21);
     background-image:url(/eye/eyeRed.svg);
     transform: scale(1.01,1.01);
+
   }
   23.1%{
   transform: scale(1,1);
+
   }
   31.93%{
   transform: scale(1,1);
+
   }
   33.32%{
     background-color: rgb(255,238,235);
     color: rgb(254,70,21);
     background-image:url(/eye/eyeRed.svg);
+
   }
   33.33%{
     background-color: rgb(251,228,201);
     color: rgb(239,134,132);
     background-image:url(/eye/eyePinkRed.svg);
     transform: scale(1.01,1.01);
+
   }
 34.2%{
   transform: scale(1,1);
+
 }
   43.04%{
   transform: scale(1,1);
+
+
   }
   44.43%{
     background-color: rgb(251,228,201);
     color: rgb(239,134,132);
     background-image:url(/eye/eyePinkRed.svg);
+
   }
   44.44%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
     transform: scale(1.01,1.01);
+
   }
   45.2%{
     transform: scale(1,1);
+
   }
   54.15%{
   transform: scale(1,1);
+
   }
   55.54%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+
   }
   55.55%{
     background-color: rgb(16,111,103);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
     transform: scale(1.01,1.01);
+
   }
   56.3%{
     transform: scale(1,1);
+
   }
   65.26%{
   transform: scale(1,1);
+
   }
   66.65%{
     background-color: rgb(16,111,103);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
+
   }
   66.66%{
     background-color: rgb(241,153,125);
     color: rgb(249,228,201);
     background-image:url(/eye/eyeYellow.svg);
     transform: scale(1.01,1.01);
+
   }
   67.5%{
     transform: scale(1,1);
+
   }
   76.37%{
   transform: scale(1,1);
+
   }
   77.76%{
     background-color: rgb(241,153,125);
@@ -658,9 +692,11 @@ nav ul.startMenu a {
     color: rgb(0,93,158);
     background-image:url(/eye/eyeBlue.svg);
     transform: scale(1.01,1.01);
+
   }
   78.6%{
     transform: scale(1,1);
+
   }
   87.48%{
   transform: scale(1,1);
@@ -682,11 +718,12 @@ nav ul.startMenu a {
   }
   98.6%{
   transform: scale(1,1);
+
   }
   100%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
-    background-image:url(/eye/eyeYellow.svg);
+
   }
 
 }

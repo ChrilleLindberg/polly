@@ -64,7 +64,7 @@ export default {
   top:3em;
   margin-top:1em;
   width:auto;
-  background-color: lightgray;
+  background-color: white;
   left:2em;
   display:flex;
   align-items:end;

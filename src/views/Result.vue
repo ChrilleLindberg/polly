@@ -203,7 +203,8 @@ body h1{
 
 .wrapper3 {
   margin: 1em 33% 1em 33%;
-  height:20em;
+  height: auto;
+  max-height:20em;
   overflow: auto;
 
   box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
