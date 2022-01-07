@@ -22,9 +22,6 @@
           }} </h4>
       </div>
       <div class="barContainer">
-        <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
-          Du har klarat alla ord!
-        </div>
         <div class="progressBar">
           <div class="progressBarGreen"
                v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
@@ -32,19 +29,22 @@
         </div>
       </div>
     </div>
-    <div class="belowCenterContainer">
-      <div class="buttons">
-        <button @click="swipeLeft"
-                v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1"
-                >
-          <img id="buttonImage"
-              src="https://cdn.vox-cdn.com/thumbor/nK-7VljWiIL9fCXN8V6eFXTYauc=/36x0:664x353/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/51616429/ios-10-shrug-emoji.0.png">
-        </button>
-        <button @click="swipeRight"
-                v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0">
-          <img id="buttonImage"
-               src="https://cdn.vox-cdn.com/thumbor/nK-7VljWiIL9fCXN8V6eFXTYauc=/36x0:664x353/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/51616429/ios-10-shrug-emoji.0.png">
-        </button>
+    <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
+      Grattis! Du har klarat alla ord!
+      <div>
+        <button @click="this.$router.go()">Spela igen</button>
+      </div>
+    </div>
+  </div>
+  <div class="belowCenterContainer">
+    <div class="buttonsInner">
+      <!--  -->
+      <img id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
+           src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png">
+      <div class="fill"></div>
+      <div>
+        <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
+             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641305827~hmac=2cb2cf5dc11c9051935814b051f8bf2f">
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@ export default {
         question: [""],
         answers: [""],
         showCard: [],
-        doneCard: []
+        doneCard: [false]
       },
       j: Number,
       transitionType: "",
@@ -168,11 +168,6 @@ export default {
   bottom: 240px;
 }
 
-.belowCenterContainer {
-  position: relative;
-  top: 220px;
-}
-
 .barTextContainer {
   margin-top: 10%;
   margin-bottom: 0.2em;
@@ -180,12 +175,12 @@ export default {
 
 .progressBar {
   position: absolute;
-  background-color: red;
+  background-color: pink;
   height: 0.2em;
   width: 10em;
   border-radius: 2em;
   border-style: solid;
-  border-color: gray;
+  border-color: black;
   border-width: 0.1em;
 }
 
@@ -197,21 +192,47 @@ export default {
 
 }
 
-.buttons {
-  width: 100%;
+.belowCenterContainer {
   position: absolute;
-  bottom: 15%;
+  width: 50%;
+  transform: translateX(50%);
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
 }
 
-button {
+.buttonsInner {
+  display: flex;
+  justify-content: center;
+}
+
+.fill {
   width: 2em;
-  height: 2em;
-  overflow: hidden;
+  position: relative;
 }
 
-#buttonImage {
-  height: 1em;
+#buttonImageCross {
+  height: 5em;
   right: -10em;
+  grid-column: 1;
+  cursor: pointer;
+}
+
+#buttonImageCheck {
+  height: 5em;
+  right: -10em;
+  grid-column: 3;
+  cursor: pointer;
+  position: relative;
+  right: 8px;
+}
+
+#buttonImageCheck:hover, #buttonImageCross:hover {
+  transform: scale(0.95);
+}
+
+.disabledButton {
+  opacity: 0.5;
 }
 
 /*This block (ends here) is merely styling for the flip card, and is NOT an essential part of the flip code */
@@ -230,7 +251,7 @@ button {
 }
 
 .slideRight-leave-to {
-  transform: translateY(-50%) translateX(20vw) rotateZ(45deg);
+  transform: translateY(-50%) translateX(100vw) rotateZ(45deg);
 }
 
 .slideLeft-leave-to {

@@ -129,7 +129,7 @@ export default {
   font-size: 24px;
   text-align: center;
   position: relative;
-  top: 35%;
+  top: 40%;
 }
 
 </style>
