@@ -41,6 +41,9 @@
 	"showResult": "Show Results",
 	"gamemode" : "Choose Gamemode",
 	"flipcards": "Flipcards",
-	"glossary": "Glossary"
-
+	"glossary": "Glossary",
+	"nameStudent": "Name",
+	"amount": "Amount correct",
+	"resetAnswers": "Reset the results",
+	"textReset": "Are you sure you want to reset the results?"
 }

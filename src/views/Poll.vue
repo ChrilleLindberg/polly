@@ -11,9 +11,6 @@
     </div>
     <br>
 
-    <!--<img id="goBack" v-on:click="$router.push('/')"
-         src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
-         alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em"> -->
     <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
 
     <div class="wrapper">
@@ -152,8 +149,11 @@ export default {
       this.showModal = false;
 
       for (let i = 0; i < this.question.a.length; i++) {
+        if (this.myAnswers.answer[i]!=null){
+
+          this.answersConverted[i] = this.myAnswers.answer[i].toLowerCase()
+        }
         this.questionsConverted[i] = this.question.a[i].toLowerCase()
-        this.answersConverted[i] = this.myAnswers.answer[i].toLowerCase()
 
         if (this.questionsConverted[i] === this.answersConverted[i]) {
           this.numbCorrectAnswers += 1;

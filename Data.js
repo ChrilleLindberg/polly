@@ -96,6 +96,13 @@ Data.prototype.getMyAnswer =function(numberCorrect,pollId, name) {
 
 
 }
+Data.prototype.resetedAnswer =function(pollId){
+  const poll = this.polls[pollId];
+  console.log("är vi innte i resetedanswer före" )
+  poll.studentCorrects=[];
+  console.log("är vi innte i resetedanswer efter" + poll.studentCorrects)
+  return poll.studentCorrects
+}
 Data.prototype.getResults = function(pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {

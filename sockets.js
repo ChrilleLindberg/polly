@@ -61,6 +61,9 @@ function sockets(io, socket, data) {
     console.log("sockettest")
     socket.emit('dataGetResults', data.getResults(pollId));
   });
+  socket.on('resetAnswers', function(pollId) {
+    socket.emit('newTest', data.resetedAnswer(pollId));
+  });
 
   socket.on('resetAll', () => {
     data = new Data();
