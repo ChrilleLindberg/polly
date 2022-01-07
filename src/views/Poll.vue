@@ -11,9 +11,6 @@
     </div>
     <br>
 
-    <!--<img id="goBack" v-on:click="$router.push('/')"
-         src="https://as1.ftcdn.net/v2/jpg/03/66/63/52/500_F_366635299_S1MlOWCcUVFPwgtxznb89r56tvyBBBVU.jpg"
-         alt="{{uiLabels.goBack}}" style="width: 3em; height: 3em"> -->
     <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
 
     <div class="wrapper">
@@ -239,12 +236,10 @@ body {
 
   box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, .35);
   transition: 0.4s ease-out;
-
-&
-:hover {
-  box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
 }
 
+.button:hover {
+  box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
 }
 
 .xModulButton {
