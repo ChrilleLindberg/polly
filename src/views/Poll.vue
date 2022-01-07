@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-  <div id="app" v-show="isVisible">
+  <div v-show="isVisible">
     <div>
       <h1>Poll-ID: {{ pollId }}</h1>
       <Question v-bind:question="question"
@@ -58,25 +58,34 @@
 
     <h3> {{ uiLabels.youHave }} {{ numbCorrectAnswers }}/{{ question.a.length }} {{ uiLabels.correct }} </h3>
     <br>
-    <h3 class="rubrikSpalt">
+    <h4 class="rubrikSpalt">
       <div>{{ uiLabels.question }}</div>
-      <div>{{ uiLabels.answers }}</div>
+      <div>{{ uiLabels.yourAnswer}}</div>
+      <div>{{uiLabels.correctAnswer}}</div>
       <div>{{ uiLabels.result }}</div>
-    </h3>
+    </h4>
     <div class="individualResults">
       <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
       <span> {{ q }}</span>
     </span>
-        <span v-for="(a) in myAnswers.answer" :key="a" id="table2">
+        <span v-for="(a,i) in myAnswers.answer" :key="a" id="table2">
 
-      <span> {{ a }}</span>
+      <span v-bind:class="{table2incorrect:!correctOrNot[i]}"> {{ a }}</span>
     </span>
-        <span v-for="(t) in correctOrNot" :key="t" id="table3">
 
-        <span> <img v-bind:src="t" alt="true" style="height: 40px; width:50px"> </span>
+        <span v-for="(b) in question.a" :key="b" id="table3">
+
+        <span> {{ b }}</span>
       </span>
 
+        <span v-for="(t,i) in correctOrNot" :key="t" id="table4">
+        <i class="fa fa-times" id="timesIcon" aria-hidden="true" v-show="!correctOrNot[i]"></i>
+          <i class="fa fa-check" id="checkIcon" aria-hidden="true" v-show="correctOrNot[i]"></i>
+          <!--<span>
+
+          <img v-bind:src="[{'https://cdn.pixabay.com/photo/2013/07/13/10/48/check-157822_1280.png':t[i]},{'https://cdn.pixabay.com/photo/2014/03/24/13/45/incorrect-294245_960_720.png': !t[i]}]" alt="true" style="height: 40px; width:50px"> </span>-->
+      </span>
       </div>
     </div>
     <div id="buttonUnder">
@@ -121,7 +130,8 @@ export default {
       isVisible: true,
       uiLabels: {},
       questionsConverted: [],
-      answersConverted: []
+      answersConverted: [],
+      incorrectAnswer: false
     }
 
   },
@@ -153,16 +163,21 @@ export default {
       this.showModal = false;
 
       for (let i = 0; i < this.question.a.length; i++) {
-        this.questionsConverted[i] = this.question.a[i].toLowerCase()
-        this.answersConverted[i] = this.myAnswers.answer[i].toLowerCase()
 
-        if (this.questionsConverted[i] === this.answersConverted[i]) {
+        this.questionsConverted[i] = this.question.a[i].toLowerCase()
+
+        if (typeof (this.myAnswers.answer[i]) != "undefined") {
+          this.answersConverted[i] = this.myAnswers.answer[i].toLowerCase()
+
+        }
+
+        if (this.questionsConverted[i] == this.answersConverted[i]) {
           this.numbCorrectAnswers += 1;
-          this.correctOrNot.push("https://cdn.pixabay.com/photo/2013/07/13/10/48/check-157822_1280.png");
+          this.correctOrNot.push(true);
 
 
         } else {
-          this.correctOrNot.push("https://cdn.pixabay.com/photo/2014/03/24/13/45/incorrect-294245_960_720.png")
+          this.correctOrNot.push(false)
         }
       }
       socket.emit("finishAnswer", this.numbCorrectAnswers, this.pollId, this.nameContendor)
@@ -206,17 +221,6 @@ body {
 
 }
 
-#app {
-  width: 100%;
-  height: 100%;
-  /*display: flex; makes the table go vertical instead*/
-  justify-content: center;
-  align-items: center;
-
-
-  overflow-x: hidden;
-}
-
 .button {
   appearance: none;
   outline: none;
@@ -233,7 +237,7 @@ body {
   font-size: 18px;
   font-weight: 700;
 
-  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, .35);
   transition: 0.4s ease-out;
 
 &
@@ -305,7 +309,7 @@ h2 {
   color: rgb(249, 228, 201);
 }
 
-h3 {
+h4, h3 {
   color: rgb(249, 228, 201);
 
 }
@@ -354,16 +358,16 @@ p {
 }
 
 .rubrikSpalt {
-  margin-left: 33%;
-  margin-right: 33%;
+  margin-left: 10%;
+  margin-right: 10%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-flow: column;
 }
 
 .individualResults {
-  margin-left: 33%;
-  margin-right: 33%;
+  margin-left: 10%;
+  margin-right: 10%;
   overflow: scroll;
   height: 20em;
   background: #CAD2F9;
@@ -373,7 +377,7 @@ p {
 
 .table {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-flow: column;
   grid-gap: 1.5em;
 
@@ -392,13 +396,23 @@ p {
   grid-column: 2;
   border-top: 1px solid #dfdfdf;
   padding-top: 2em;
+  color: green;
+}
+
+.table2incorrect {
+  color: red;
 }
 
 #table3 {
   grid-column: 3;
   border-top: 1px solid #dfdfdf;
   padding-top: 2em;
-  color: red;
+}
+
+#table4 {
+  grid-column: 4;
+  border-top: 1px solid #dfdfdf;
+  padding-top: 2em;
 }
 
 #goBack {
@@ -547,6 +561,14 @@ p {
 .participate:hover:active {
   transform: translateY(10px);
   box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .35);
+}
+
+#timesIcon {
+  color: red;
+}
+
+#checkIcon {
+  color: green;
 }
 
 </style>

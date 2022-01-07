@@ -41,6 +41,8 @@
 	"showResult": "Show Results",
 	"gamemode" : "Choose Gamemode",
 	"flipcards": "Flipcards",
-	"glossary": "Glossary"
+	"glossary": "Glossary",
+	"yourAnswer": "Your answer",
+	"correctAnswer": "Correct answer"
 
 }

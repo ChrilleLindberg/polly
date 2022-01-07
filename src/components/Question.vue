@@ -86,12 +86,10 @@ h2 {
 .textContainer {
   display: grid;
   grid-template-columns: 10fr 1fr 10fr;
+  justify-content: center;
   margin-bottom: 1em;
-  justify-content: flex-end;
   margin-left: 10%;
   margin-right: 10%;
-  flex-direction: row;
-  align-items: end;
   width: auto;
 }
 
