@@ -8,7 +8,7 @@
       {{ uiLabels.welcomeMessage }}
     </h1>
   </header>
-  <div class="wrapper">
+  <div type="submit" class="wrapper">
     <div class="icon facebook">
       <div class="tooltip">{{uiLabels.language}}</div>
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
@@ -211,7 +211,7 @@ body {
   left: 1em;
   top: 1em;
   cursor:pointer;
-  font-size: 3em;
+  font-size: 2.5em;
 
 }
 
