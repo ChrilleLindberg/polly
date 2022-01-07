@@ -41,7 +41,11 @@
 	"showResult": "Visa resultat",
 	"gamemode" : "Välj spelläge",
 	"flipcards": "Blädderkort",
-	"glossary": "Glosor"
+	"glossary": "Glosor",
+	"nameStudent": "Namn",
+	"amount": "Antal rätt",
+	"resetAnswers": "Nollställ resultaten",
+	"textReset": "Är du säker på att du vill nollställa resultaten?"
 
 
 }
