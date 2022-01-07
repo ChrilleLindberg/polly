@@ -1,16 +1,22 @@
 <template>
 
-  <div class="container">
-    <h2>{{ uiLabels.userWord }}</h2>
-    <h2 style="margin-right:5%; margin-left:19%;">{{ uiLabels.translation }}</h2>
+  <div class="textContainer">
+    <div id="userWord">
+      <h2>{{ uiLabels.userWord }}</h2>
+    </div>
+    <div id="translaion">
+      <h2 id="translationText">{{ uiLabels.translation }}</h2>
+    </div>
   </div>
-  <div v-for="(q, i) in question.q" :key="q">
-    <div class="container">
-      <div id="answer"><span style="padding-top:0.5em;"> {{ q }}</span></div>
-      <div id="picture"><img src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg">
+  <div class="gridContainer">
+    <div v-for="(q, i) in question.q" :key="q">
+      <div class="container">
+        <div id="answer"><span style="padding-top:0.5em;"> {{ q }}</span></div>
+        <div id="picture"><img src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg">
+        </div>
+        <input id="input" style="display: flex" type="string" class="answers" v-model="myAnswers[i]"
+               v-bind:placeholder="uiLabels.answer" autocomplete="off">
       </div>
-      <input id="input" style="display: flex" type="string" class="answers" v-model="myAnswers[i]"
-             v-bind:placeholder="uiLabels.answer" autocomplete="off">
     </div>
   </div>
 
@@ -56,21 +62,37 @@ export default {
 </script>
 <style scoped>
 
-h2{
-  display:flex;
+h2 {
+  display: flex;
   text-decoration: underline 0.09em;
   color: rgb(249, 228, 201);
   font-family: Helvetica, Arial, sans-serif;
 
 }
+
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 10fr 1fr 10fr;
+  grid-template-rows: repeat(auto-fit, 1fr);
   margin-bottom: 1em;
   justify-content: flex-end;
+  margin-left: 10%;
+  margin-right: 10%;
   flex-direction: row;
   align-items: end;
   width: auto;
-  margin-right: 33%;
+}
+
+.textContainer {
+  display: grid;
+  grid-template-columns: 10fr 1fr 10fr;
+  margin-bottom: 1em;
+  justify-content: flex-end;
+  margin-left: 10%;
+  margin-right: 10%;
+  flex-direction: row;
+  align-items: end;
+  width: auto;
 }
 
 #picture {
@@ -81,13 +103,16 @@ h2{
 }
 
 #answer {
+  text-align: center;
   display: flex;
+  justify-content: center;
   cursor: default;
   /*border-style: solid;*/
   padding: 0em 1em 0em 1em;
-  height: 2em;
-  width: auto;
+  height: auto;
+  min-height: 2em;
   border-radius: 0.5em;
+  horiz-align: right;
   /*border-color: #EF8584;
   border-width: 0.2em; */
   background-color: lightgray;
@@ -100,11 +125,12 @@ h2{
   /*border-style: solid;*/
   padding: 0em 1em 0em 1em;
   height: 2em;
-  width: 20%;
   left: 50em;
   border-radius: 0.5em;
+  min-width: 1em;
   /*order-color: #EF8584;
   border-width: 0.2em; */
+  text-align: center;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -116,6 +142,21 @@ h2{
   align-items: end;
   width: auto;
   margin-right: 35%;
+}
+
+#translationText {
+  grid-column: 3;
+}
+
+#translaion {
+  grid-column: 3;
+  display: flex;
+  justify-content: center;
+}
+
+#userWord {
+  display: flex;
+  justify-content: center;
 }
 
 </style>

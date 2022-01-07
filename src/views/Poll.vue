@@ -19,7 +19,8 @@
     <div class="wrapper">
       <div class="icon facebook">
         <div class="tooltip">{{ uiLabels.language }}</div>
-        <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag" class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
+        <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag" class="pictureFlag"></i></span>
+        <!-- tog bort class="fab fa-facebook-f" -->
       </div>
     </div>
 
@@ -51,7 +52,7 @@
       <div class="icon facebook">
         <div class="tooltip">{{ uiLabels.language }}</div>
         <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
-                                                class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
+                      class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
       </div>
     </div>
 
@@ -62,7 +63,7 @@
       <div>{{ uiLabels.answers }}</div>
       <div>{{ uiLabels.result }}</div>
     </h3>
-    <div class="wrapper2">
+    <div class="individualResults">
       <div class="table">
     <span v-for="(q) in question.q" :key="q" id="table1">
       <span> {{ q }}</span>
@@ -206,7 +207,8 @@ body {
 }
 
 #app {
-  position: relative;
+  width: 100%;
+  height: 100%;
   /*display: flex; makes the table go vertical instead*/
   justify-content: center;
   align-items: center;
@@ -231,7 +233,7 @@ body {
   font-size: 18px;
   font-weight: 700;
 
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
   transition: 0.4s ease-out;
 
 &
@@ -269,7 +271,7 @@ body {
   top: 0em;
   left: 0em;
   z-index: 98;
-  backdrop-filter: blur(1.5em);
+  backdrop-filter: blur(0.5em);
   box-shadow: 0px 1px 15px 10px rgb(177, 80, 80);
   background-color: rgba(9, 108, 238, 0.3);
 }
@@ -298,13 +300,16 @@ h1 {
   margin-top: 0.5em;
   font-family: Helvetica, Arial, sans-serif;
 }
-h2{
+
+h2 {
   color: rgb(249, 228, 201);
 }
-h3{
+
+h3 {
   color: rgb(249, 228, 201);
 
 }
+
 p {
   color: #666;
   font-size: 18px;
@@ -356,7 +361,7 @@ p {
   grid-auto-flow: column;
 }
 
-.wrapper2 {
+.individualResults {
   margin-left: 33%;
   margin-right: 33%;
   overflow: scroll;
@@ -470,40 +475,42 @@ p {
   visibility: visible;
   pointer-events: auto;
 }
-#icon{
+
+#icon {
   color: white;
   width: 2em;
   height: 2em;
 }
 
-.participate{
-  position:static;
-  background-color: rgb(16,111,103);
+.participate {
+  position: static;
+  background-color: rgb(16, 111, 103);
 
 
-  color: rgb(249,228,201);
-  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  color: rgb(249, 228, 201);
+  box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, .35);
   font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
   margin-top: 0.5em;
-  padding:0em 1em 0em 1em;
-  display:inline-block;
+  padding: 0em 1em 0em 1em;
+  display: inline-block;
   font-weight: 100;
   border-radius: 0.5em;
   box-sizing: border-box;
   border-style: solid;
   border-width: thin;
-  text-decoration:none;
-  text-align:center;
+  text-decoration: none;
+  text-align: center;
   transition: all 0.2s;
   cursor: default;
   height: 1.7em;
 
 }
-.participate:disabled{
+
+.participate:disabled {
   background-color: lightgray;
-  color: gray! important;
+  color: gray ! important;
   cursor: default !important;
   height: 1.7em;
   padding-left: 1em;
@@ -526,17 +533,20 @@ p {
   font-weight: initial;
 
 }
-.participate:disabled:hover{
+
+.participate:disabled:hover {
   transform: translateY(0px);
 }
-.participate:hover{
-  cursor:pointer;
+
+.participate:hover {
+  cursor: pointer;
   transform: translateY(-2px);
 
 }
+
 .participate:hover:active {
   transform: translateY(10px);
-  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .35);
 }
 
 </style>
