@@ -6,38 +6,47 @@
   <!--<gameCard v-for="card in gameCards" v-bind:key="card">
 
   </gameCard>-->
+
   <transition-group v-bind:name="transitionType">
     <gameCard v-for="(item, i) in gameCards.question"
               v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
-              :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]">
+              :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]"
+              :ref="'card' + i">
     </gameCard>
   </transition-group>
-
-  <!--</transition>-->
-  <div class="barContainer">
-    <p>
-      Antal kort kvar: {{ gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length }}
-    </p>
-    <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
-      Du har klarat alla ord!
-    </div>
-
-    <div class="progressBar">
-      <div class="progressBarGreen"
-           v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
+  <div class="centerContainer">
+    <div class="aboveCenterContainer">
+      <div class="barTextContainer">
+        <h4 class="barText"> Antal kort kvar: {{
+            gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length
+          }} </h4>
+      </div>
+      <div class="barContainer">
+        <div class="progressBar">
+          <div class="progressBarGreen"
+               v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
+          </div>
+        </div>
       </div>
     </div>
-
-
+    <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
+      Grattis! Du har klarat alla ord!
+      <div>
+        <button @click="this.$router.go()">Spela igen</button>
+      </div>
+    </div>
   </div>
-  <div class="buttons">
-    <button @click="swipeLeft"
-            v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1">
-      Nej
-    </button>
-    <button @click="swipeRight" v-bind:disabled="gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0">
-      JA
-    </button>
+  <div class="belowCenterContainer">
+    <div class="buttonsInner">
+      <!--  -->
+      <img id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
+           src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png">
+      <div class="fill"></div>
+      <div>
+        <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
+             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641305827~hmac=2cb2cf5dc11c9051935814b051f8bf2f">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,10 +70,11 @@ export default {
         question: [""],
         answers: [""],
         showCard: [],
-        doneCard: []
+        doneCard: [false]
       },
       j: Number,
       transitionType: "",
+      card: ["card1", "card2", "card3", "card4"]
     }
   }, created: function () {
     this.pollId = this.$route.params.id
@@ -99,12 +109,18 @@ export default {
         this.j--;
       }
       this.gameCards.showCard[this.j] = true;
+
+      this.$refs.card0.setTheCard()
+      this.$refs.card1.setTheCard()
+      this.$refs.card2.setTheCard()
+      this.$refs.card3.setTheCard()
+
       console.log("left j end", this.j)
 
     }
     ,
     swipeRight: function () {
-      this.transitionType = "slideRight";                    //skulle vi kunna använda doneCard här istället?
+      this.transitionType = "slideRight";
       this.gameCards.showCard[this.j] = false;
       this.gameCards.doneCard[this.j] = true;
       this.j--;
@@ -133,35 +149,90 @@ export default {
 <style scoped>
 
 .barContainer {
-  height: 10em;
+  height: 2em;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
+.centerContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.aboveCenterContainer {
+  position: relative;
+  bottom: 240px;
+}
+
+.barTextContainer {
+  margin-top: 10%;
+  margin-bottom: 0.2em;
+}
+
 .progressBar {
   position: absolute;
-  top: 15%;
-  background-color: red;
-  height: 1em;
-  width: 40%;
-  position: center;
-  vertical-align: center;
+  background-color: pink;
+  height: 0.2em;
+  width: 10em;
+  border-radius: 2em;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.1em;
 }
 
 .progressBarGreen {
   height: 100%;
   background-color: green;
   transition: width 2s ease-in-out;
+  border-radius: 2em;
+
 }
 
-.buttons {
-  left:0;
-  width: 100%;
+.belowCenterContainer {
   position: absolute;
-  bottom: 15%;
+  width: 50%;
+  transform: translateX(50%);
+  bottom: 10%;
   display: flex;
   justify-content: center;
+}
+
+.buttonsInner {
+  display: flex;
+  justify-content: center;
+}
+
+.fill {
+  width: 2em;
+  position: relative;
+}
+
+#buttonImageCross {
+  height: 5em;
+  right: -10em;
+  grid-column: 1;
+  cursor: pointer;
+}
+
+#buttonImageCheck {
+  height: 5em;
+  right: -10em;
+  grid-column: 3;
+  cursor: pointer;
+  position: relative;
+  right: 8px;
+}
+
+#buttonImageCheck:hover, #buttonImageCross:hover {
+  transform: scale(0.95);
+}
+
+.disabledButton {
+  opacity: 0.5;
 }
 
 /*This block (ends here) is merely styling for the flip card, and is NOT an essential part of the flip code */
@@ -173,28 +244,31 @@ export default {
   transition-delay: 0.2s;
 }
 
+.slideRight-leave-active,
+.slideLeft-leave-active {
+  z-index: 10;
+  transition: transform 1s;
+}
+
 .slideRight-leave-to {
   transform: translateY(-50%) translateX(100vw) rotateZ(45deg);
 }
 
-.slideRight-leave-active,
-.slideLeft-leave-active {
-  transition: transform 1s;
-}
-
 .slideLeft-leave-to {
+  z-index: 10;
   transform: translateY(-50%) translateX(-100vw) rotate(-45deg);
 }
 
 .slideRight-enter-from,
 .slideLeft-enter-from {
-  transform-origin: center;
-  transform: scale(0.75);
+  transform-origin: -25% -25%;
+  transform: scale(0.75) translate(-50%, -50%);
 }
 
 .slideRight-enter-to,
 .slideLeft-enter-to {
-  transform: scale(1);
+  transform-origin: -25% -25%;
+  transform: scale(1) translate(-50%, -50%);
 }
 
 /*

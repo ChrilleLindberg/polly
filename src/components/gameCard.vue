@@ -1,15 +1,13 @@
 <template>
 
-  <transition name="scaleUp">
-    <div class="maincontainer" v-show="showCard && !doneCard">
-      <div v-bind:class="rotateClass" @click="changeClass">
-        <div class="thefront"><h1> {{ question }} </h1>
-        </div>
-        <div class="theback"><h1> {{ answer }}</h1>
-        </div>
+  <div class="maincontainer" v-show="showCard && !doneCard">
+    <div v-bind:class="rotateClass" @click="changeClass">
+      <div class="thefront"><h1> {{ question }} </h1>
+      </div>
+      <div class="theback"><h1> {{ answer }}</h1>
       </div>
     </div>
-  </transition>
+  </div>
 
 </template>
 
@@ -33,11 +31,13 @@ export default {
       if (this.rotateClass == "thecard2") {
         this.rotateClass = "thecard"
         console.log("thecard")
-      }
-      else {
+      } else {
         this.rotateClass = "thecard2"
         console.log("thecard2")
       }
+    },
+    setTheCard: function () {
+      this.rotateClass = "thecard"
     }
   }
 
@@ -88,7 +88,6 @@ export default {
 }
 
 
-
 /* THE FRONT FACE OF THE CARD, WHICH SHOWS BY DEFAULT */
 .thefront {
   position: absolute;
@@ -102,7 +101,7 @@ export default {
   background: #ffc728;
   color: #000;
   border-radius: 10px;
-  border-color: rgb(0,0,0,50%);
+  border-color: rgb(0, 0, 0, 50%);
   border-style: solid;
   border-width: 0em;
 }
@@ -117,7 +116,7 @@ export default {
   border-radius: 10px;
   backface-visibility: hidden;
   overflow: hidden;
-  background: #312e97;
+  background: #56bdb4;
   color: #333;
   text-align: center;
   transform: rotateY(180deg);
@@ -126,18 +125,11 @@ export default {
 /*This block (starts here) is merely styling for the flip card, and is NOT an essential part of the flip code */
 .thefront h1, .theback h1 {
   font-family: 'zilla slab', sans-serif;
-  padding: 30px;
   font-weight: bold;
   font-size: 24px;
   text-align: center;
-}
-
-.thefront p, .theback p {
-  font-family: 'zilla slab', sans-serif;
-  padding: 30px;
-  font-weight: normal;
-  font-size: 12px;
-  text-align: center;
+  position: relative;
+  top: 40%;
 }
 
 </style>
