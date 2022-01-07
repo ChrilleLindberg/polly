@@ -44,7 +44,7 @@
       <div class="fill"></div>
       <div>
         <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
-             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641305827~hmac=2cb2cf5dc11c9051935814b051f8bf2f">
+             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641553421~hmac=5ba5566c9fa51b1c3bce57a898f2f2d1">
       </div>
     </div>
   </div>
