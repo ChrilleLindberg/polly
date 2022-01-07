@@ -363,10 +363,10 @@ p {
 .individualResults {
   margin-left: 10%;
   margin-right: 10%;
-  overflow: scroll;
+  overflow: auto;
   height: 20em;
-  background: #CAD2F9;
-  border-style: dotted;
+  box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
+  background-color: white;
 
 }
 
@@ -374,23 +374,24 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-flow: column;
-  grid-gap: 1.5em;
 
+  border:gray;
   /*width:auto;
   height:10em ; */
 }
 
 #table1 {
   grid-column: 1;
-  border-top: 1px solid #dfdfdf;
-  padding-top: 2em;
+  border: 2px solid #dfdfdf;
+  padding: 1em;
+
 
 }
 
 #table2 {
   grid-column: 2;
-  border-top: 1px solid #dfdfdf;
-  padding-top: 2em;
+  border: 2px solid #dfdfdf;
+  padding: 1em;
   color: green;
 }
 
@@ -400,14 +401,14 @@ p {
 
 #table3 {
   grid-column: 3;
-  border-top: 1px solid #dfdfdf;
-  padding-top: 2em;
+  border: 2px solid #dfdfdf;
+  padding: 1em;
 }
 
 #table4 {
   grid-column: 4;
-  border-top: 1px solid #dfdfdf;
-  padding-top: 2em;
+  border: 2px solid #dfdfdf;
+  padding: 1em;
 }
 
 #goBack {
