@@ -15,7 +15,7 @@
     </div>
   </div>
 <div style="width:2em;height:2em ">
-  <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3" v-on:click="switchVisibleOne" > </i>
+  <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
 </div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
@@ -88,7 +88,7 @@
     </ul>
   </div>
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
-    <h2>Menu</h2>
+    <h2><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Create</h2>
     <input id="toggle" type="checkbox" checked>
     <ul class="startMenu">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
@@ -138,22 +138,25 @@ export default {
       socket.emit("switchLanguage", this.lang)
     },
     switchVisibleOne: function () {
-      this.isVisible = 1,
+      this.isVisible = 1;
 
       this.hideCon=false;
     },
     switchVisibleTwo: function () {
-      this.isVisible = 2
-      this.hideCon=true
+      this.isVisible = 2;
+      this.hideCon=true;
     },
     switchVisibleThree: function () {
-      this.isVisible = 3
+      this.isVisible = 3;
+      this.hideCon=true;
     },
     switchVisibleFour: function () {
-      this.isVisible = 4
+      this.isVisible = 4;
+      this.hideCon=true;
     },
     switchVisibleFive: function () {
-      this.isVisible = 5
+      this.isVisible = 5;
+      this.hideCon=true;
     },
     checkPollId: function () {
       socket.emit("sendPollId", this.id)
@@ -427,7 +430,6 @@ nav h2 {
   border-style: solid;
   border-width: thin;
   height: 40px;
-  text-transform: uppercase;
   font-weight: 200;
   display: flex;
   flex: 1;
@@ -520,7 +522,8 @@ nav ul.startMenu a {
   background-size: 3em;
   background-position: top 2.5em left 2.5em;
   background-repeat: no-repeat;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .nextPage{
@@ -530,7 +533,7 @@ nav ul.startMenu a {
   margin: 0px!important;
   top: 0em;
   left: 0em;
-
+  background-image: none;
   color: rgb(18,54,90);
   background-color: rgb(249,228,201);
 }
