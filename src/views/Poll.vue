@@ -39,7 +39,6 @@
           </p>
           <button class="button" v-on:click="FinishedQuiz">
             {{ uiLabels.submitFinal }}
-            <!--        <button class="button" v-on:click="$router.replace('/')" id="participate" >  Submit your answer-->
           </button>
         </div>
       </transition>
@@ -225,7 +224,7 @@ body {
 
   display: inline-block;
   padding: 15px 25px;
-  background-image: linear-gradient(to right, #CC2E5D, #FF5858);
+  background-image: linear-gradient(to right, #86FF60, #2CEB78);
   border-radius: 8px;
 
   color: #FFF;
@@ -479,8 +478,10 @@ p {
 
 .participate{
   position:static;
-  color: rgb(16,111,103);
-  background-color: rgb(249,228,201);
+  background-color: rgb(16,111,103);
+
+
+  color: rgb(249,228,201);
   box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
   font-size: 2em;
   margin-left: 0;

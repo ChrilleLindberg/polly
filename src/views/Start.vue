@@ -348,8 +348,10 @@ input:focus::placeholder {
 }
 .participate{
   position:static;
-  color: rgb(16,111,103);
-  background-color: rgb(249,228,201);
+  background-color: rgb(16,111,103);
+
+
+  color: rgb(249,228,201);
   box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
   font-size: 2em;
   margin-left: 0;
