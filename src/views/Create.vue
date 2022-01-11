@@ -55,7 +55,7 @@
       <div class="removeWords">
         <button v-for="index in answers.length" :key="index"
                id="removeLine">
-          <img @click="removeLine(index-1)" src="https://www.shareicon.net/data/512x512/2016/01/05/698410_trash_512x512.png" id="trashCan">
+          <i class="fa fa-trash" aria-hidden="true" id="trashCan" @click="removeLine(index-1)"></i>
         </button>
       </div>
 
@@ -214,6 +214,19 @@ export default {
 
 <style scoped>
 
+body{
+  margin-top: 7em;
+}
+header {
+  background-color: rgb(18,54,90);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  left: 0em;
+  z-index: -2;
+  top: 0em;
+}
 #backgroundDiv {
   position: absolute;
   height: 100vh;
@@ -224,7 +237,7 @@ export default {
   justify-content: center;
   top: 0em;
   background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
-
+  opacity: 50%;
 }
 
 .classInput {
