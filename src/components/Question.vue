@@ -1,13 +1,6 @@
 <template>
 
-  <div class="textContainer">
-    <div id="userWord">
-      <h2>{{ uiLabels.userWord }}</h2>
-    </div>
-    <div id="translaion">
-      <h2 id="translationText">{{ uiLabels.translation }}</h2>
-    </div>
-  </div>
+
   <div class="gridContainer">
     <div v-for="(q, i) in question.q" :key="q">
       <div class="container">
@@ -64,7 +57,6 @@ export default {
 
 h2 {
   display: flex;
-  text-decoration: underline 0.09em;
   color: rgb(249, 228, 201);
   font-family: Helvetica, Arial, sans-serif;
 

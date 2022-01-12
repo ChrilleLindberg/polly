@@ -2,24 +2,28 @@
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-
   <header>
-    <h1 @click="$route.back">{{uiLabels.glossaryCreator}}</h1>
-
-
+    <div id="backgroundDiv" v-show="showView==2">
+      <!--<img src="https://acegif.com/wp-content/gif/confetti-10.gif" id="backgroundImg">-->
+  <!--  <img src="https://acegif.com/wp-content/gif/confetti-4.gif" id="backgroundImg"> -->
+    </div>
+    <br>
+    <h1 v-show="showView !==2 ">{{uiLabels.glossaryCreator}}</h1>
+    <h1 v-show="showView == 2"> GRAAAATTIIIIIIS</h1>
   </header>
   <body>
   <div class="inputFieldTop" v-show="showView==1">
     <input autocomplete="off" type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
+    &nbsp;
     <button v-show="!inputActivated" @click="activateInput" id="pen">
-      <img src="https://www.pngrepo.com/png/198202/180/edit-pencil.png" class="checkMark" id="penImg">
+      <i class="fa fa-pencil" aria-hidden="true" ></i>
     </button>
-    <img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated" src="https://www.freepnglogos.com/uploads/tick-png/tick-paddy-power-hotshot-jackpot-first-goalscorer-predictor-18.png" class="checkMark">
-    <img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'" src="https://emojipedia-us.s3.amazonaws.com/source/skype/289/cross-mark_274c.png" class="checkMark">
+    <i class="fa fa-check" id="checkmark" aria-hidden="true" img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated"></i>
+    <i class="fa fa-times" id="crossmark" aria-hidden="true" img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'"></i>
   </div>
 
   <div class="wrapper">
-    <div class="icon facebook">
+    <div class="icon">
       <div class="tooltip">{{uiLabels.language}}</div>
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
@@ -40,16 +44,18 @@
       </div>
       <div class="aInputClass">
         <input v-for="(_, i) in answers"
+               autocomplete="off"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
                @input="checkWords"
                id="aInput"
+               @keyup.enter="addWord"
                v-bind:placeholder="uiLabels.enterTranslation">
       </div>
       <div class="removeWords">
         <button v-for="index in answers.length" :key="index"
                id="removeLine">
-          <img @click="removeLine(index-1)" src="https://www.shareicon.net/data/512x512/2016/01/05/698410_trash_512x512.png" id="trashCan">
+          <i class="fa fa-trash" aria-hidden="true" id="trashCan" @click="removeLine(index-1)"></i>
         </button>
       </div>
 
@@ -58,29 +64,28 @@
       +
     </button>
     <br>
-    <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
-      {{ uiLabels.createGlossary }}
-    </button>
-    <br>
+      <div class="wrapperC">
+        <div v-bind:class="{iconC:answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'}">
+          <div class="tooltipC">
+            <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> Skapa ett giltigt Glossary ID</p>
+            <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> Fyll i alla fält </p></div>
+          <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
+            {{ uiLabels.createGlossary }}
+          </button>
+        </div>
+      </div>
     </div>
     <div v-show="showView==2">
     <h3>
       {{uiLabels.congratulations}}
     </h3>
-    <input type="text" id="prefilledInput" readonly="readonly">
-    <button @click="copyToClipboard" id="copyButton"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
-      <img src="https://cdn-icons-png.flaticon.com/512/126/126498.png" id="copyImg">
+    <input type="text" id="prefilledInput" readonly="readonly"> &nbsp;
+    <button @click="copyToClipboard" class="copyButton" title="Kopiera ID"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
+      <i class="fa fa-clipboard" aria-hidden="true"></i>
     </button>
-    <br>
-    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
     </div>
   </div>
   </body>
-  <footer>
-    <p>
-      Footer
-    </p>
-  </footer>
 </template>
 
 <script>
@@ -208,6 +213,36 @@ export default {
 
 
 <style scoped>
+
+body{
+  margin-top: 7em;
+  background-color: rgb(18,54,90);
+  width: 100vw;
+  left: 0em;
+  bottom: 0em;
+}
+header {
+  background-color: rgb(18,54,90);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  left: 0em;
+  z-index: -2;
+  top: 0em;
+}
+#backgroundDiv {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  top: 0em;
+  background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
+  opacity: 50%;
+}
+
 .classInput {
   padding-top: 5%;
   padding-bottom: 0.5em;
@@ -291,22 +326,20 @@ input:focus {
   outline: none;
 }
 
-.checkMark, #copyImg {
-  height: 1em;
-}
-
-#copyButton {
+.copyButton {
   margin-left: 1em;
   height: 2.5em;
   width: 2.5em;
   border-style: solid;
-  border-color: lightgray;
+  color: #EF8584;
+  border-color: #EF8584;
   border-width: 0.2em;
-  border-radius: 1.25em;
+  border-radius: 0.5em;
 }
-
-#copyButton:hover {
+.copyButton:hover {
   cursor: pointer;
+  background-color: #EF8584;
+  color: #FFFAF1;
 }
 
 #trashCan {
@@ -371,6 +404,66 @@ input:focus {
   border-color: lightgray;
 }
 
+.wrapperC {
+  display: inline-flex;
+  position: relative;
+}
+
+.iconC {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltipC {
+  width: 200%;
+  margin-top: -2em;
+
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tooltipC::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -2.2px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.iconC:hover .tooltipC {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.createInfo{
+  border-radius: 0.5em;
+  background-color: #EF8584;
+  color: #FFFAF1;
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: #EF8584;
+}
+
 button {
   cursor: pointer;
 }
@@ -379,11 +472,12 @@ button {
   background-color: transparent;
   border:none;
 }
-
-#penImg {
-  height: 1em;
+#checkmark{
+  color: green;
 }
-
+#crossmark{
+  color: red;
+}
 .inputFieldTop {
   position: relative;
   top: 1em;
@@ -407,11 +501,10 @@ button {
 }
 
 .pictureFlag{
-  border-radius: 60%;
+  border-radius: 0.5em;
   width:2.3em;
   height:1.6em;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
 .wrapper {
   display: inline-flex;
@@ -425,15 +518,13 @@ button {
 }
 
 .wrapper .icon {
-
   position: relative;
-
   background-color: #ffffff;
   border-radius: 50%;
   width:1.2em;
   height:1em;
   display: flex;
-
+  margin-top: 1.2em;
   align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -478,7 +569,8 @@ button {
   left: 1em;
   top: 1em;
   cursor:pointer;
-  font-size: 3em;
+  font-size: 2.5em;
+
 }
 
 footer {

@@ -203,7 +203,8 @@ body h1{
 
 .wrapper3 {
   margin: 1em 33% 1em 33%;
-  max-height: 20em;
+  height: auto;
+  max-height:20em;
   overflow: auto;
 
   box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
@@ -305,9 +306,9 @@ body h1{
   position: absolute;
   left: 1em;
   top: 1em;
-  mix-blend-mode: multiply;
   cursor:pointer;
-  font-size: 3em;
+  font-size: 2.5em;
+
 }
 
 .buttonNice{
@@ -391,6 +392,7 @@ cursor:pointer;
   text-orientation:sideways;
   position: absolute;
   top:15em;
+  margin-left: 10%;
 
 
 }

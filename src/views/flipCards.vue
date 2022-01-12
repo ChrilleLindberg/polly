@@ -1,11 +1,13 @@
 <template>
-
-
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
   <!--<transition name="slideLeft" :css="!swipeRight">-->
 
   <!--<gameCard v-for="card in gameCards" v-bind:key="card">
 
   </gameCard>-->
+  <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
 
   <transition-group v-bind:name="transitionType">
     <gameCard v-for="(item, i) in gameCards.question"
@@ -39,12 +41,15 @@
   <div class="belowCenterContainer">
     <div class="buttonsInner">
       <!--  -->
-      <img id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
-           src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png">
+      <i id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}" class="fa fa-times-circle" aria-hidden="true"></i>
+
+      <!--<img id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
+           src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png"> -->
       <div class="fill"></div>
       <div>
-        <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
-             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641553421~hmac=5ba5566c9fa51b1c3bce57a898f2f2d1">
+        <i id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}" class="fa fa-check-circle" aria-hidden="true"></i>
+       <!-- <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
+             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641553421~hmac=5ba5566c9fa51b1c3bce57a898f2f2d1"> -->
       </div>
     </div>
   </div>
@@ -212,19 +217,21 @@ export default {
 }
 
 #buttonImageCross {
-  height: 5em;
+  font-size: 5em;
   right: -10em;
   grid-column: 1;
   cursor: pointer;
+  color:red;
 }
 
 #buttonImageCheck {
-  height: 5em;
+  font-size: 5em;
   right: -10em;
   grid-column: 3;
   cursor: pointer;
   position: relative;
   right: 8px;
+  color:lawngreen;
 }
 
 #buttonImageCheck:hover, #buttonImageCross:hover {
@@ -288,5 +295,12 @@ body {
   background: linear-gradient(315deg, #ffffff, #d7e1ec);
 }
 
-
+#goBack {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  cursor: pointer;
+  font-size: 3em;
+  color: rgb(18,54,90);
+}
 </style>
