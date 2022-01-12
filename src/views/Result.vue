@@ -193,6 +193,7 @@ body{
   left: 0em;
   background-color: rgb(16,111,103);
   overflow: auto;
+  overflow-y: hidden;
 
 }
 body h1{
