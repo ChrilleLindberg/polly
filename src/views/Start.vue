@@ -1,7 +1,6 @@
 <template>
 
   <div class="mainWrapper">
-<<<<<<< HEAD
   <main  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
   <header id="movedown">
     <h1>
@@ -25,7 +24,8 @@
           <div class="growing-search">
             <div class="inputpollID">
               <input autocomplete="off" type="text" name="search" id="inputPollId" v-model="id"
-                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
+                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent
+                     @keyup.enter="checkSwitchVisibleFive"/>
             </div><!-- Space hack -->
           </div>
           <button type="submit" name="go_search" @click="switchVisibleFive" class= "participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
@@ -99,115 +99,6 @@
     </ul>
   </nav>
   </main>
-=======
-    <main v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]">
-      <header id="movedown">
-        <h1>
-          {{ uiLabels.welcomeMessage }}
-        </h1>
-      </header>
-      <div type="submit" class="wrapper">
-        <div class="icon facebook">
-          <div class="tooltip">{{ uiLabels.language }}</div>
-          <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag" class="pictureFlag"></i></span>
-          <!-- tog bort class="fab fa-facebook-f" -->
-        </div>
-      </div>
-      <div style="width:2em;height:2em ">
-        <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5"
-           v-on:click="switchVisibleOne"> </i>
-      </div>
-      <div id="nav" v-show="isVisible==1">
-        <p v-show="isVisible==1">{{ uiLabels.infoText }}</p>
-        <ul class="growing-search-freebie">
-          <li>
-            <div class="growing-search">
-              <div class="inputpollID">
-                <input autocomplete="off" type="text" name="search" id="inputPollId" v-model="id"
-                       v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent
-                @keyup.enter="checkSwitchVisibleFive"/>
-              </div><!-- Space hack -->
-            </div>
-            <button type="submit" name="go_search" @click="switchVisibleFive" class="participate" v-show="isVisible==1"
-                    v-bind:disabled="!pollExists">
-              GO!
-            </button>
-          </li>
-        </ul>
-        <p v-show="isVisible==1">{{ uiLabels.createText }}</p>
-      </div>
-      <div id="editExisting" v-show="isVisible==3">
-        <p>
-          {{ uiLabels.editExisting }}
-        </p>
-        <ul class="growing-search-freebie">
-          <li>
-            <div class="growing-search">
-              <div class="inputpollID">
-                <input autocomplete="off" type="text" name="search" class="inputPollId" v-model="idEdit"
-                       v-bind:placeholder="uiLabels.writeField" @input="checkPollId2" @keydown.space.prevent
-                       @keyup.enter="pressEnter"/>
-              </div><!-- Space hack -->
-            </div>
-            <button type="submit" name="go_search" @click="editExistingGo" class="participate"
-                    v-bind:disabled="!editExists">
-              GO!
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      <div id="showResult" v-show="isVisible==4">
-        <p>
-          {{ uiLabels.showResult }}
-        </p>
-        <ul class="growing-search-freebie">
-          <li>
-            <div class="growing-search">
-              <div class="inputpollID">
-                <input autocomplete="off" type="text" name="search" class="inputPollId" v-model="idResult"
-                       v-bind:placeholder="uiLabels.writeField" @input="checkPollId3" @keydown.space.prevent
-                       @keyup.enter="pressEnter"/>
-              </div><!-- Space hack -->
-            </div>
-            <button type="submit" name="go_search" @click="$router.push('/result/'+idResult)" class="participate"
-                    v-bind:disabled="!resultExists">
-              GO!
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      <div id="playMode" v-show="isVisible==5">
-        <p>
-          {{ uiLabels.gamemode }}
-        </p>
-        <ul class="growing-search-freebie">
-          <li>
-            <button type="submit" name="go_search" @click="$router.push('/flipcards/'+id)" class="participate">
-              {{ uiLabels.flipcards }}
-            </button>
-            <br>
-            <button type="submit" name="go_search" @click="$router.push('/poll/'+id)" class="participate">
-              {{ uiLabels.glossary }}
-            </button>
-          </li>
-        </ul>
-      </div>
-      <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
-        <h2>
-          <font-awesome-icon icon="bars"></font-awesome-icon> &nbsp; Create
-        </h2>
-        <input id="toggle" type="checkbox" checked>
-        <ul class="startMenu">
-          <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
-          <li id="menuItem" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
-          <li id="menuItem" v-on:click="switchVisibleFour">{{ uiLabels.showResult }}</li>
-        </ul>
-      </nav>
-
-    </main>
->>>>>>> lukas
   </div>
 </template>
 
@@ -230,12 +121,8 @@ export default {
       pollExists: false,
       editExists: false,
       resultExists: false,
-<<<<<<< HEAD
       hideCon:false,
       showConfetti: false
-=======
-      hideCon: false
->>>>>>> lukas
     }
   },
   created: function () {
@@ -722,7 +609,6 @@ nav ul.startMenu a {
   top: 0em;
   left: 0em;
   background-image: none;
-<<<<<<< HEAD
   color: rgb(18,54,90);
   background-color: rgb(249,228,201);
 }
@@ -910,163 +796,6 @@ nav ul.startMenu a {
   100%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
-
-=======
-  color: rgb(18, 54, 90);
-  background-color: rgb(249, 228, 201);
-}
-
-@keyframes animate {
-  0% {
-    background-color: rgb(236, 87, 46);
-    color: rgb(255, 238, 235);
-    background-image: url(/eye/eyeLightPink.svg);
-  }
-  9.71% {
-    transform: scale(1, 1);
-  }
-  11.1% {
-    background-color: rgb(236, 87, 46);
-    color: rgb(255, 238, 235);
-    background-image: url(/eye/eyeLightPink.svg);
-  }
-  11.11% {
-    background-color: rgb(18, 54, 90);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-    transform: scale(1.01, 1.01);
-  }
-  12% {
-    transform: scale(1, 1);
-  }
-  20.82% {
-    transform: scale(1, 1);
-  }
-  22.21% {
-    background-color: rgb(18, 54, 90);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-  }
-  22.22% {
-    background-color: rgb(255, 238, 235);
-    color: rgb(254, 70, 21);
-    background-image: url(/eye/eyeRed.svg);
-    transform: scale(1.01, 1.01);
-  }
-  23.1% {
-    transform: scale(1, 1);
-  }
-  31.93% {
-    transform: scale(1, 1);
-  }
-  33.32% {
-    background-color: rgb(255, 238, 235);
-    color: rgb(254, 70, 21);
-    background-image: url(/eye/eyeRed.svg);
-  }
-  33.33% {
-    background-color: rgb(251, 228, 201);
-    color: rgb(239, 134, 132);
-    background-image: url(/eye/eyePinkRed.svg);
-    transform: scale(1.01, 1.01);
-  }
-  34.2% {
-    transform: scale(1, 1);
-  }
-  43.04% {
-    transform: scale(1, 1);
-  }
-  44.43% {
-    background-color: rgb(251, 228, 201);
-    color: rgb(239, 134, 132);
-    background-image: url(/eye/eyePinkRed.svg);
-  }
-  44.44% {
-    background-color: rgb(18, 54, 90);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-    transform: scale(1.01, 1.01);
-  }
-  45.2% {
-    transform: scale(1, 1);
-  }
-  54.15% {
-    transform: scale(1, 1);
-  }
-  55.54% {
-    background-color: rgb(18, 54, 90);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-  }
-  55.55% {
-    background-color: rgb(16, 111, 103);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-    transform: scale(1.01, 1.01);
-  }
-  56.3% {
-    transform: scale(1, 1);
-  }
-  65.26% {
-    transform: scale(1, 1);
-  }
-  66.65% {
-    background-color: rgb(16, 111, 103);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-  }
-  66.66% {
-    background-color: rgb(241, 153, 125);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-    transform: scale(1.01, 1.01);
-  }
-  67.5% {
-    transform: scale(1, 1);
-  }
-  76.37% {
-    transform: scale(1, 1);
-  }
-  77.76% {
-    background-color: rgb(241, 153, 125);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-  }
-  77.77% {
-    background-color: rgb(241, 203, 98);
-    color: rgb(0, 93, 158);
-    background-image: url(/eye/eyeBlue.svg);
-    transform: scale(1.01, 1.01);
-  }
-  78.6% {
-    transform: scale(1, 1);
-  }
-  87.48% {
-    transform: scale(1, 1);
-  }
-  88.87% {
-    background-color: rgb(241, 203, 98);
-    color: rgb(0, 93, 158);
-    background-image: url(/eye/eyeBlue.svg);
-
-  }
-  88.88% {
-    background-color: rgb(18, 54, 90);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
-    transform: scale(1.01, 1.01);
-  }
-  89.7% {
-    transform: scale(1, 1);
-  }
-  98.6% {
-    transform: scale(1, 1);
-  }
-  100% {
-    background-color: rgb(18, 54, 90);
-    color: rgb(249, 228, 201);
-    background-image: url(/eye/eyeYellow.svg);
->>>>>>> lukas
   }
 
 }
