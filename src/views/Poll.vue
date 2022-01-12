@@ -4,10 +4,9 @@
   </head>
   <body>
   <div v-show="isVisible">
-    <div>
+    <div class="header">
       <h1>Glossary-ID: {{ pollId }}</h1>
-
-      <div id="">
+      <div>
         <h2 id="userWord">{{ uiLabels.userWord }}</h2><h2 id="translationText">{{ uiLabels.translation }}</h2>
       </div>
 
@@ -208,9 +207,12 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-weight: lighter;
 
 }
-
+.header {
+  font-weight: lighter;
+}
 body {
   position: absolute;
   width: 100%;
@@ -218,7 +220,7 @@ body {
   top: 0;
   left: 0;
   font-family: Helvetica, Arial, sans-serif;
-overflow-x: hidden;
+  overflow-x: hidden;
   background-color: rgb(18, 54, 90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
