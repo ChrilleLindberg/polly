@@ -216,13 +216,16 @@ export default {
 
 body{
   margin-top: 7em;
+  background-color: rgb(18,54,90);
+  width: 100vw;
+  left: 0em;
+  bottom: 0em;
 }
 header {
   background-color: rgb(18,54,90);
   position: absolute;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
   left: 0em;
   z-index: -2;
   top: 0em;
