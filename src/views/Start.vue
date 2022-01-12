@@ -32,6 +32,7 @@
           </button>
         </li>
       </ul>
+      <p v-show="isVisible==1">{{uiLabels.createText}}</p>
   </div>
   <div id="editExisting" v-show="isVisible==3">
     <p>
