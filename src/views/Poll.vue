@@ -5,7 +5,12 @@
   <body>
   <div v-show="isVisible">
     <div>
-      <h1>Poll-ID: {{ pollId }}</h1>
+      <h1>Glossary-ID: {{ pollId }}</h1>
+
+      <div id="">
+        <h2 id="userWord">{{ uiLabels.userWord }}</h2><h2 id="translationText">{{ uiLabels.translation }}</h2>
+      </div>
+
       <Question v-bind:question="question"
                 v-on:answer="submitAnswer"/>
     </div>
@@ -32,10 +37,10 @@
         <div class="modal" v-if="showModal">
           <button class="xModulButton" v-on:click="showModal = false"> x</button>
           <h1>{{ uiLabels.enterName }}</h1>
-          <p><input type="string" id="fullnamebox" v-model="nameContendor">
+          <p><input autocomplete="off" type="string" id="fullnamebox" v-model="nameContendor">
             <br>
           </p>
-          <button class="button" v-on:click="FinishedQuiz">
+          <button id="finalButton" class="button" v-on:click="FinishedQuiz" v-bind:disabled="nameContendor == ''">
             {{ uiLabels.submitFinal }}
           </button>
         </div>
@@ -44,6 +49,7 @@
   </div>
 
   <div id="yourResult" v-show="!isVisible">
+    <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
     <h1>{{ nameContendor }}</h1>
     <div class="wrapper">
       <div class="icon facebook">
@@ -188,8 +194,6 @@ export default {
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
     }
-
-
   }
 
 }
@@ -211,7 +215,7 @@ body {
   min-height: 100%;
   top: 0;
   left: 0;
-  font-family: 'montserrat', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 
   background-color: rgb(18, 54, 90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
@@ -227,7 +231,8 @@ body {
 
   display: inline-block;
   padding: 15px 25px;
-  background-image: linear-gradient(to right, #86FF60, #2CEB78);
+  background-color: rgb(16,111,103);
+  /*background-image: linear-gradient(to right, #86FF60, #2CEB78); */
   border-radius: 8px;
 
   color: #FFF;
@@ -240,6 +245,9 @@ body {
 
 .button:hover {
   box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
+}
+.button:disabled{
+  background-color: gray;
 }
 
 .xModulButton {
@@ -306,7 +314,10 @@ h2 {
 
 h4, h3 {
   color: rgb(249, 228, 201);
-
+}
+h3{
+  font-size: 2em;
+  margin-top:1em
 }
 
 p {
@@ -335,8 +346,6 @@ p {
 .slide-enter,
 .slide-leave-to {
   transform: translateY(-50%) translateX(-100vw);
-
-
 }
 
 #buttonUnder {
@@ -347,7 +356,7 @@ p {
 #fullnamebox {
   height: 3em;
   width: 15em;
-  font-family: "Times New Roman", Times, serif, italic;
+  font-family: Helvetica, Arial, sans-serif;
 
   font-size: 15px;
 }
@@ -355,9 +364,12 @@ p {
 .rubrikSpalt {
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 0.5em;
+  margin-top:1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-flow: column;
+  font-size: 1.3em;
 }
 
 .individualResults {
@@ -374,23 +386,20 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-flow: column;
-
-  border:gray;
+  border:black;
   /*width:auto;
   height:10em ; */
 }
 
 #table1 {
   grid-column: 1;
-  border: 2px solid #dfdfdf;
+  border: 2px solid rgb(18, 54, 90);
   padding: 1em;
-
-
 }
 
 #table2 {
   grid-column: 2;
-  border: 2px solid #dfdfdf;
+  border: 2px solid rgb(18, 54, 90);
   padding: 1em;
   color: green;
 }
@@ -401,13 +410,13 @@ p {
 
 #table3 {
   grid-column: 3;
-  border: 2px solid #dfdfdf;
+  border: 2px solid rgb(18, 54, 90);
   padding: 1em;
 }
 
 #table4 {
   grid-column: 4;
-  border: 2px solid #dfdfdf;
+  border: 2px solid rgb(18, 54, 90);
   padding: 1em;
 }
 
@@ -566,6 +575,17 @@ p {
 
 #checkIcon {
   color: green;
+}
+#userWord {
+  display: flex;
+  position: relative;
+  left:26.9%;
+}
+#translationText {
+  display: flex;
+  position: relative;
+  left:66%;
+  bottom:1em;
 }
 
 </style>

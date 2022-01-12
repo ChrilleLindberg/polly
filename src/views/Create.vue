@@ -2,9 +2,14 @@
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-
   <header>
-    <h1>{{uiLabels.glossaryCreator}}</h1>
+    <div id="backgroundDiv" v-show="showView==2">
+      <!--<img src="https://acegif.com/wp-content/gif/confetti-10.gif" id="backgroundImg">-->
+  <!--  <img src="https://acegif.com/wp-content/gif/confetti-4.gif" id="backgroundImg"> -->
+    </div>
+    <br>
+    <h1 v-show="showView !==2 ">{{uiLabels.glossaryCreator}}</h1>
+    <h1 v-show="showView == 2"> GRAAAATTIIIIIIS</h1>
   </header>
   <body>
   <div class="inputFieldTop" v-show="showView==1">
@@ -13,8 +18,8 @@
     <button v-show="!inputActivated" @click="activateInput" id="pen">
       <i class="fa fa-pencil" aria-hidden="true" ></i>
     </button>
-    <i class="fa fa-check" aria-hidden="true" img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated"></i>
-    <i class="fa fa-times" aria-hidden="true" img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'"></i>
+    <i class="fa fa-check" id="checkmark" aria-hidden="true" img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated"></i>
+    <i class="fa fa-times" id="crossmark" aria-hidden="true" img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'"></i>
   </div>
 
   <div class="wrapper">
@@ -39,6 +44,7 @@
       </div>
       <div class="aInputClass">
         <input v-for="(_, i) in answers"
+               autocomplete="off"
                v-model="answers[i]"
                v-bind:key="'answer'+i"
                @input="checkWords"
@@ -49,7 +55,7 @@
       <div class="removeWords">
         <button v-for="index in answers.length" :key="index"
                id="removeLine">
-          <img @click="removeLine(index-1)" src="https://www.shareicon.net/data/512x512/2016/01/05/698410_trash_512x512.png" id="trashCan">
+          <i class="fa fa-trash" aria-hidden="true" id="trashCan" @click="removeLine(index-1)"></i>
         </button>
       </div>
 
@@ -59,10 +65,10 @@
     </button>
     <br>
       <div class="wrapperC">
-        <div class="iconC">
+        <div v-bind:class="{iconC:answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'}">
           <div class="tooltipC">
             <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> Skapa ett giltigt Glossary ID</p>
-            <p v-show="answersEmpty"> Fyll i alla fält </p></div>
+            <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> Fyll i alla fält </p></div>
           <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
             {{ uiLabels.createGlossary }}
           </button>
@@ -207,9 +213,33 @@ export default {
 
 
 <style scoped>
-header{
-  margin-top: 3em;
+
+body{
+  margin-top: 7em;
 }
+header {
+  background-color: rgb(18,54,90);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  left: 0em;
+  z-index: -2;
+  top: 0em;
+}
+#backgroundDiv {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  top: 0em;
+  background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
+  opacity: 50%;
+}
+
 .classInput {
   padding-top: 5%;
   padding-bottom: 0.5em;
@@ -370,9 +400,10 @@ input:focus {
   border-width: 0.2em;
   border-color: lightgray;
 }
+
 .wrapperC {
   display: inline-flex;
-  cursor: pointer;
+  position: relative;
 }
 
 .iconC {
@@ -383,12 +414,13 @@ input:focus {
   align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .tooltipC {
   width: 200%;
+  margin-top: -2em;
+
   position: absolute;
   top: 0;
   font-size: 14px;
@@ -437,7 +469,12 @@ button {
   background-color: transparent;
   border:none;
 }
-
+#checkmark{
+  color: green;
+}
+#crossmark{
+  color: red;
+}
 .inputFieldTop {
   position: relative;
   top: 1em;
