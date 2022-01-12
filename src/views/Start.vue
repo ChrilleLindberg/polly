@@ -131,6 +131,7 @@ export default {
     }
   },
   created: function () {
+    document.title = 'Glossary'
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
