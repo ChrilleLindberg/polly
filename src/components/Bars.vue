@@ -65,7 +65,7 @@ export default {
   display:flex;
 
  overflow:auto;
-  position: relative;
+  position: absolute;
   z-index:1;
   flex-direction: column;
 }
