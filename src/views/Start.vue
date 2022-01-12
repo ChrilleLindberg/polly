@@ -25,7 +25,7 @@
           <div class="growing-search">
             <div class="inputpollID">
               <input autocomplete="off" type="text" name="search" id="inputPollId" v-model="id"
-                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent @keyup.enter="pressEnter"/>
+                     v-bind:placeholder="uiLabels.writeField" @input="checkPollId" @keydown.space.prevent/>
             </div><!-- Space hack -->
           </div>
           <button type="submit" name="go_search" @click="switchVisibleFive" class= "participate" v-show="isVisible==1" v-bind:disabled="!pollExists">
