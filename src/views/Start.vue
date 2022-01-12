@@ -14,9 +14,9 @@
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
-<div style="width:2em;height:2em ">
-  <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
-</div>
+  <div style="width:2em;height:2em ">
+    <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
+  </div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
       <ul class="growing-search-freebie">
