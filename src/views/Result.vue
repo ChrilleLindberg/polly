@@ -15,7 +15,7 @@
 
   <div v-show="showBars">
     <p id="Y-axel">{{uiLabels.amountPerson}}</p>
-  <Bars v-bind:data="data" style="margin-left: 15%;margin-right:15%;"/>
+  <Bars v-bind:data="data" style="margin-left: 13%;margin-right:17%;"/>
 
     <p id="X-axel">{{uiLabels.amount}}</p>
     <button class="buttonNice" style="margin-top:1em" v-on:click="this.showBars=false"> <i class="fa fa-users" aria-hidden="true" style="font-size: 2em"></i> </button>
@@ -239,7 +239,7 @@ body h1{
 
   width: 100%;
   max-width: 400px;
-  background-color: rgb(16,111,103);
+  background-color: #333333;
   border-radius: 16px;
 
 
@@ -331,7 +331,7 @@ body h1{
 .resetButton{
   margin-top: 1em;
   width: auto;
-  padding:0.3em;
+  padding:0.4em;
   height: auto;
   color:darkgray;
   font-size: 1em;
@@ -402,7 +402,8 @@ cursor:pointer;
 
 #X-axel{
   position:relative;
-  margin-top:5.5em;
+  margin-top:5.3em;
+  margin-bottom: 1em;
 
 
 }

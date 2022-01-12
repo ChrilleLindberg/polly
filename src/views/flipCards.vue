@@ -28,6 +28,12 @@
 
     </div>
   </div>-->
+  <div class="wrapper">
+    <div class="icon facebook">
+      <div class="tooltip">{{uiLabels.language}}</div>
+      <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
+    </div>
+  </div>
   <div class="centerContainer">
     <div class="aboveCenterContainer">
       <div class="barTextContainer">
@@ -94,7 +100,9 @@ export default {
       card: ["card1", "card2", "card3", "card4"],
       infoImg1: "true",
       infoImg2: "false",
-      infoImg3: "false"
+      infoImg3: "false",
+      lang:"",
+      uiLabels:{},
     }
   }, created: function () {
     this.pollId = this.$route.params.id
@@ -106,6 +114,10 @@ export default {
       this.gameCards.doneCard = new Array(this.gameCards.question.length).fill(false);
       this.gameCards.showCard = new Array(this.gameCards.question.length).fill(false);
       this.gameCards.showCard[this.gameCards.question.length - 1] = true;
+    })
+    this.pollId = this.$route.params.id
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
     })
   },
   methods: {
@@ -159,6 +171,13 @@ export default {
         this.j--;
       }
       this.gameCards.showCard[this.j] = true;
+    },
+    switchLanguage: function() {
+      if (this.lang === "en")
+        this.lang = "sv"
+      else
+        this.lang = "en"
+      socket.emit("switchLanguage", this.lang)
     }
   }
 }
@@ -324,6 +343,70 @@ body {
   height: 100%;
   background-color: white;
   z-index: 100;
+}
+
+.wrapper {
+  display: inline-flex;
+  position: absolute;
+  right: 1.8em;
+  top: 1.8em;
+  cursor: pointer;
+  border-radius: 50%;
+  width:2em;
+  height:2em;
+}
+.wrapper .icon {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+  width:1.2em;
+  height:1em;
+  display: flex;
+  margin-top: 1.2em;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: white;
+  color: #EF8584;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -2.2px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -30px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.pictureFlag{
+  border-radius: 0.5em;
+  width:2.3em;
+  height:1.6em;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
 
 
