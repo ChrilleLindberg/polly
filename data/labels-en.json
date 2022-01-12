@@ -46,7 +46,8 @@
 	"yourAnswer": "Your answer",
 	"correctAnswer": "Correct answer",
 	"nameStudent": "Name",
-	"amount": "Amount correct",
+	"amount": "Number of correct answers",
 	"resetAnswers": "Reset the results",
-	"textReset": "Are you sure you want to reset the results?"
+	"textReset": "Are you sure you want to reset the results?",
+	"amountPerson": "Number of people"
 }

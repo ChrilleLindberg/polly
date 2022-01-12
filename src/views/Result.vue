@@ -14,10 +14,10 @@
 
 
   <div v-show="showBars">
-    <p id="Y-axel">Antal personer</p>
-  <Bars v-bind:data="data" style="margin-left: 10%;margin-right:10%;"/>
+    <p id="Y-axel">{{uiLabels.amountPerson}}</p>
+  <Bars v-bind:data="data" style="margin-left: 15%;margin-right:15%;"/>
 
-    <p id="X-axel">Antal rätt</p>
+    <p id="X-axel">{{uiLabels.amount}}</p>
     <button class="buttonNice" style="margin-top:1em" v-on:click="this.showBars=false"> <i class="fa fa-users" aria-hidden="true" style="font-size: 2em"></i> </button>
   </div>
 
@@ -43,13 +43,15 @@
 
   <button class="buttonNice" v-on:click="getBarsResult"> <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 2em;"></i> </button>
     <br>
+
     <button class="resetButton" v-if="!showModal" v-on:click="showModal=true">{{ uiLabels.resetAnswers }}</button>
     <transition name="fade" appear>
       <div class="modal-overlay" v-if="showModal" v-on:click="showModal = false"></div>
     </transition>
     <transition name="slide" appear>
       <div class="modal" v-if="showModal">
-        <h1 style="padding-bottom:0.3em;">{{ uiLabels.textReset }}</h1>
+        <button class="xModulButton" v-on:click="showModal = false"> x</button>
+        <h1 style="padding-bottom:0.3em;padding-top: 0.5em;">{{ uiLabels.textReset }}</h1>
         <button class="resetButton" v-on:click="resetTest">
           {{ uiLabels.resetAnswers }}
         </button>
@@ -190,11 +192,11 @@ body{
   top: 0em;
   left: 0em;
   background-color: rgb(16,111,103);
-
+  overflow: auto;
 
 }
 body h1{
-  font-family: "beirut ";
+  font-family: Helvetica, Arial, sans-serif;
 
   color: rgb(259,228,201);
 
@@ -303,11 +305,11 @@ body h1{
 }
 #goBack {
   position: absolute;
+  color: rgb(259, 228, 201);
   left: 1em;
   top: 1em;
-  cursor:pointer;
+  cursor: pointer;
   font-size: 2.5em;
-
 }
 
 .buttonNice{
@@ -329,13 +331,13 @@ body h1{
   width: auto;
   padding:0.3em;
   height: auto;
-  color:gray;
+  color:darkgray;
   font-size: 1em;
   font-weight: 800;
   font-family: "Times New Roman", serif;
   border-radius: 5px;
   border-style: solid;
-  border-color:gray;
+  border-color:darkgray;
   background-color: white;
   cursor:pointer;
 }
@@ -390,25 +392,45 @@ cursor:pointer;
   writing-mode: vertical-rl;
   text-orientation:sideways;
   position: absolute;
-  top:15em;
-  margin-left: 10%;
+  top:13em;
+  margin-left: 12%;
 
 
 }
 
 #X-axel{
   position:relative;
-  margin-top:5em;
+  margin-top:5.5em;
 
 
 }
 .rubrikSpalt {
-  margin-top: 1em;
+  margin-top: 1.5em;
   margin-left: 33%;
   margin-right: 33%;
+  color: rgb(259,228,201);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: column;
+}
+.xModulButton {
+  border: solid orange 0.1em;
+  color: orange;
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  font-size: 1.2em;
+  background-color: transparent;
+  position: absolute;
+  left: 0.5em;
+  top: 0.5em;
+  font-weight: lighter;
+}
+.xModulButton:hover {
+  color: red;
+  cursor: pointer;
+  border: solid red 0.1em;
 }
 
 </style>
