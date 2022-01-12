@@ -14,6 +14,7 @@
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
+  <button type="submit" class="invisibleButton" v-show="isVisible==1"> </button>
   <div style="width:2em;height:2em ">
     <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
   </div>
@@ -88,10 +89,10 @@
       </li>
     </ul>
   </div>
-  <nav class="dropMenu" id="CreatorOptionButton" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
+  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
     <h2><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Creator Option</h2>
     <input id="toggle" type="checkbox" checked>
-    <ul class="startMenu">
+    <ul class="startMenu" id="CreateOptButton">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
       <li id="menuItem" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
       <li id="menuItem" v-on:click="switchVisibleFour">{{ uiLabels.showResult }}</li>
@@ -188,7 +189,6 @@ export default {
       if (this.resultExists && this.isVisible==4) {
         this.$router.push('/result/'+ this.idResult)
       }
-
     },
   }
 }
@@ -206,7 +206,32 @@ body {
   font-size: 1em;
 
 }
-
+.invisibleButton{
+  background: transparent;
+  border: none !important;
+  position: absolute;
+  height: 3em;
+  width: 3.5em;
+  top: 3em;
+  left: 3em;
+}
+.invisibleButton:hover{
+  cursor: pointer;
+}
+.invisibleButton:active {
+  background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  top: 0em;
+  left: 0em;
+  opacity: 0.7;
+  transition: all 1s;
+  }
+.invisibleButton:not(:hover){
+  opacity: 0;
+  transition: opacity .6s;
+}
 #goBack {
   position: absolute;
   left: 1em;
