@@ -1,8 +1,6 @@
 <template>
-  <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
+  <div class="mainWrapper">
+  <main  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
   <header id="movedown">
     <h1>
       {{ uiLabels.welcomeMessage }}
@@ -90,7 +88,7 @@
     </ul>
   </div>
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
-    <h2><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Creator Option</h2>
+    <h2><font-awesome-icon icon="bars"></font-awesome-icon> &nbsp; Create</h2>
     <input id="toggle" type="checkbox" checked>
     <ul class="startMenu" id="CreateOptButton">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
@@ -99,7 +97,8 @@
     </ul>
   </nav>
 
-  </body>
+  </main>
+  </div>
 </template>
 
 <script>
@@ -440,8 +439,8 @@ input:focus::placeholder {
 
 
 #movedown{
-  margin-top: 3em;
   margin-bottom: -2em;
+  padding-top: 3em;
 }
 nav {
   margin: auto;
@@ -530,11 +529,14 @@ nav ul.startMenu a {
   text-decoration: none;
   transition: color .3s;
 }
-
+.mainWrapper{
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
 .container{
   width: 100%;
   height: 100%;
-  position: absolute;
   margin: 0px!important;
   top: 0em;
   left: 0em;
@@ -548,8 +550,7 @@ nav ul.startMenu a {
   background-size: 3em;
   background-position: top 2.5em left 2.5em;
   background-repeat: no-repeat;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
 }
 
 .container::-webkit-scrollbar{

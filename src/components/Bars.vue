@@ -76,7 +76,7 @@ export default {
 
 
   display:flex;
-  align-items:end;
+  align-items:flex-end;
   z-index:0;
 
 

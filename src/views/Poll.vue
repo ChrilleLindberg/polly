@@ -216,7 +216,7 @@ body {
   top: 0;
   left: 0;
   font-family: Helvetica, Arial, sans-serif;
-
+overflow-x: hidden;
   background-color: rgb(18, 54, 90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
