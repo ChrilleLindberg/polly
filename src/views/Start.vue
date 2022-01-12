@@ -14,6 +14,9 @@
     {{ uiLabels.editExisting }}
     </h1>
 
+    <h1 v-show="isVisible==4">
+      {{ uiLabels.showResult}}
+    </h1>
   </header>
   <div type="submit" class="wrapper">
     <div class="icon facebook">
@@ -60,9 +63,7 @@
   </div>
 
   <div id="showResult" v-show="isVisible==4">
-    <p>
-      {{ uiLabels.showResult}}
-    </p>
+
     <ul class="growing-search-freebie">
       <li>
         <div class="growing-search">
