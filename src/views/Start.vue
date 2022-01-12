@@ -3,9 +3,17 @@
   <div class="mainWrapper">
   <main  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
   <header id="movedown">
-    <h1>
+    <h1 v-show="isVisible==1">
       {{ uiLabels.welcomeMessage }}
     </h1>
+    <h1 v-show="isVisible==5">
+      {{uiLabels.gamemode}}
+    </h1>
+
+    <h1 v-show="isVisible==3">
+    {{ uiLabels.editExisting }}
+    </h1>
+
   </header>
   <div type="submit" class="wrapper">
     <div class="icon facebook">
@@ -15,7 +23,7 @@
   </div>
   <button @click="confetti" type="submit" v-bind:class="{confettiButton:showConfetti, invisibleButton:true}" v-show="isVisible==1"> </button>
   <div style="width:2em;height:2em ">
-    <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
+    <font-awesome-icon id="goBack" icon="home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne"></font-awesome-icon>
   </div>
     <div id="nav" v-show="isVisible==1">
       <p v-show="isVisible==1">{{uiLabels.infoText}}</p>
@@ -36,9 +44,6 @@
       <p v-show="isVisible==1">{{uiLabels.createText}}</p>
   </div>
   <div id="editExisting" v-show="isVisible==3">
-    <p>
-      {{ uiLabels.editExisting }}
-    </p>
     <ul class="growing-search-freebie">
       <li>
         <div class="growing-search">
@@ -74,9 +79,6 @@
   </div>
 
   <div id="playMode" v-show="isVisible==5">
-    <p>
-      {{ uiLabels.gamemode }}
-    </p>
     <ul class="growing-search-freebie">
       <li>
         <button type="submit" name="go_search" @click="$router.push('/flipcards/'+id)" class="participate" >
@@ -90,7 +92,7 @@
     </ul>
   </div>
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
-    <h2><font-awesome-icon icon="bars"></font-awesome-icon> &nbsp; Create</h2>
+    <h2><font-awesome-icon icon="bars"></font-awesome-icon> &nbsp; {{uiLabels.creator}}</h2>
     <input id="toggle" type="checkbox" checked>
     <ul class="startMenu" id="CreateOptButton">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
