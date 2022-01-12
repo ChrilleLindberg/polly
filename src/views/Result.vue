@@ -194,6 +194,8 @@ body{
   background-color: rgb(16,111,103);
   overflow: auto;
   overflow-y: hidden;
+  font-weight: lighter;
+
 
 }
 body h1{
@@ -335,7 +337,7 @@ body h1{
   height: auto;
   color:darkgray;
   font-size: 1em;
-  font-weight: 800;
+  font-weight: lighter;
   border-radius: 0.5em;
   border-style: solid;
   border-color:darkgray;
@@ -425,6 +427,8 @@ cursor:pointer;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: column;
+  font-weight: lighter;
+
 }
 .xModulButton {
   border: solid orange 0.1em;

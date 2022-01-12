@@ -514,14 +514,13 @@ input:focus {
 .tooltipC {
   width: 200%;
   margin-top: -2em;
-
+  font-size: 0.5em;
   position: absolute;
   top: 0;
-  font-size: 14px;
   background-color: white;
   color: #EF8584;
   padding: 5px 8px;
-  border-radius: 5px;
+  border-radius: 0.5em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   opacity: 0;
   pointer-events: none;
