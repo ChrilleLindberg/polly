@@ -91,7 +91,9 @@
     </ul>
   </div>
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
+    <div class="h2Class">
     <h2><font-awesome-icon icon="bars"></font-awesome-icon> &nbsp; {{uiLabels.creator}}</h2>
+    </div>
     <input id="toggle" type="checkbox" checked>
     <ul class="startMenu" id="CreateOptButton">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
@@ -431,8 +433,8 @@ input:focus::placeholder {
 .participate:hover{
   cursor:pointer;
   transform: translateY(-2px);
-
 }
+
 .participate:hover:active {
   transform: translateY(10px);
   box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
@@ -447,7 +449,7 @@ nav {
   margin: auto;
   position: relative;
   width: 15em;
-  height: 200px;
+  height:40px;
 }
 nav h2 {
   border-radius: 0.5em;
@@ -473,6 +475,12 @@ nav:hover:active h2{
   box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
 
+#toggle:checked ~ul {
+  height: 0%;
+}
+
+
+
 .dropMenu input{
   position: absolute;
   left: 0;
@@ -485,10 +493,6 @@ nav:hover:active h2{
   border-radius: 0.5em;
 }
 
-#toggle:checked ~ul {
-  height: 0%;
-}
-
 nav ul.startMenu {
   padding-left: 0;
   padding-top: 0;
@@ -499,7 +503,7 @@ nav ul.startMenu {
   margin-bottom: 22px;
   text-align: center;
   transition: all .4s ease-out;
-  height: 99%;
+  height: 200px;
 
 }
 nav ul.startMenu li#menuItem{
