@@ -56,5 +56,12 @@
 	"tutorial": "Instruktion",
 	"gameInfo1": "Tryck för att vända på kortet och visa det korrekta svaret.",
 	"gameInfo2": "Tryck på den gröna bocken om du svarade korrekt. Kortet kommer tar bort från högen.",
-	"gameInfo2": "Tryck på det röda krysset om du svarade fel. Kortet kommer att stanna i högen och komma tillbaka senare."
+	"gameInfo3": "Tryck på det röda krysset om du svarade fel. Kortet kommer att stanna i högen och komma tillbaka senare.",
+	"createinfotext": "Under 'skapar-alternativ' på startsidan kan du redigera denna glossary eller visa resultat.",
+	"creator": "Skapar-alternativ",
+	"flipcardCongrats": "Grattis! Du har klarat alla ord!",
+	"playAgain": "Spela igen",
+	"antalkort": "Antal kort kvar:",
+	"inputMessage": "Vänligen fyll i alla tomma fält",
+	"IDMessage": "Vänligen fyll i ledigt Glossory ID"
 }

@@ -13,10 +13,11 @@
   <h1 class="congratsText" v-show="showView == 2"> {{uiLabels.youhavecreated}}</h1>
   <div class="inputFieldTop" v-show="showView==1">
     <input autocomplete="off" type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
-    &nbsp;
+
     <button v-show="!inputActivated" @click="activateInput" id="pen">
-      <i class="fa fa-pencil" aria-hidden="true" ></i>
+      &nbsp; &nbsp; <i class="fa fa-pencil" aria-hidden="true" ></i>
     </button>
+    &nbsp;
     <i class="fa fa-check" id="checkmark" aria-hidden="true" img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated"></i>
     <i class="fa fa-times" id="crossmark" aria-hidden="true" img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'"></i>
   </div>
@@ -66,9 +67,9 @@
       <div class="wrapperC">
         <div v-bind:class="{iconC:answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'}">
           <div class="tooltipC">
-            <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> Skapa ett giltigt Glossary ID</p>
-            <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> Fyll i alla fält </p></div>
-          <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
+            <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> {{ uiLabels.IDMessage }}</p>
+            <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> {{ uiLabels.inputMessage }} </p></div>
+          <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="create">
             {{ uiLabels.createGlossary }}
           </button>
         </div>
@@ -82,6 +83,14 @@
     <button @click="copyToClipboard" class="copyButton" title="Kopiera ID"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
       <i class="fa fa-clipboard" aria-hidden="true"></i>
     </button>
+      <div id="createinfotextdiv">
+      <p id="createInfoText">
+        {{uiLabels.createinfotext}}
+      </p>
+      </div>
+      <button type="submit" name="go_search" @click="$router.push('/')" class="participate">
+        {{ uiLabels.backHome }}
+      </button>
     </div>
   </div>
   </body>
@@ -218,14 +227,15 @@ export default {
   padding:0;
 }
 h1 {
-  color: rgb(249, 228, 201);
+
   position: relative;
   top:2em
 
 }
 body{
   font-family: Helvetica, Arial, sans-serif;
-  background-color: rgb(18,54,90);
+  color: rgb(249,228,201);
+  background-color: rgb(241,153,125);
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -248,15 +258,6 @@ body{
   opacity: 50%;
 }
 
-.classInput {
-  padding-top: 5%;
-  padding-bottom: 0.5em;
-  display: grid;
-  grid-template-columns: 10fr 9fr 1fr;
-  grid-template-rows: repeat(auto-fit,1fr);
-  vertical-align: center;
-}
-
 html {
   background-color: #FFFAF1;
 }
@@ -270,10 +271,99 @@ html {
   right: 1em;
   top: 1em;
 }
+#createinfotextdiv{
+  position: relative;
+  top:5em;
+  background-color: white;
+  margin: auto;
+  width: 50%;
+  height: auto;
+  border-radius: 2em;
+  padding: 1em;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+}
+
+p{
+  color: rgb(18,54,90);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+#createInfoText{
+  position: relative;
+  display: inline-block;
+
+}
+.participate{
+  position:relative;
+  top:3em;
+  background-color: rgb(16,111,103);
+  color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+  font-size: 2em;
+  margin-left: 0;
+  margin-bottom: 0.2em;
+  margin-top: 0.5em;
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  font-weight: 100;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
+  text-decoration:none;
+  text-align:center;
+  transition: all 0.2s;
+  cursor: pointer;
+  min-height: 1.7em;
+  height: auto;
+
+}
+.participate:hover{
+  cursor:pointer;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.participate:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
+.create{
+  top:3em;
+  background-color: rgb(16,111,103);
+  color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+  font-size: 1em;
+  margin-left: 0;
+
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
+  text-align:center;
+  cursor: pointer;
+  min-height: 3em;
+  height: auto;
+
+}
+.create:hover{
+  cursor:pointer;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.create:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
 
 .classInput {
-  padding-top: 5%;
-  padding-bottom: 0.5em;
+  padding-top: 2.5%;
+  padding-bottom: 0.8em;
   display: grid;
   grid-template-columns: 10fr 9fr 1fr;
   grid-template-rows: repeat(auto-fit,1fr);
@@ -281,12 +371,40 @@ html {
   position: relative;
   top:5em;
 }
+
+.create:disabled {
+  background-color: lightgray;
+  color: gray ! important;
+  cursor: default !important;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: 0;
+  border-radius: 0.5em;
+  border-style: none;
+  border-width: 0.2em;
+  font-weight: bold;
+}
+
+.create:disabled {
+  border-radius: 0.5em;
+  background-color: lightgray;
+  color: #666666;
+  border-style: solid;
+  border-width: thin;
+  font-weight: initial;
+
+}
+
+.create:disabled:hover {
+  transform: translateY(0px);
+}
+
 .qInputClass {
   border-radius: 1em;
   grid-column: 1;
   text-align: center;
   display: grid;
-  grid-row-gap: 0.5em;
+  grid-row-gap: 0.8em;
 }
 
 #qInput {
@@ -306,7 +424,7 @@ html {
   grid-column: 2;
   text-align: center;
   display: grid;
-  grid-row-gap: 0.5em;
+  grid-row-gap: 0.8em;
 }
 
 .removeWords {
@@ -334,7 +452,7 @@ input:focus {
 }
 
 .copyButton {
-  margin-left: 1em;
+  margin-left: 0.5em;
   height: 2.5em;
   width: 2.5em;
   border-style: solid;
@@ -342,18 +460,26 @@ input:focus {
   border-color: #EF8584;
   border-width: 0.2em;
   border-radius: 0.5em;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .6s;
 }
 .copyButton:hover {
   cursor: pointer;
   background-color: #EF8584;
   color: #FFFAF1;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.copyButton:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
 
 #trashCan {
   opacity: 75%;
   vertical-align: center;
   font-size: 2em;
-  color: rgb(249, 228, 201);
+  color: rgb(249,228,201);
   position: relative;
   right:0.3em;
   margin-left:0.3em;
@@ -404,19 +530,32 @@ input:focus {
   border-style: solid;
   border-width: 0.2em;
   border-color: #EF8584;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .1s;
 }
 
 .buttonNice:disabled {
   cursor: initial;
   height: 3em;
   border-radius: 0.5em;
-  background-color: transparent;
+  background-color: #FFFFFF;
   color: lightgray;
   border-style: solid;
   border-width: 0.2em;
   border-color: lightgray;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
-
+.buttonNice:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.buttonNice:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
+.buttonNice:disabled:hover {
+  transform: translateY(0px);
+}
 .wrapperC {
   display: inline-flex;
   position: relative;
@@ -438,14 +577,13 @@ input:focus {
 .tooltipC {
   width: 200%;
   margin-top: -2em;
-
+  font-size: 0.5em;
   position: absolute;
   top: 0;
-  font-size: 14px;
   background-color: white;
   color: #EF8584;
   padding: 5px 8px;
-  border-radius: 5px;
+  border-radius: 0.5em;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   opacity: 0;
   pointer-events: none;
@@ -486,6 +624,9 @@ button {
 #pen {
   background-color: transparent;
   border:none;
+  position: relative;
+  top:5em;
+
 }
 #checkmark{
   color: green;
@@ -513,8 +654,8 @@ button {
 }
 #prefilledInput, .copyButton{
   position: relative;
-  top:15em
-
+  top:5em;
+  left:1.5em;
 }
 
 #inputFieldPollId:disabled {
@@ -596,7 +737,7 @@ button {
   top: 1em;
   cursor:pointer;
   font-size: 2.5em;
-  color: rgb(249,228,201);
+
 }
 
 footer {

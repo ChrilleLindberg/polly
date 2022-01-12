@@ -56,5 +56,14 @@
 	"tutorial": "Tutorial",
 	"gameInfo1": "Press to flip the card and reveal the correct answer.",
 	"gameInfo2": "Press the green check mark if you answered correcty. The card will be removed from the pile.",
-	"gameInfo2": "Press the red cross if you answered incorrecty. The card will stay in the pile and come back later."
+	"gameInfo3": "Press the red cross if you answered incorrecty. The card will stay in the pile and come back later.",
+	"createinfotext": "Under 'creater options' on the home page you can edit this glossary or show results.",
+	"creator": "Creator options",
+	"flipcardCongrats": "Congratulations! You've finished all words!",
+	"playAgain": "Play again",
+	"antalkort": "Cards remaining:",
+	"createinfotext": "Under 'Creator options' on the home page you can edit this glossary or show results.",
+	"creator": "Creator options",
+	"inputMessage": "Please fill in all empty fields",
+	"IDMessage": "Please enter a valid Glossary ID"
 }

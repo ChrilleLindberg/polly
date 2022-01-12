@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="gridContainer">
+  <div class="gridContainer" >
     <div v-for="(q, i) in question.q" :key="q">
       <div class="container">
         <div id="answer"><span style="padding-top:0.5em;"> {{ q }}</span></div>
@@ -31,7 +31,8 @@ export default {
   data: function () {
     return {
       myAnswers: [],
-      uiLabels: {}
+      uiLabels: {},
+      lang:""
     }
   },
   created: function () {
@@ -41,6 +42,7 @@ export default {
 
     this.$emit("answer", {answer: this.myAnswers});
 
+
   },
   methods: {
     switchLanguage: function () {
@@ -49,6 +51,7 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
+      console.log("körs swtich lagnueage?")
     },
   }
 }

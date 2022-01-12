@@ -15,7 +15,7 @@
 
   <div v-show="showBars">
     <p id="Y-axel">{{uiLabels.amountPerson}}</p>
-  <Bars v-bind:data="data" style="margin-left: 15%;margin-right:15%;"/>
+  <Bars v-bind:data="data" style="margin-left: 13%;margin-right:17%;"/>
 
     <p id="X-axel">{{uiLabels.amount}}</p>
     <button class="buttonNice" style="margin-top:1em" v-on:click="this.showBars=false"> <i class="fa fa-users" aria-hidden="true" style="font-size: 2em"></i> </button>
@@ -51,7 +51,7 @@
     <transition name="slide" appear>
       <div class="modal" v-if="showModal">
         <button class="xModulButton" v-on:click="showModal = false"> x</button>
-        <h1 style="padding-bottom:0.3em;padding-top: 0.5em;">{{ uiLabels.textReset }}</h1>
+        <h1 style="padding-bottom:0.3em;padding-top: 0.5em ; font-weight: lighter;">{{ uiLabels.textReset }}</h1>
         <button class="resetButton" v-on:click="resetTest">
           {{ uiLabels.resetAnswers }}
         </button>
@@ -187,6 +187,7 @@ console.log("inne i results resetTest")
 body{
   font-family: Helvetica,Arial, sans-serif;
   width: 100%;
+  color: rgb(259,228,201);
   height: 100%;
   position: absolute;
   top: 0em;
@@ -194,6 +195,8 @@ body{
   background-color: rgb(16,111,103);
   overflow: auto;
   overflow-y: hidden;
+  font-weight: lighter;
+
 
 }
 body h1{
@@ -210,7 +213,7 @@ body h1{
   max-height:20em;
   overflow: auto;
 
-  box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
+
   background-color: white;
 }
 
@@ -236,11 +239,11 @@ body h1{
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-
   width: 100%;
   max-width: 400px;
+  border: solid rgb(259, 228, 201) 0.2em;
   background-color: rgb(16,111,103);
-  border-radius: 16px;
+  border-radius: 0.5em;
 
 
   padding: 25px;
@@ -321,32 +324,36 @@ body h1{
   color:#EF8584;
   font-size: 1em;
   font-weight: 800;
-  font-family: "Times New Roman", serif;
-  border-radius: 5px;
+  border-radius: 0.5em;
   border-style: solid;
   border-color:#EF8584;
   background-color: white;
-
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .6s;
 }
 .resetButton{
   margin-top: 1em;
   width: auto;
-  padding:0.3em;
+  padding:0.4em;
   height: auto;
   color:darkgray;
   font-size: 1em;
-  font-weight: 800;
-  font-family: "Times New Roman", serif;
-  border-radius: 5px;
+  font-weight: lighter;
+  border-radius: 0.5em;
   border-style: solid;
   border-color:darkgray;
   background-color: white;
   cursor:pointer;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+
 }
 .resetButton:hover{
   border-color:gray;
   background-color: gray;
   color:white;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 }
 .buttonNice:hover{
 
@@ -355,17 +362,23 @@ cursor:pointer;
   border-style: solid;
   border-color:#EF8584;
   background-color: #EF8584;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 }
-.buttonNice:active{
+.buttonNice:hover:active{
 
   color:white;
 
   border-style: solid;
   border-color:#EF8584;
   background-color: #EF8584;
-
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
-
+.resetButton:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .35);
+}
 .table {
   display: grid;
 
@@ -379,6 +392,7 @@ cursor:pointer;
   grid-column:1;
   border:2px solid #dfdfdf;
   padding:1em;
+  color:black;
 
 
 
@@ -386,7 +400,7 @@ cursor:pointer;
 #table2 {
   grid-column: 2;
   border:2px solid #dfdfdf;
-
+  color:black;
   padding:1em;
 
 }
@@ -402,7 +416,8 @@ cursor:pointer;
 
 #X-axel{
   position:relative;
-  margin-top:5.5em;
+  margin-top:5.3em;
+  margin-bottom: 1em;
 
 
 }
@@ -410,14 +425,16 @@ cursor:pointer;
   margin-top: 1.5em;
   margin-left: 33%;
   margin-right: 33%;
-  color: rgb(259,228,201);
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: column;
+  font-weight: lighter;
+
 }
 .xModulButton {
-  border: solid orange 0.1em;
-  color: orange;
+  border: solid rgb(259, 228, 201) 0.1em;
+  color: rgb(259, 228, 201);
   border-radius: 50%;
   width: 1.5em;
   height: 1.5em;
