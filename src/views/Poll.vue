@@ -37,7 +37,7 @@
         <div class="modal" v-if="showModal">
           <button class="xModulButton" v-on:click="showModal = false"> x</button>
           <h1>{{ uiLabels.enterName }}</h1>
-          <p><input autocomplete="off" type="string" id="fullnamebox" v-model="nameContendor">
+          <p><input autocomplete="off" type="string" id="fullnamebox" v-model="nameContendor" style="border-radius: 0.5em;">
             <br>
           </p>
           <button id="finalButton" class="button" v-on:click="FinishedQuiz" v-bind:disabled="nameContendor == ''">
@@ -454,7 +454,7 @@ p {
   overflow: auto;
   height: auto;
   max-height: 20em;
-  box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
   background-color: white;
 
 }
