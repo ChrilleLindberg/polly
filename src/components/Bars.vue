@@ -9,7 +9,7 @@
   </div>-->
 
   <div class="bar" v-for="(_, key) in data.list" v-bind:key="key" >
-    <div v-if="data.list[key]*data.amountStudent>0" style="font-size: 1.5em; color: lightgray;">
+    <div v-if="data.list[key]*data.amountStudent>0" style="font-size: 1.5em; color: rgb(259,228,201);;">
     {{data.list[key]*data.amountStudent}}
     </div>
     <div  v-bind:style="{height:18*data.list[key] +'em', width: 17/data.list.length + 'em',  }" v-if="key>=0*(data.list.length-1)"  style="background-color:#F52C33; ">
@@ -47,7 +47,7 @@ export default {
 <style scoped>
 .bar {
   position: relative;
-
+  color: rgb(259,228,201);
   display: inline-block;
   vertical-align: bottom;
   bottom:-3.17em;
@@ -78,7 +78,7 @@ export default {
   display:flex;
   align-items:flex-end;
   z-index:0;
-
+  color: rgb(259,228,201);
 
 
 

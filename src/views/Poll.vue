@@ -316,8 +316,8 @@ body {
 
 
 .xModulButton {
-  border: solid orange 0.1em;
-  color: orange;
+  border: solid rgb(249,228,201) 0.1em;
+  color: rgb(249,228,201);
   border-radius: 50%;
   width: 1.5em;
   height: 1.5em;
@@ -345,7 +345,7 @@ body {
   z-index: 98;
   backdrop-filter: blur(0.5em);
   box-shadow: 0px 1px 15px 10px rgb(177, 80, 80);
-  background-color: rgba(9, 108, 238, 0.3);
+
 }
 
 .modal {
@@ -354,22 +354,20 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-
-
   width:auto;
   background-color: rgb(18, 54, 90);
   border-radius: 16px;
   margin-right: 25%;
-
-
-
+  border-width: 0.2em;
+  border-style: solid;
+  border-color:rgb(249, 228, 201);
   padding: 25px;
 }
 
 h1 {
-  color: rgb(249, 228, 201);
-  font-size: 32px;
-  font-weight: 900;
+  color:rgb(249, 228, 201);
+
+  font-weight: lighter;
   margin-bottom: 15px;
   margin-top: 0.5em;
   font-family: Helvetica, Arial, sans-serif;
