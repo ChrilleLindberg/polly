@@ -19,7 +19,7 @@
 	"goBack": "Hem",
 	"goHome": "hem",
 	"createGlossary": "Skapa glossary",
-	"question": "Ord",
+	"question": "Glosa",
 	"answers": "Svar",
 	"result": "Resultat",
 	"pollIdAlreadyTaken": "Detta Glossary ID är redan upptaget",
@@ -42,15 +42,19 @@
 	"translation": "Översättning",
 	"showResult": "Visa resultat",
 	"gamemode" : "Välj spelläge",
-	"flipcards": "Blädderkort",
-	"glossary": "Glosor",
+	"flipcards": "Övning",
+	"glossary": "Examinering",
 	"yourAnswer": "Ditt svar",
 	"correctAnswer": "Korrekt svar",
 	"nameStudent": "Namn",
 	"amount": "Antal rätt",
 	"resetAnswers": "Nollställ resultaten",
 	"textReset": "Är du säker på att du vill nollställa resultaten?",
-	"amountPerson": "Antal personer"
+	"amountPerson": "Antal personer",
+	"createinfotext": "Under 'skapar-alternativ' på startsidan kan du redigera denna glossary eller visa resultat.",
+	"creator": "Skapar-alternativ"
+
+
 
 
 }

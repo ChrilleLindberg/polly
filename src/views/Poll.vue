@@ -172,6 +172,8 @@ export default {
         if (typeof (this.myAnswers.answer[i]) != "undefined") {
           this.answersConverted[i] = this.myAnswers.answer[i].toLowerCase()
 
+        } else {
+          this.myAnswers.answer[i] = "-";
         }
 
         if (this.questionsConverted[i] == this.answersConverted[i]) {
