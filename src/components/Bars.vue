@@ -73,8 +73,8 @@ export default {
   top:3em;
   margin-top:1em;
   width:auto;
-
-
+  background-color: white;
+  left:2em;
   display:flex;
   align-items:flex-end;
   z-index:0;
