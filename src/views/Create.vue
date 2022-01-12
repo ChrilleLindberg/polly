@@ -232,6 +232,7 @@ body{
   position: absolute;
   top:0em;
   left:0em;
+  z-index:-2;
 }
 
 #backgroundDiv {
