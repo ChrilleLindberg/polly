@@ -8,60 +8,69 @@
 
   </gameCard>-->
   <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
-
-  <transition-group v-bind:name="transitionType">
-    <gameCard v-for="(item, i) in gameCards.question"
-              v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
-
-              :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]"
-              :ref="'card' + i">
-    </gameCard>
-  </transition-group>
-  <!--<div class="infoDiv">
-    <div v-show="infoImg1">
-      <img src="https://live.staticflickr.com/65535/51816020251_399837dd39_k.jpg">
+  <div v-bind:class="{infoDiv:true,infoImg1:showVar==1,infoImg2:showVar==2,infoImg3:showVar==3}" v-show="!showGame">
+    <i class="fa fa-arrow-right" id="arrow" @click="nextInfoImg"></i>
+    <div class="skipDiv" @click="skipInfoImg">
+      <p class="skipText">{{uiLabels.skipAll}}</p>
     </div>
-    <div v-show="infoImg2">
-
+    <div class="infoTitle">
+      <h1>{{uiLabels.tutorial}}</h1>
     </div>
-    <div v-show="infoImg3">
-
+    <div class="infoText">
+      <p v-show="showVar==1">{{uiLabels.gameInfo1}}</p>
+      <p v-show="showVar==2">{{uiLabels.gameInfo2}}</p>
+      <p v-show="showVar==3">{{uiLabels.gameInfo3}}</p>
     </div>
-  </div>-->
-  <div class="centerContainer">
-    <div class="aboveCenterContainer">
-      <div class="barTextContainer">
-        <h4 class="barText"> Antal kort kvar: {{
-            gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length
-          }} </h4>
-      </div>
-      <div class="barContainer">
-        <div class="progressBar">
-          <div class="progressBarGreen"
-               v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
+  </div>
+  <div v-show="showGame">
+    <transition-group v-bind:name="transitionType">
+      <gameCard v-for="(item, i) in gameCards.question"
+                v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
+
+                :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]"
+                :ref="'card' + i">
+      </gameCard>
+    </transition-group>
+
+    <div class="centerContainer">
+      <div class="aboveCenterContainer">
+        <div class="barTextContainer">
+          <h4 class="barText"> Antal kort kvar: {{
+              gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length
+            }} </h4>
+        </div>
+        <div class="barContainer">
+          <div class="progressBar">
+            <div class="progressBarGreen"
+                 v-bind:style="{width: (gameCards.doneCard.filter(Boolean).length / gameCards.doneCard.length)*100 + '%'}">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
-      Grattis! Du har klarat alla ord!
-      <div>
-        <button @click="this.$router.go()">Spela igen</button>
+      <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
+        Grattis! Du har klarat alla ord!
+        <div>
+          <button @click="this.$router.go()">Spela igen</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="belowCenterContainer">
-    <div class="buttonsInner">
-      <!--  -->
-      <i id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}" class="fa fa-times-circle" aria-hidden="true"></i>
+    <div class="belowCenterContainer">
+      <div class="buttonsInner">
+        <!--  -->
+        <i id="buttonImageCross" @click="swipeLeft"
+           v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
+           class="fa fa-times-circle" aria-hidden="true"></i>
 
-      <!--<img id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
-           src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png"> -->
-      <div class="fill"></div>
-      <div>
-        <i id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}" class="fa fa-check-circle" aria-hidden="true"></i>
-       <!-- <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
-             src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641553421~hmac=5ba5566c9fa51b1c3bce57a898f2f2d1"> -->
+        <!--<img id="buttonImageCross" @click="swipeLeft" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 1}"
+             src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png"> -->
+        <div class="fill"></div>
+        <div>
+          <i id="buttonImageCheck" @click="swipeRight"
+             v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
+             class="fa fa-check-circle" aria-hidden="true"></i>
+          <!-- <img id="buttonImageCheck" @click="swipeRight" v-bind:class="{disabledButton: gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length <= 0}"
+                src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641553421~hmac=5ba5566c9fa51b1c3bce57a898f2f2d1"> -->
+        </div>
       </div>
     </div>
   </div>
@@ -92,11 +101,14 @@ export default {
       j: Number,
       transitionType: "",
       card: ["card1", "card2", "card3", "card4"],
-      infoImg1: "true",
-      infoImg2: "false",
-      infoImg3: "false"
+      showVar: 1,
+      showGame: false,
+      uiLabels: {}
     }
   }, created: function () {
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
     this.pollId = this.$route.params.id
     socket.emit("getPollInfo", this.pollId)
     socket.on('getPollInfo2', (pollInfo) => {
@@ -130,13 +142,6 @@ export default {
       }
       this.gameCards.showCard[this.j] = true;
 
-      this.$refs.card0.setTheCard()
-      this.$refs.card1.setTheCard()
-      this.$refs.card2.setTheCard()
-      this.$refs.card3.setTheCard()
-
-      console.log("left j end", this.j)
-
     }
     ,
     swipeRight: function () {
@@ -159,7 +164,16 @@ export default {
         this.j--;
       }
       this.gameCards.showCard[this.j] = true;
-    }
+    },
+    nextInfoImg: function () {
+      this.showVar +=1;
+      if(this.showVar==4){
+        this.showGame = true;
+      }
+    },
+    skipInfoImg: function () {
+        this.showGame = true;
+      }
   }
 }
 
@@ -236,7 +250,7 @@ export default {
   right: -10em;
   grid-column: 1;
   cursor: pointer;
-  color:red;
+  color: red;
 }
 
 #buttonImageCheck {
@@ -246,7 +260,7 @@ export default {
   cursor: pointer;
   position: relative;
   right: 8px;
-  color:lawngreen;
+  color: lawngreen;
 }
 
 #buttonImageCheck:hover, #buttonImageCross:hover {
@@ -316,16 +330,55 @@ body {
   top: 1em;
   cursor: pointer;
   font-size: 3em;
-  color: rgb(18,54,90);
+  color: rgb(18, 54, 90);
 }
 
 .infoDiv {
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  object-fit: cover;
   background-color: white;
   z-index: 100;
+  overflow: hidden;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
+.infoImg1 {
+  background-image: url("https://live.staticflickr.com/65535/51815392132_40982a5d50_k.jpg");
+}
 
+.infoImg2 {
+  background-image: url("https://live.staticflickr.com/65535/51816452918_4f58487627_k.jpg");
+}
+
+.infoImg3 {
+  background-image: url("https://live.staticflickr.com/65535/51815392162_113bd61a8d_k.jpg");
+}
+
+#arrow {
+  position: absolute;
+  bottom: 10%;
+  right: 20%;
+  font-size: 3em;
+  color: #9D9D9D;
+  cursor: pointer;
+}
+
+.skipDiv {
+  position: absolute;
+  bottom: 6.2%;
+  left: 20%;
+  }
+
+.skipText{
+  cursor: pointer;
+  color: #9D9D9D;
+  text-decoration: underline;
+  font-size: 2em;
+}
 
 </style>

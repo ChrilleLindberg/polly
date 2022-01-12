@@ -51,8 +51,10 @@
 	"resetAnswers": "Nollställ resultaten",
 	"textReset": "Är du säker på att du vill nollställa resultaten?",
 	"amountPerson": "Antal personer",
-	"creator": "Skapar-alternativ"
-
-
-
+	"creator": "Skapar-alternativ",
+	"skipAll": "Hoppa över",
+	"tutorial": "Instruktion",
+	"gameInfo1": "Tryck för att vända på kortet och visa det korrekta svaret.",
+	"gameInfo2": "Tryck på den gröna bocken om du svarade korrekt. Kortet kommer tar bort från högen.",
+	"gameInfo2": "Tryck på det röda krysset om du svarade fel. Kortet kommer att stanna i högen och komma tillbaka senare."
 }

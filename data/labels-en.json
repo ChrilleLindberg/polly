@@ -51,5 +51,10 @@
 	"resetAnswers": "Reset the results",
 	"textReset": "Are you sure you want to reset the results?",
 	"amountPerson": "Number of people",
-	"creator": "Creator options"
+	"creator": "Creator options",
+	"skipAll": "Skip all",
+	"tutorial": "Tutorial",
+	"gameInfo1": "Press to flip the card and reveal the correct answer.",
+	"gameInfo2": "Press the green check mark if you answered correcty. The card will be removed from the pile.",
+	"gameInfo2": "Press the red cross if you answered incorrecty. The card will stay in the pile and come back later."
 }
