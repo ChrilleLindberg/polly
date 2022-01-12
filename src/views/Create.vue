@@ -479,7 +479,7 @@ input:focus {
   opacity: 75%;
   vertical-align: center;
   font-size: 2em;
-
+  color: rgb(249,228,201);
   position: relative;
   right:0.3em;
   margin-left:0.3em;
