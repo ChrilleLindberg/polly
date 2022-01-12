@@ -21,6 +21,14 @@ export default {
     doneCard: Object,
   },
 
+  watch:{
+    showCard(show){
+    if (!show){
+      this.rotateClass = "thecard"
+    }
+    }
+  },
+
   data: function () {
     return {
       rotateClass: "frontclass"
