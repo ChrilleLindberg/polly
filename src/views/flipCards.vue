@@ -12,10 +12,22 @@
   <transition-group v-bind:name="transitionType">
     <gameCard v-for="(item, i) in gameCards.question"
               v-bind:question="gameCards.question[i]" v-bind:answer="gameCards.answers[i]"
+
               :key="item" v-bind:showCard="gameCards.showCard[i]" v-bind:doneCard="gameCards.doneCard[i]"
               :ref="'card' + i">
     </gameCard>
   </transition-group>
+  <!--<div class="infoDiv">
+    <div v-show="infoImg1">
+      <img src="https://live.staticflickr.com/65535/51816020251_399837dd39_k.jpg">
+    </div>
+    <div v-show="infoImg2">
+
+    </div>
+    <div v-show="infoImg3">
+
+    </div>
+  </div>-->
   <div class="centerContainer">
     <div class="aboveCenterContainer">
       <div class="barTextContainer">
@@ -79,7 +91,10 @@ export default {
       },
       j: Number,
       transitionType: "",
-      card: ["card1", "card2", "card3", "card4"]
+      card: ["card1", "card2", "card3", "card4"],
+      infoImg1: "true",
+      infoImg2: "false",
+      infoImg3: "false"
     }
   }, created: function () {
     this.pollId = this.$route.params.id
@@ -303,4 +318,14 @@ body {
   font-size: 3em;
   color: rgb(18,54,90);
 }
+
+.infoDiv {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 100;
+}
+
+
+
 </style>

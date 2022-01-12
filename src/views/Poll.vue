@@ -216,7 +216,7 @@ body {
   top: 0;
   left: 0;
   font-family: Helvetica, Arial, sans-serif;
-
+overflow-x: hidden;
   background-color: rgb(18, 54, 90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
@@ -378,7 +378,8 @@ p {
   margin-left: 10%;
   margin-right: 10%;
   overflow: auto;
-  height: 20em;
+  height: auto;
+  max-height: 20em;
   box-shadow: 0em 0.1em 0.15em 0.1em rgb(203, 172, 172);
   background-color: white;
 
