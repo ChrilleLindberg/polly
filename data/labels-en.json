@@ -50,5 +50,6 @@
 	"amount": "Number of correct answers",
 	"resetAnswers": "Reset the results",
 	"textReset": "Are you sure you want to reset the results?",
-	"amountPerson": "Number of people"
+	"amountPerson": "Number of people",
+	"createinfotext": "Under 'creater options' on the home page you can edit this glossary or show results."
 }

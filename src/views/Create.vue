@@ -82,6 +82,14 @@
     <button @click="copyToClipboard" class="copyButton" title="Kopiera ID"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
       <i class="fa fa-clipboard" aria-hidden="true"></i>
     </button>
+      <div id="createinfotextdiv">
+      <p id="createInfoText">
+        {{uiLabels.createinfotext}}
+      </p>
+      </div>
+      <button type="submit" name="go_search" @click="$router.push('/')" class="participate">
+        {{ uiLabels.backHome }}
+      </button>
     </div>
   </div>
   </body>
@@ -248,15 +256,6 @@ body{
   opacity: 50%;
 }
 
-.classInput {
-  padding-top: 5%;
-  padding-bottom: 0.5em;
-  display: grid;
-  grid-template-columns: 10fr 9fr 1fr;
-  grid-template-rows: repeat(auto-fit,1fr);
-  vertical-align: center;
-}
-
 html {
   background-color: #FFFAF1;
 }
@@ -269,6 +268,62 @@ html {
   position: absolute;
   right: 1em;
   top: 1em;
+}
+#createinfotextdiv{
+  position: relative;
+  top:5em;
+  background-color: white;
+  margin: auto;
+  width: 50%;
+  height: auto;
+  border-radius: 2em;
+  padding: 1em;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+}
+
+p{
+  color: rgb(18,54,90);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+#createInfoText{
+  position: relative;
+  display: inline-block;
+
+}
+.participate{
+  position:relative;
+  top:3em;
+  background-color: rgb(16,111,103);
+  color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  font-size: 2em;
+  margin-left: 0;
+  margin-bottom: 0.2em;
+  margin-top: 0.5em;
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  font-weight: 100;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
+  text-decoration:none;
+  text-align:center;
+  transition: all 0.2s;
+  cursor: pointer;
+  min-height: 1.7em;
+  height: auto;
+}
+.participate:hover{
+  cursor:pointer;
+  transform: translateY(-2px);
+}
+.participate:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
 
 .classInput {
@@ -334,7 +389,7 @@ input:focus {
 }
 
 .copyButton {
-  margin-left: 1em;
+  margin-left: 0.5em;
   height: 2.5em;
   width: 2.5em;
   border-style: solid;
@@ -513,8 +568,8 @@ button {
 }
 #prefilledInput, .copyButton{
   position: relative;
-  top:15em
-
+  top:5em;
+  left:1.5em;
 }
 
 #inputFieldPollId:disabled {
