@@ -56,6 +56,6 @@
 	"flipcardCongrats": "Grattis! Du har klarat alla ord!",
 	"playAgain": "Spela igen",
 	"antalkort": "Antal kort kvar:",
-	"inputMessage": "Vänligen fyll i ledigt Glossory ID",
-	"IDMessage": "Vänligen fyll i alla tomma fält"
+	"inputMessage": "Vänligen fyll i alla tomma fält",
+	"IDMessage": "Vänligen fyll i ledigt Glossory ID"
 }

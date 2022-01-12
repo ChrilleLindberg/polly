@@ -58,6 +58,6 @@
 	"antalkort": "Cards remaining:",
 	"createinfotext": "Under 'Creator options' on the home page you can edit this glossary or show results.",
 	"creator": "Creator options",
-	"inputMessage": "Please enter a valid Glossary ID",
-	"IDMessage": "Please fill in all empty fields"
+	"inputMessage": "Please fill in all empty fields",
+	"IDMessage": "Please enter a valid Glossary ID"
 }
