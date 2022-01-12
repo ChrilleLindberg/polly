@@ -55,6 +55,9 @@
 	"creator": "Creator options",
 	"flipcardCongrats": "Congratulations! You've finished all words!",
 	"playAgain": "Play again",
-	"antalkort": "Cards remaining:"
-
+	"antalkort": "Cards remaining:",
+	"createinfotext": "Under 'Creator options' on the home page you can edit this glossary or show results.",
+	"creator": "Creator options",
+	"inputMessage": "Please enter a valid Glossary ID",
+	"IDMessage": "Please fill in all empty fields"
 }
