@@ -48,7 +48,8 @@
 	"nameStudent": "Namn",
 	"amount": "Antal rätt",
 	"resetAnswers": "Nollställ resultaten",
-	"textReset": "Är du säker på att du vill nollställa resultaten?"
+	"textReset": "Är du säker på att du vill nollställa resultaten?",
+	"amountPerson": "Antal personer"
 
 
 }
