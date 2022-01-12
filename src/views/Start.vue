@@ -88,8 +88,8 @@
       </li>
     </ul>
   </div>
-  <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
-    <h2><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Create</h2>
+  <nav class="dropMenu" id="CreatorOptionButton" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
+    <h2><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Creator Option</h2>
     <input id="toggle" type="checkbox" checked>
     <ul class="startMenu">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
@@ -422,7 +422,7 @@ nav {
   margin: auto;
   margin-top: -3em;
   position: relative;
-  width: 9em;
+  width: 15em;
   height: 200px;
 }
 nav h2 {
