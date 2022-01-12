@@ -66,8 +66,8 @@
       <div class="wrapperC">
         <div v-bind:class="{iconC:answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'}">
           <div class="tooltipC">
-            <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> Skapa ett giltigt Glossary ID</p>
-            <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> Fyll i alla fält </p></div>
+            <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> {{ uiLabels.IDMessage }}</p>
+            <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> {{ uiLabels.inputMessage }} </p></div>
           <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
             {{ uiLabels.createGlossary }}
           </button>
