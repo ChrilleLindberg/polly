@@ -223,7 +223,7 @@ overflow-x: hidden;
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
 }
-
+/*
 .button {
   appearance: none;
   outline: none;
@@ -234,7 +234,6 @@ overflow-x: hidden;
   display: inline-block;
   padding: 15px 25px;
   background-color: rgb(16,111,103);
-  /*background-image: linear-gradient(to right, #86FF60, #2CEB78); */
   border-radius: 8px;
 
   color: #FFF;
@@ -250,7 +249,69 @@ overflow-x: hidden;
 }
 .button:disabled{
   background-color: gray;
+}*/
+.button{
+  background-color: rgb(16,111,103);
+
+
+  color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  font-size: 1em;
+  margin-left: 0;
+  margin-bottom: 0.2em;
+  margin-top: 0.5em;
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  font-weight: 100;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
+  text-decoration:none;
+  text-align:center;
+  transition: all 0.2s;
+  cursor: default;
+  height: 1.7em;
+
 }
+.button:disabled{
+  background-color: lightgray;
+  color: gray! important;
+  cursor: default !important;
+  height: 1.7em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  margin-left: 0;
+  border-radius: 0.5em;
+  border-style: none;
+  border-width: 0.2em;
+  font-weight: bold;
+}
+
+.button:disabled {
+  border-radius: 0.5em;
+  background-color: lightgray;
+  color: #666666;
+  border-style: solid;
+  border-width: thin;
+  font-weight: initial;
+
+}
+.button:disabled:hover{
+  transform: translateY(0px);
+}
+.button:hover{
+  cursor:pointer;
+  transform: translateY(-2px);
+
+}
+.button:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
+
 
 .xModulButton {
   border: solid orange 0.1em;
@@ -356,7 +417,18 @@ p {
   margin-top: 2em;
   margin-bottom: 5em;
 }
-
+.button{
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+}
+.button:hover{
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.button:hover:active{
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
 #fullnamebox {
   height: 3em;
   width: 15em;
