@@ -300,6 +300,7 @@ p{
   background-color: rgb(16,111,103);
   color: rgb(249,228,201);
   box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
   font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
@@ -317,10 +318,12 @@ p{
   cursor: pointer;
   min-height: 1.7em;
   height: auto;
+
 }
 .participate:hover{
   cursor:pointer;
   transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 }
 .participate:hover:active {
   transform: translateY(10px);
