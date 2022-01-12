@@ -53,6 +53,9 @@
 	"amountPerson": "Antal personer",
 	"createinfotext": "Under 'skapar-alternativ' på startsidan kan du redigera denna glossary eller visa resultat.",
 	"creator": "Skapar-alternativ",
+	"flipcardCongrats": "Grattis! Du har klarat alla ord!",
+	"playAgain": "Spela igen",
+	"antalkort": "Antal kort kvar:",
 	"inputMessage": "Vänligen fyll i ledigt Glossory ID",
 	"IDMessage": "Vänligen fyll i alla tomma fält"
 }

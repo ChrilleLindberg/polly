@@ -1,4 +1,5 @@
 <template>
+
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -7,6 +8,7 @@
   <!--<gameCard v-for="card in gameCards" v-bind:key="card">
 
   </gameCard>-->
+
   <i id="goBack" class="fa fa-home" v-on:click="$router.push('/')"> </i>
 
   <transition-group v-bind:name="transitionType">
@@ -17,6 +19,7 @@
               :ref="'card' + i">
     </gameCard>
   </transition-group>
+  <div id="wrapper29">
   <!--<div class="infoDiv">
     <div v-show="infoImg1">
       <img src="https://live.staticflickr.com/65535/51816020251_399837dd39_k.jpg">
@@ -34,10 +37,22 @@
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
+    <div id="congrats" v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
+      <h2>{{ uiLabels.flipcardCongrats }} </h2>
+      <div>
+        <button type="submit" name="go_search" @click="this.$router.go()" class="participate">
+          {{ uiLabels.playAgain }}
+        </button>
+        <br>
+        <button type="submit" name="go_search" @click="$router.push('/')" class="participate">
+          {{ uiLabels.backHome }}
+        </button>
+      </div>
+    </div>
   <div class="centerContainer">
     <div class="aboveCenterContainer">
       <div class="barTextContainer">
-        <h4 class="barText"> Antal kort kvar: {{
+        <h4 class="barText"> {{ uiLabels.antalkort }} {{
             gameCards.doneCard.length - gameCards.doneCard.filter(Boolean).length
           }} </h4>
       </div>
@@ -49,12 +64,7 @@
         </div>
       </div>
     </div>
-    <div v-show="gameCards.doneCard.filter(Boolean).length == gameCards.doneCard.length">
-      Grattis! Du har klarat alla ord!
-      <div>
-        <button @click="this.$router.go()">Spela igen</button>
-      </div>
-    </div>
+    <!-- förra congrats -->
   </div>
   <div class="belowCenterContainer">
     <div class="buttonsInner">
@@ -70,6 +80,7 @@
              src="https://cdn-icons.flaticon.com/png/128/4436/premium/4436481.png?token=exp=1641553421~hmac=5ba5566c9fa51b1c3bce57a898f2f2d1"> -->
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -186,6 +197,16 @@ export default {
 </script>
 
 <style scoped>
+
+#wrapper29{
+  background-color: rgb(249,228,201);
+  height:100%;
+  top:0;
+  left:0;
+  width: 100%;
+  position: absolute;
+  z-index:-4;
+}
 
 .barContainer {
   height: 2em;
@@ -408,7 +429,50 @@ body {
   height:1.6em;
   box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
+.participate {
+  position: static;
+  background-color: rgb(16, 111, 103);
 
+
+  color: rgb(249, 228, 201);
+  box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, .35);
+  font-size: 2em;
+  margin-left: 0;
+  margin-bottom: 0.2em;
+  margin-top: 0.5em;
+  padding: 0em 1em 0em 1em;
+  display: inline-block;
+  font-weight: 100;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+  min-height: 1.7em;
+}
+
+.participate:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+.participate:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .35);
+}
+
+#congrats{
+  position: relative;
+  top:14em;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+h4{
+  font-size: 1.5em;
+}
 
 
 </style>
