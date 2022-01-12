@@ -69,7 +69,7 @@
           <div class="tooltipC">
             <p v-show="(pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new'"> {{ uiLabels.IDMessage }}</p>
             <p v-show="answersEmpty && !((pollIdExists && !oldPollSame) || pollId =='' || pollId == 'new')"> {{ uiLabels.inputMessage }} </p></div>
-          <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="buttonNice">
+          <button v-on:click="createPoll" v-bind:disabled="answersEmpty || (pollIdExists && !oldPollSame) || pollId.length < 1 || this.pollId == 'new'" class="create">
             {{ uiLabels.createGlossary }}
           </button>
         </div>
@@ -330,6 +330,36 @@ p{
   transform: translateY(10px);
   box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
+.create{
+  top:3em;
+  background-color: rgb(16,111,103);
+  color: rgb(249,228,201);
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+  font-size: 1em;
+  margin-left: 0;
+
+  padding:0em 1em 0em 1em;
+  display:inline-block;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: thin;
+  text-align:center;
+  cursor: pointer;
+  min-height: 3em;
+  height: auto;
+
+}
+.create:hover{
+  cursor:pointer;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.create:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
 
 .classInput {
   padding-top: 2.5%;
@@ -341,6 +371,34 @@ p{
   position: relative;
   top:5em;
 }
+
+.create:disabled {
+  background-color: lightgray;
+  color: gray ! important;
+  cursor: default !important;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: 0;
+  border-radius: 0.5em;
+  border-style: none;
+  border-width: 0.2em;
+  font-weight: bold;
+}
+
+.create:disabled {
+  border-radius: 0.5em;
+  background-color: lightgray;
+  color: #666666;
+  border-style: solid;
+  border-width: thin;
+  font-weight: initial;
+
+}
+
+.create:disabled:hover {
+  transform: translateY(0px);
+}
+
 .qInputClass {
   border-radius: 1em;
   grid-column: 1;
@@ -421,7 +479,7 @@ input:focus {
   opacity: 75%;
   vertical-align: center;
   font-size: 2em;
-
+  color: rgb(249,228,201);
   position: relative;
   right:0.3em;
   margin-left:0.3em;
