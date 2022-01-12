@@ -10,7 +10,7 @@
         <h2 id="userWord">{{ uiLabels.userWord }}</h2><h2 id="translationText">{{ uiLabels.translation }}</h2>
       </div>
 
-      <Question v-bind:question="question"
+      <Question v-bind:question="question" ref="childComponent"
                 v-on:answer="submitAnswer"/>
     </div>
     <br>
@@ -54,7 +54,7 @@
       <div class="icon facebook">
         <div class="tooltip">{{ uiLabels.language }}</div>
         <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"
-                      class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
+                      class="pictureFlag" ></i>  </span> <!-- tog bort class="fab fa-facebook-f" -->
       </div>
     </div>
 
@@ -194,6 +194,7 @@ export default {
       else
         this.lang = "en"
       socket.emit("switchLanguage", this.lang)
+      this.$refs.childComponent.switchLanguage()
     }
   }
 
@@ -657,12 +658,12 @@ p {
 #userWord {
   display: flex;
   position: relative;
-  left:26.9%;
+  left:26.3%;
 }
 #translationText {
   display: flex;
   position: relative;
-  left:66%;
+  left:67.5%;
   bottom:1em;
 }
 
