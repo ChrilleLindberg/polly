@@ -71,7 +71,7 @@ h2 {
   margin-left: 10%;
   margin-right: 10%;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   width: auto;
 }
 
@@ -129,7 +129,7 @@ h2 {
   margin-bottom: 1em;
   justify-content: flex-end;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   width: auto;
   margin-right: 35%;
 }

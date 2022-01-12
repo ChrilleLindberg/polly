@@ -216,7 +216,7 @@ body {
   top: 0;
   left: 0;
   font-family: Helvetica, Arial, sans-serif;
-
+overflow-x: hidden;
   background-color: rgb(18, 54, 90);
   /*background: linear-gradient(90deg, #CEEDE8 0%, #EBEFFB 45%, #CAD2F9 100%);*/
 
@@ -284,16 +284,18 @@ body {
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
 
-  width: 100%;
-  max-width: 400px;
+
+  width:auto;
   background-color: rgb(18, 54, 90);
   border-radius: 16px;
+  margin-right: 25%;
+
 
 
   padding: 25px;
@@ -425,6 +427,7 @@ p {
 #goBack {
   position: absolute;
   left: 1em;
+  color: rgb(259,228,201);
   top: 1em;
   cursor:pointer;
   font-size: 2.5em;
