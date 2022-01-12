@@ -306,9 +306,9 @@ body h1{
   position: absolute;
   left: 1em;
   top: 1em;
-  mix-blend-mode: multiply;
   cursor:pointer;
-  font-size: 3em;
+  font-size: 2.5em;
+
 }
 
 .buttonNice{
@@ -392,6 +392,7 @@ cursor:pointer;
   text-orientation:sideways;
   position: absolute;
   top:15em;
+  margin-left: 10%;
 
 
 }

@@ -421,23 +421,23 @@ p {
   padding: 1em;
 }
 
+
 #goBack {
   position: absolute;
   left: 1em;
   top: 1em;
-  cursor: pointer;
-  font-size: 3em;
-  color: rgb(249, 228, 201);
+  cursor:pointer;
+  font-size: 2.5em;
+
 
 }
 
-.pictureFlag {
+.pictureFlag{
   border-radius: 0.5em;
-  width: 2.3em;
-  height: 1.6em;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  width:2.3em;
+  height:1.6em;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
-
 .wrapper {
   display: inline-flex;
   position: absolute;
@@ -445,17 +445,18 @@ p {
   top: 1.8em;
   cursor: pointer;
   border-radius: 50%;
-  width: 2em;
-  height: 2em;
+  width:2em;
+  height:2em;
 }
 
 .wrapper .icon {
   position: relative;
   background-color: #ffffff;
   border-radius: 50%;
-  width: 1.2em;
-  height: 1em;
+  width:1.2em;
+  height:1em;
   display: flex;
+  margin-top: 1.2em;
   align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
