@@ -227,14 +227,15 @@ export default {
   padding:0;
 }
 h1 {
-  color: rgb(249, 228, 201);
+
   position: relative;
   top:2em
 
 }
 body{
   font-family: Helvetica, Arial, sans-serif;
-  background-color: rgb(18,54,90);
+  color: rgb(249,228,201);
+  background-color: rgb(241,153,125);
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -361,8 +362,8 @@ p{
 }
 
 .classInput {
-  padding-top: 5%;
-  padding-bottom: 0.5em;
+  padding-top: 2.5%;
+  padding-bottom: 0.8em;
   display: grid;
   grid-template-columns: 10fr 9fr 1fr;
   grid-template-rows: repeat(auto-fit,1fr);
@@ -403,7 +404,7 @@ p{
   grid-column: 1;
   text-align: center;
   display: grid;
-  grid-row-gap: 0.5em;
+  grid-row-gap: 0.8em;
 }
 
 #qInput {
@@ -423,7 +424,7 @@ p{
   grid-column: 2;
   text-align: center;
   display: grid;
-  grid-row-gap: 0.5em;
+  grid-row-gap: 0.8em;
 }
 
 .removeWords {
@@ -478,7 +479,7 @@ input:focus {
   opacity: 75%;
   vertical-align: center;
   font-size: 2em;
-  color: rgb(249, 228, 201);
+
   position: relative;
   right:0.3em;
   margin-left:0.3em;
@@ -736,7 +737,7 @@ button {
   top: 1em;
   cursor:pointer;
   font-size: 2.5em;
-  color: rgb(249,228,201);
+
 }
 
 footer {

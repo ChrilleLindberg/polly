@@ -199,13 +199,14 @@ export default {
 <style scoped>
 
 #wrapper29{
-  background-color: rgb(249,228,201);
+  background-color: rgb(18,54,90);
   height:100%;
   top:0;
   left:0;
   width: 100%;
   position: absolute;
   z-index:-4;
+  color: rgb(249, 228, 201);
 }
 
 .barContainer {
@@ -246,7 +247,7 @@ export default {
 
 .progressBarGreen {
   height: 100%;
-  background-color: green;
+  background-color: rgb(161,203,65);;
   transition: width 2s ease-in-out;
   border-radius: 2em;
 
@@ -276,7 +277,7 @@ export default {
   right: -10em;
   grid-column: 1;
   cursor: pointer;
-  color:red;
+  color:rgb(243,71,71);
 }
 
 #buttonImageCheck {
@@ -286,7 +287,9 @@ export default {
   cursor: pointer;
   position: relative;
   right: 8px;
-  color:lawngreen;
+  color: rgb(161,203,65);
+
+
 }
 
 #buttonImageCheck:hover, #buttonImageCross:hover {
@@ -348,6 +351,7 @@ body {
   font-family: "Poppins", sans-serif;
   place-items: center;
   background: linear-gradient(315deg, #ffffff, #d7e1ec);
+  color: rgb(249, 228, 201);
 }
 
 #goBack {
@@ -356,7 +360,7 @@ body {
   top: 1em;
   cursor: pointer;
   font-size: 3em;
-  color: rgb(18,54,90);
+  color: rgb(249, 228, 201);
 }
 
 .infoDiv {
