@@ -321,12 +321,12 @@ body h1{
   color:#EF8584;
   font-size: 1em;
   font-weight: 800;
-  font-family: "Times New Roman", serif;
-  border-radius: 5px;
+  border-radius: 0.5em;
   border-style: solid;
   border-color:#EF8584;
   background-color: white;
-
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .6s;
 }
 .resetButton{
   margin-top: 1em;
@@ -336,17 +336,21 @@ body h1{
   color:darkgray;
   font-size: 1em;
   font-weight: 800;
-  font-family: "Times New Roman", serif;
-  border-radius: 5px;
+  border-radius: 0.5em;
   border-style: solid;
   border-color:darkgray;
   background-color: white;
   cursor:pointer;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .4s;
+
 }
 .resetButton:hover{
   border-color:gray;
   background-color: gray;
   color:white;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 }
 .buttonNice:hover{
 
@@ -355,17 +359,23 @@ cursor:pointer;
   border-style: solid;
   border-color:#EF8584;
   background-color: #EF8584;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 }
-.buttonNice:active{
+.buttonNice:hover:active{
 
   color:white;
 
   border-style: solid;
   border-color:#EF8584;
   background-color: #EF8584;
-
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
-
+.resetButton:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, .35);
+}
 .table {
   display: grid;
 

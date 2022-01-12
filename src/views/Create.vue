@@ -342,11 +342,19 @@ input:focus {
   border-color: #EF8584;
   border-width: 0.2em;
   border-radius: 0.5em;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .6s;
 }
 .copyButton:hover {
   cursor: pointer;
   background-color: #EF8584;
   color: #FFFAF1;
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.copyButton:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
 }
 
 #trashCan {
@@ -404,19 +412,32 @@ input:focus {
   border-style: solid;
   border-width: 0.2em;
   border-color: #EF8584;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
+  transition: all .1s;
 }
 
 .buttonNice:disabled {
   cursor: initial;
   height: 3em;
   border-radius: 0.5em;
-  background-color: transparent;
+  background-color: #FFFFFF;
   color: lightgray;
   border-style: solid;
   border-width: 0.2em;
   border-color: lightgray;
+  box-shadow: 4px 4px 20px -2px rgba(0,0,0,.35);
 }
-
+.buttonNice:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
+}
+.buttonNice:hover:active {
+  transform: translateY(10px);
+  box-shadow: 0px -1px 2px 0px rgba(0,0,0,.35);
+}
+.buttonNice:disabled:hover {
+  transform: translateY(0px);
+}
 .wrapperC {
   display: inline-flex;
   position: relative;
