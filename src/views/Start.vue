@@ -423,6 +423,7 @@ input:focus::placeholder {
 
   color: rgb(249, 228, 201);
   box-shadow: 4px 4px 20px -2px rgba(0, 0, 0, .35);
+  transition: all .4s;
   font-size: 2em;
   margin-left: 0;
   margin-bottom: 0.2em;
@@ -475,6 +476,7 @@ input:focus::placeholder {
 .participate:hover {
   cursor: pointer;
   transform: translateY(-2px);
+  box-shadow: 2px 2px 5px -1px rgba(0,0,0,.35);
 }
 
 .participate:hover:active {
@@ -808,6 +810,8 @@ nav ul.startMenu a {
   100%{
     background-color: rgb(18,54,90);
     color: rgb(249,228,201);
+    background-image:url(/eye/eyeYellow.svg);
+
   }
 
 }
