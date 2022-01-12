@@ -52,7 +52,10 @@
 	"textReset": "Är du säker på att du vill nollställa resultaten?",
 	"amountPerson": "Antal personer",
 	"createinfotext": "Under 'skapar-alternativ' på startsidan kan du redigera denna glossary eller visa resultat.",
-	"creator": "Skapar-alternativ"
+	"creator": "Skapar-alternativ",
+	"flipcardCongrats": "Grattis! Du har klarat alla ord!",
+	"playAgain": "Spela igen",
+	"antalkort": "Antal kort kvar:"
 
 
 
