@@ -13,10 +13,11 @@
   <h1 class="congratsText" v-show="showView == 2"> {{uiLabels.youhavecreated}}</h1>
   <div class="inputFieldTop" v-show="showView==1">
     <input autocomplete="off" type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
-    &nbsp;
+
     <button v-show="!inputActivated" @click="activateInput" id="pen">
-      <i class="fa fa-pencil" aria-hidden="true" ></i>
+      &nbsp; &nbsp; <i class="fa fa-pencil" aria-hidden="true" ></i>
     </button>
+    &nbsp;
     <i class="fa fa-check" id="checkmark" aria-hidden="true" img v-show="(!pollIdExists || oldPollSame) && pollId.length > 0 && pollId !== 'new' && inputActivated"></i>
     <i class="fa fa-times" id="crossmark" aria-hidden="true" img v-show="(pollIdExists && !oldPollSame) && pollId.length > 0 || pollId == 'new'"></i>
   </div>
@@ -561,6 +562,9 @@ button {
 #pen {
   background-color: transparent;
   border:none;
+  position: relative;
+  top:5em;
+
 }
 #checkmark{
   color: green;
