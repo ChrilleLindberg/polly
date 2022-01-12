@@ -14,7 +14,7 @@
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
-  <button type="submit" class="invisibleButton" v-show="isVisible==1"> </button>
+  <button @click="confetti" type="submit" v-bind:class="{confettiButton:showConfetti, invisibleButton:true}" v-show="isVisible==1"> </button>
   <div style="width:2em;height:2em ">
     <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
   </div>
@@ -121,7 +121,8 @@ export default {
       pollExists: false,
       editExists: false,
       resultExists: false,
-      hideCon:false
+      hideCon:false,
+      showConfetti: false
     }
   },
   created: function () {
@@ -190,6 +191,10 @@ export default {
         this.$router.push('/result/'+ this.idResult)
       }
     },
+    confetti: function () {
+      this.showConfetti = true;
+      setTimeout(() => {this.showConfetti=false},2000)
+    }
   }
 }
 </script>
@@ -206,6 +211,7 @@ body {
   font-size: 1em;
 
 }
+
 .invisibleButton{
   background: transparent;
   border: none !important;
@@ -215,9 +221,22 @@ body {
   top: 3em;
   left: 3em;
 }
-.invisibleButton:hover{
+
+.confettiButton {
+  background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  top: 0em;
+  left: 0em;
+  opacity: 0.7;
+  transition: all 1s;
+}
+
+/*.invisibleButton:hover{
   cursor: pointer;
 }
+
 .invisibleButton:active {
   background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
   height: 100%;
@@ -228,10 +247,12 @@ body {
   opacity: 0.7;
   transition: all 1s;
   }
+
 .invisibleButton:not(:hover){
   opacity: 0;
   transition: opacity .6s;
-}
+}*/
+
 #goBack {
   position: absolute;
   left: 1em;
