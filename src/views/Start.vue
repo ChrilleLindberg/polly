@@ -527,6 +527,10 @@ nav ul.startMenu a {
   overflow-x: hidden;
 }
 
+.container::-webkit-scrollbar{
+  display: none;
+}
+
 .nextPage{
   width: 100%;
   height: 100%;
