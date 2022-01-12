@@ -1,9 +1,7 @@
 <template>
-  <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
-  <div v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]">
+
+  <div class="mainWrapper">
+  <main  v-bind:class="[{'container': !hideCon}, {'nextPage': hideCon}]" >
   <header id="movedown">
     <h1>
       {{ uiLabels.welcomeMessage }}
@@ -15,6 +13,7 @@
       <span><i><img v-on:click="switchLanguage" v-bind:src="uiLabels.flag"  class="pictureFlag"></i></span> <!-- tog bort class="fab fa-facebook-f" -->
     </div>
   </div>
+  <button type="submit" class="invisibleButton" v-show="isVisible==1"> </button>
   <div style="width:2em;height:2em ">
     <i id="goBack" class="fa fa-home" v-show="isVisible==2 || isVisible==3 || isVisible==4 || isVisible==5" v-on:click="switchVisibleOne" > </i>
   </div>
@@ -90,16 +89,16 @@
     </ul>
   </div>
   <nav class="dropMenu" v-show="isVisible != 3 && isVisible != 4 && isVisible !=5">
-    <h2><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Create</h2>
+    <h2><font-awesome-icon icon="bars"></font-awesome-icon> &nbsp; Create</h2>
     <input id="toggle" type="checkbox" checked>
-    <ul class="startMenu">
+    <ul class="startMenu" id="CreateOptButton">
       <li id="menuItem" @click="$router.push('/create/'+ 'new/' + lang)">{{ uiLabels.createNew }}</li>
       <li id="menuItem" v-on:click="switchVisibleThree">{{ uiLabels.editExisting }}</li>
       <li id="menuItem" v-on:click="switchVisibleFour">{{ uiLabels.showResult }}</li>
     </ul>
   </nav>
+  </main>
   </div>
-  </body>
 </template>
 
 <script>
@@ -189,7 +188,6 @@ export default {
       if (this.resultExists && this.isVisible==4) {
         this.$router.push('/result/'+ this.idResult)
       }
-
     },
   }
 }
@@ -206,7 +204,32 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1em;
 }
-
+.invisibleButton{
+  background: transparent;
+  border: none !important;
+  position: absolute;
+  height: 3em;
+  width: 3.5em;
+  top: 3em;
+  left: 3em;
+}
+.invisibleButton:hover{
+  cursor: pointer;
+}
+.invisibleButton:active {
+  background-image: url("https://acegif.com/wp-content/gif/confetti-10.gif");
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  top: 0em;
+  left: 0em;
+  opacity: 0.7;
+  transition: all 1s;
+  }
+.invisibleButton:not(:hover){
+  opacity: 0;
+  transition: opacity .6s;
+}
 #goBack {
   position: absolute;
   left: 1em;
@@ -415,13 +438,13 @@ input:focus::placeholder {
 
 
 #movedown{
-  margin-top: 3em;
   margin-bottom: -2em;
+  padding-top: 3em;
 }
 nav {
   margin: auto;
   position: relative;
-  width: 9em;
+  width: 15em;
   height: 200px;
 }
 nav h2 {
@@ -504,11 +527,14 @@ nav ul.startMenu a {
   text-decoration: none;
   transition: color .3s;
 }
-
+.mainWrapper{
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
 .container{
   width: 100%;
   height: 100%;
-  position: absolute;
   margin: 0px!important;
   top: 0em;
   left: 0em;
@@ -522,8 +548,7 @@ nav ul.startMenu a {
   background-size: 3em;
   background-position: top 2.5em left 2.5em;
   background-repeat: no-repeat;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
 }
 .container::-webkit-scrollbar {
   display: none;

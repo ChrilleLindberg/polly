@@ -12,7 +12,8 @@
 	"editExisting": "Edit existing",
 	"twoOptionsText": "Do you want to create or edit a glossary?",
 	"editExistingText": "Edit existing glossary",
-	"congratulations": "Congratulations! You have creted a glossary with glossary ID: ",
+	"congratulations": "Congratulations!  ",
+	"youhavecreated": "You have created a glossary with glossary ID:",
 	"copy": "Copy ID",
 	"glossaryCreator": "Glossary creator",
 	"goBack": "Home",
@@ -46,7 +47,8 @@
 	"yourAnswer": "Your answer",
 	"correctAnswer": "Correct answer",
 	"nameStudent": "Name",
-	"amount": "Amount correct",
+	"amount": "Number of correct answers",
 	"resetAnswers": "Reset the results",
-	"textReset": "Are you sure you want to reset the results?"
+	"textReset": "Are you sure you want to reset the results?",
+	"amountPerson": "Number of people"
 }
