@@ -2,16 +2,15 @@
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <header>
-    <div id="backgroundDiv" v-show="showView==2">
-      <!--<img src="https://acegif.com/wp-content/gif/confetti-10.gif" id="backgroundImg">-->
-  <!--  <img src="https://acegif.com/wp-content/gif/confetti-4.gif" id="backgroundImg"> -->
-    </div>
-    <br>
-    <h1 v-show="showView !==2 ">{{uiLabels.glossaryCreator}}</h1>
-    <h1 v-show="showView == 2"> GRAAAATTIIIIIIS</h1>
-  </header>
   <body>
+  <div id="backgroundDiv" v-show="showView==2">
+    <!--<img src="https://acegif.com/wp-content/gif/confetti-10.gif" id="backgroundImg">-->
+    <!--  <img src="https://acegif.com/wp-content/gif/confetti-4.gif" id="backgroundImg"> -->
+  </div>
+  <br>
+  <h1 class="createText" v-show="showView !==2 ">{{uiLabels.glossaryCreator}}</h1>
+  <h1 class="congratsText " v-show="showView == 2"> {{uiLabels.congratulations}}</h1>
+  <h1 class="congratsText" v-show="showView == 2"> {{uiLabels.youhavecreated}}</h1>
   <div class="inputFieldTop" v-show="showView==1">
     <input autocomplete="off" type="text" v-model="pollId" v-bind:disabled="!inputActivated" id="inputFieldPollId" @keydown.space.prevent @input="checkInput" v-bind:placeholder="uiLabels.writeField">
     &nbsp;
@@ -76,9 +75,9 @@
       </div>
     </div>
     <div v-show="showView==2">
-    <h3>
+<!--    <h3>
       {{uiLabels.congratulations}}
-    </h3>
+    </h3>-->
     <input type="text" id="prefilledInput" readonly="readonly"> &nbsp;
     <button @click="copyToClipboard" class="copyButton" title="Kopiera ID"> <!-- har ej kopplat denna knapp till en fungerande metod än-->
       <i class="fa fa-clipboard" aria-hidden="true"></i>
@@ -213,20 +212,26 @@ export default {
 
 
 <style scoped>
-
+*{
+  margin: 0;
+  padding:0;
+}
+h1 {
+  color: rgb(249, 228, 201);
+  position: relative;
+  top:2em
+}
 body{
-  margin-top: 7em;
-}
-header {
+  font-family: Helvetica, Arial, sans-serif;
   background-color: rgb(18,54,90);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   position: absolute;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  left: 0em;
-  z-index: -2;
-  top: 0em;
+  top:0em;
+  left:0em;
 }
+
 #backgroundDiv {
   position: absolute;
   height: 100vh;
@@ -270,6 +275,8 @@ html {
   grid-template-columns: 10fr 9fr 1fr;
   grid-template-rows: repeat(auto-fit,1fr);
   vertical-align: center;
+  position: relative;
+  top:5em;
 }
 .qInputClass {
   border-radius: 1em;
@@ -340,13 +347,18 @@ input:focus {
 }
 
 #trashCan {
-  height: 1em;
-  opacity: 50%;
+  opacity: 75%;
   vertical-align: center;
+  font-size: 2em;
+  color: rgb(249, 228, 201);
+  position: relative;
+  right:0.3em;
+  margin-left:0.3em;
 }
 
 #trashCan:hover {
   opacity: 100%;
+  cursor: pointer;
 }
 
 #removeLine {
@@ -355,7 +367,6 @@ input:focus {
   horiz-align: center;
   vertical-align: center;
 }
-
 
 #plusButton {
   border-style: solid;
@@ -373,6 +384,8 @@ input:focus {
   transition-duration: 0.3s;
   -webkit-transition-property: transform;
   transition-property: transform;
+  position: relative;
+  top:6em;
 }
 
 #plusButton:hover, #plusButton:active {
@@ -404,6 +417,8 @@ input:focus {
 .wrapperC {
   display: inline-flex;
   position: relative;
+  top:5em;
+  margin-bottom: 2em;
 }
 
 .iconC {
@@ -471,9 +486,13 @@ button {
 }
 #checkmark{
   color: green;
+  position: relative;
+  top:4.15em;
 }
 #crossmark{
   color: red;
+  position: relative;
+  top:4.15em;
 }
 .inputFieldTop {
   position: relative;
@@ -486,6 +505,13 @@ button {
   border-color: lightgray;
   height: 2em;
   text-align: center;
+  position: relative;
+  top:5em;
+}
+#prefilledInput, .copyButton{
+  position: relative;
+  top:15em
+
 }
 
 #inputFieldPollId:disabled {
@@ -567,7 +593,7 @@ button {
   top: 1em;
   cursor:pointer;
   font-size: 2.5em;
-
+  color: rgb(249,228,201);
 }
 
 footer {
